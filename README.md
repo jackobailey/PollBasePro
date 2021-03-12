@@ -39,8 +39,8 @@ largest base of support** with 41% (95% CI: 37% to 44%) of the
 electorate intending to vote for them at the next election. **They hold
 a lead over the Labour Party** of 3% (95% CI: -3% to 8%). **This puts
 the Labour Party in second place** on 38% (95% CI: 35% to 41%) of the
-vote. **In third place is the Liberal Democrats**, who gain the support
-of around 9% (95% CI: 8% to 11%) of voters.
+vote. **In third place is the Liberal Democrats**, with support from 9%
+(95% CI: 8% to 11%) of voters.
 
 ## Notes, Usage, and Attribution
 

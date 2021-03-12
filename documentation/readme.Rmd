@@ -140,7 +140,7 @@ pollbasepro %>%
     colour = "Party",
     fill = "Party",
     y = "Vote Share",
-    caption = "Based on data from PollBasePro, created by Jack Bailey, Mark Pack, and Luke Mansillo: www.github.com/jackobailey/PollBasePro"
+    caption = "Based on data from PollBasePro, created by @PoliSciJack, @markpack, and @mansillo: www.github.com/jackobailey/PollBasePro"
   ) +
   theme(
     legend.position = "bottom",
@@ -174,7 +174,7 @@ Both `pollbase` and `pollbasepro` are living datasets. As such, users should try
 
 We are happy for others to use our code for their own purposes, but ask that they do so *with attribution*. That is, you may reproduce, reuse, and change the code here as you see fit, but must state in each case that you based your analysis on our work. The citations for each item in PollBasePro are as follows:
 
-- **Data:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")` v.`r packageVersion("PollBasePro")` [computer file], `r format(Sys.Date(), format = "%B %Y")`. Retrieved from doi.
+- **Data:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")` v.`r packageVersion("PollBasePro")` [computer file], `r format(Sys.Date(), format = "%B %Y")`. Retrieved from https://doi.org/10.7910/DVN/3POIQW.
 
 - **Documentation:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro v`r packageVersion("PollBasePro")`: User Guide and Codebook. Retrieved from doi.
 

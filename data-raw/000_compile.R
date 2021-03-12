@@ -45,7 +45,7 @@ source(here("data-raw", "005_example.R"))
 
 render(
   input = here("documentation", "paper.Rmd"),
-  output_file = here("download", paste0("paper_", packageVersion("PollBasePro"), ".pdf"))
+  output_file = here("download", "paper.pdf")
 )
 
 
@@ -58,7 +58,7 @@ source(here("documentation", "_assets", "cover.R"))
 
 render(
   input = here("documentation", "userguide.Rmd"),
-  output_file = here("download", paste0("userguide_", packageVersion("PollBasePro"), ".pdf"))
+  output_file = here("download", "userguide.pdf")
 )
 
 

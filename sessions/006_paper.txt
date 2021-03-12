@@ -1,4 +1,4 @@
-Analysis completed: 2021-03-11 11:24:27
+Analysis completed: 2021-03-12 16:52:19
 
 R version 4.0.4 (2021-02-15)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -53,6 +53,5 @@ loaded via a namespace (and not attached):
 [105] gridExtra_2.3        codetools_0.2-18     boot_1.3-27          colourpicker_1.1.0  
 [109] MASS_7.3-53.1        gtools_3.8.2         assertthat_0.2.1     rprojroot_2.0.2     
 [113] withr_2.4.1          shinystan_2.5.0      mgcv_1.8-34          parallel_4.0.4      
-[117] hms_1.0.0            labelled_2.7.0       grid_4.0.4           coda_0.19-4         
-[121] minqa_1.2.4          cmdstanr_0.1.3       shiny_1.6.0          base64enc_0.1-3     
-[125] tinytex_0.30         dygraphs_1.1.1.6    
+[117] hms_1.0.0            grid_4.0.4           coda_0.19-4          minqa_1.2.4         
+[121] cmdstanr_0.1.3       shiny_1.6.0          base64enc_0.1-3      dygraphs_1.1.1.6    

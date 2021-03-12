@@ -161,7 +161,7 @@ ggsave(
 
 ```
 
-<center><img src="https://raw.githubusercontent.com/jackobailey/PollBasePro/master/documentation/_assets/timeplot_gh.png?token=AI2VF2PMPYJQ277S7LBU4ILAJOPVI"></center>
+<center><img src="https://raw.githubusercontent.com/jackobailey/PollBasePro/master/documentation/_assets/timeplot_gh.png"></center>
 
 As of `r str_remove(format(Sys.Date(), "%d %B %Y"), "^0")`, we estimate that **the `r txt_dta$party[1]` `r ifelse(txt_dta$party[1] %in% c("Conservative Party", "Labour Party"), "has", "have")` the largest base of support** with `r paste0(txt_dta$share[1], " (95% CI: ", txt_dta$lower[1], " to ", txt_dta$upper[1], ")")` of the electorate intending to vote for them at the next election. **They hold a lead over the `r txt_dta$party[2]`** of `r paste0(scales::percent(txt_dta$est[1] - txt_dta$est[2]), " (95% CI: ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) - qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), " to ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) + qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), ")")`. **This puts the `r txt_dta$party[2]` in second place** on `r paste0(txt_dta$share[2], " (95% CI: ", txt_dta$lower[2], " to ", txt_dta$upper[2], ")")` of the vote. **In third place is the `r txt_dta$party[3]`**, with support from `r paste0(txt_dta$share[3], " (95% CI: ", txt_dta$lower[3], " to ", txt_dta$upper[3], ")")` of voters.
 

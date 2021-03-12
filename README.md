@@ -31,7 +31,7 @@ them](https://github.com/jackobailey/PollBasePro/tree/master/download).
 ## Latest Polling Estimates
 
 <center>
-<img src="https://raw.githubusercontent.com/jackobailey/PollBasePro/master/documentation/_assets/timeplot_gh.png?token=AI2VF2PMPYJQ277S7LBU4ILAJOPVI">
+<img src="https://raw.githubusercontent.com/jackobailey/PollBasePro/master/documentation/_assets/timeplot_gh.png">
 </center>
 
 As of 12 March 2021, we estimate that **the Conservative Party has the

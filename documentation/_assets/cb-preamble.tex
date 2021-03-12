@@ -1,0 +1,70 @@
+% Jack Baiiley's R Markdown Preamble ----------
+
+% Text and Typography ----------
+
+% Specify fonts
+\setsansfont{Cabin}
+\setmainfont{EB Garamond}
+
+% Use double linespacing
+\usepackage{setspace}
+
+% Statistical Rethinking-style labels using \srlab
+\definecolor{mygray}{gray}{0.5}
+\newcommand{\srlab}[1]{\tag*{\textsf{\small{\textcolor{mygray}{#1}}}}}
+
+
+% Maths ----------
+
+% Align decimals in tables
+\usepackage{dcolumn}
+
+% Add small fraction
+\usepackage{xfrac}
+
+
+
+% Headings, etc.  ----------
+
+% Call 'titling' package to adjust titles, etc.
+\usepackage{titling}
+
+% Format title
+\pretitle{\begin{center} \onehalfspacing \LARGE \sffamily \bfseries}
+\posttitle{\par\end{center}\vskip 12pt}
+
+% Format author field
+\preauthor{\begin{center} \onehalfspacing \large}
+\postauthor{\par\end{center}}
+
+% Format data field
+\predate{\begin{center} \onehalfspacing \large}
+\postdate{
+  \par\end{center}
+  \begin{center}
+  \LARGE
+  \includegraphics[width = 6in, height = 6in]{_assets/cover.png}\\[\bigskipamount]
+  \end{center}
+  }
+
+% Format abstract title
+\usepackage{abstract}
+\renewcommand{\abstractname}{\sffamily \bfseries Abstract}
+\renewcommand{\abstracttextfont}{\noindent \doublespacing}
+
+% Format caption style
+\usepackage{caption}
+\captionsetup[figure]{name={Figure}}
+\captionsetup{font={sf}}
+
+% Turn off hyphenation of words across multiple lines
+\hyphenpenalty=100000
+
+
+\usepackage[small, sf, bf]{titlesec}
+
+% Format section styles
+\titleformat*{\section}{\large \sffamily \bfseries}
+\titleformat*{\subsection}{\sffamily \bfseries}
+\titleformat*{\subsubsection}{\sffamily \itshape}
+\titleformat*{\paragraph}{\sffamily \bfseries}

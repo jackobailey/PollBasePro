@@ -1,0 +1,35 @@
+Package: PollBasePro
+Title: Daily British Voting Intention Estimates, 1955 to 2021
+Version: 0.1.0
+Authors@R: 
+    person(given = "Jack",
+           family = "Bailey",
+           role = c("aut", "cre"),
+           email = "jack.bailey@manchester.ac.uk")
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to
+    pick a license
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)
+Suggests: 
+    testthat
+Imports: 
+    dplyr,
+    stats,
+    here,
+    lubridate,
+    magrittr,
+    rstan,
+    stringr,
+    tibble,
+    brms,
+    purrr,
+    cmdstanr,
+    htmltab,
+    kableExtra,
+    labelled,
+    tidyr

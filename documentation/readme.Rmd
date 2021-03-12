@@ -1,0 +1,178 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, include = FALSE}
+
+# Load packages
+
+library(PollBasePro)
+library(tidyverse)
+library(lubridate)
+library(here)
+
+
+# Set knitr options
+
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# PollBasePro
+
+PollBasePro is a data package for the `R` programming language. It includes two datasets: `pollbase` and `pollbasepro`. The first provides a long-format and ready-to-analyse version of Mark Pack's dataset of historic British public opinion polls combined with more recent polling data from Wikipedia. The second provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`.
+
+To install the latest version of PollBasePro, run the following code in `R`:
+
+``` r
+devtools::install_github("jackobailey/PollBasePro")
+```
+
+We also provide `pollbase` and `pollbasepro` as .dta and .sav files for Stata and SPSS users. These files include all necessary value and variable labels and should work seamlessly with both software packages. Click here to download them.
+
+
+## Latest Polling Estimates
+
+```{r figs, include = FALSE}
+
+# Get most recent pollbasepro estimates
+
+txt_dta <-
+  pollbasepro[pollbasepro$date == max(pollbasepro$date), ] %>%
+  pivot_longer(
+    cols = c(-date, -election, -govt, -matches("_ldr"), -week, -month, -quarter, -year),
+    names_to = c("party", ".value"),
+    names_sep = "_"
+    ) %>%
+  arrange(desc(est)) %>%
+  select(
+    party,
+    est,
+    err
+  ) %>% 
+  mutate(
+    party =
+      case_when(
+        party == "con" ~ "Conservative Party",
+        party == "lab" ~ "Labour Party",
+        party == "lib" ~ "Liberal Democrats"
+        ),
+    lower = scales::percent(est - stats::qnorm(.975)*err, accuracy = 1),
+    upper = scales::percent(est + stats::qnorm(.975)*err, accuracy = 1),
+    share = scales::percent(est, accuracy = 1)
+    )
+
+```
+
+```{r time-plot, fig.width = 9, fig.height = 5, fig.align = "centre", echo = F}
+
+# Define party colours
+
+pty_cols <-
+  c(
+    "Conservative Party" = "#0087dc",
+    "Labour Party" = "#d50000",
+    "Liberals (Various Forms)" = "#fdbb30"
+  )
+
+
+# Create over time plot
+
+timeplot <- 
+pollbasepro %>% 
+  pivot_longer(
+    cols = c(-date, -election, -govt, -week, -month, -quarter, -year, -con_ldr, -lab_ldr, -lib_ldr),
+    names_to = c("party", ".value"),
+    names_sep = "_",
+  ) %>%
+  mutate(
+    party =
+      case_when(
+        party == "con" ~ "Conservative Party",
+        party == "lab" ~ "Labour Party",
+        party == "lib" ~ "Liberals (Various Forms)"
+      ) %>% 
+      factor(
+        levels = 
+          c("Conservative Party",
+            "Labour Party",
+            "Liberals (Various Forms)"
+          )
+      )
+  ) %>%
+  ggplot(
+    aes(
+      x = date,
+      y = est,
+      ymin = est - qnorm(0.975)*err,
+      ymax = est + qnorm(0.975)*err,
+      colour = party,
+      fill = party
+    )
+  ) +
+  geom_ribbon(alpha = .3, colour = NA) +
+  geom_line() +
+  scale_colour_manual(values = pty_cols) +
+  scale_fill_manual(values = pty_cols) +
+  scale_y_continuous(
+    breaks = seq(0, .6, by = .1),
+    labels = scales::percent_format(accuracy = 1)
+    ) +
+  scale_x_date(
+    breaks = seq.Date(as.Date("1955-01-01"), max(pollbasepro$date), by = "3 months"),
+    labels = format(seq.Date(as.Date("1955-01-01"), max(pollbasepro$date), by = "3 months"), "%b %y")
+    ) +
+  coord_cartesian(
+    ylim = c(0, 0.62),
+    xlim = c(as_date("2019-12-12"), Sys.Date())
+    ) +
+  jbmisc::theme_bailey() +
+  labs(
+    colour = "Party",
+    fill = "Party",
+    y = "Vote Share",
+    caption = "Based on data from PollBasePro, created by Jack Bailey, Mark Pack, and Luke Mansillo: www.github.com/jackobailey/PollBasePro"
+  ) +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_blank(),
+    axis.title.x = element_blank()
+  )
+
+
+# Output plot
+
+ggsave(
+  filename = "timeplot_gh.png",
+  plot = timeplot,
+  path = here("documentation", "_assets"),
+  width = 6,
+  height = 3.5,
+  units = "in",
+  dpi = 320
+)
+
+```
+
+<center><img src="https://raw.githubusercontent.com/jackobailey/econ_half_life/master/documentation/_assets/timeplot_gh.png"></center>
+
+As of `r str_remove(format(Sys.Date(), "%d %B %Y"), "^0")`, we estimate that **the `r txt_dta$party[1]` `r ifelse(txt_dta$party[1] %in% c("Conservative Party", "Labour Party"), "has", "have")` the largest base of support** with `r paste0(txt_dta$share[1], " (95% CI: ", txt_dta$lower[1], " to ", txt_dta$upper[1], ")")` of the electorate intending to vote for them at the next election. **They hold a lead over the `r txt_dta$party[2]`** of `r paste0(scales::percent(txt_dta$est[1] - txt_dta$est[2]), " (95% CI: ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) - qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), " to ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) + qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), ")")`. **This puts the `r txt_dta$party[2]` in second place** on `r paste0(txt_dta$share[2], " (95% CI: ", txt_dta$lower[2], " to ", txt_dta$upper[2], ")")` of the vote. **In third place is the `r txt_dta$party[3]`**, who gain the support of around `r paste0(txt_dta$share[3], " (95% CI: ", txt_dta$lower[3], " to ", txt_dta$upper[3], ")")` of voters.
+
+
+## Notes, Usage, and Attribution
+
+Both `pollbase` and `pollbasepro` are living datasets. As such, users should try to use only the most recent version of the data when conducting their analyses. Like any project of this size, we cannot rule out the possibility that minor mistakes might have crept into our data processing pipeline. If you think that you have found an error in our code or wish to make a recommendation for a future update, please [raise an issue](https://github.com/jackobailey/PollBasePro/issues) or [contact us directly](mailto:jack.bailey@manchester.ac.uk).
+
+We are happy for others to use our code for their own purposes, but ask that they do so *with attribution*. That is, you may reproduce, reuse, and change the code here as you see fit, but must state in each case that you based your analysis on our work. The citations for each item in PollBasePro are as follows:
+
+- **Data:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")` v.`r packageVersion("PollBasePro")` [computer file], `r format(Sys.Date(), format = "%B %Y")`. Retrieved from doi.
+
+- **Documentation:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro v`r packageVersion("PollBasePro")`: User Guide and Codebook. Retrieved from doi.
+
+- **Paper:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")`. Retrieved from doi.

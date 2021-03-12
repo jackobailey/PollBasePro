@@ -1,0 +1,4 @@
+
+### Version 0.1.0 (Beta)
+
+- Beta release of data, user guide, and accompanying paper

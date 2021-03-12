@@ -23,7 +23,7 @@ data("pollbasepro")
 pollbasepro <-
   pollbasepro %>%
   left_join(
-    read_csv(here("inst", "extdata", "data_2021-Mar-06-deaths.csv")) %>%
+    read_csv(here("inst", "extdata", "data_2021-Mar-12.csv")) %>%
       select(
         date,
         deaths = newDeaths28DaysByDeathDate

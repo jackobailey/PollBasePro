@@ -115,7 +115,7 @@ get_new_polls <- function(){
     dta %>%
     tidyr::separate(
       col = date,
-      sep = "-|–",
+      sep = "-|\u2014",
       into = c("start", "end")
     )
 

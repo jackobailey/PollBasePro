@@ -71,10 +71,21 @@ render(
 )
 
 
+# 44 Check and install ----------------------------------------------------
 
-# 4. Produce replication materials ----------------------------------------
-
-# Save session information to the "sessions" folder
+# We'll save session information to the "sessions" folder
 
 save_info(path = here("sessions", "000_compile.txt"))
+
+
+# Now, we'll run our unit tests to check that nothing weird is happening or
+# that the data don't contain any obvious errors.
+
+devtools::check()
+
+
+# Then, we'll reinstall the package in full.
+
+devtools::install()
+
 

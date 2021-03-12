@@ -33,6 +33,19 @@ utils::globalVariables(
     "Samplesize",
     "Datesconducted",
     "Pollster",
-    "variable"
+    "variable",
+    "init",
+    "party",
+    ".",
+    "days",
+    "index",
+    "est",
+    "err",
+    "est_con",
+    "sd_con",
+    "est_lab",
+    "sd_lab",
+    "est_lib",
+    "sd_lib"
     )
 )

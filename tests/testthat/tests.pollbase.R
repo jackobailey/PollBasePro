@@ -76,3 +76,13 @@ test_that("Correlations between voting intention figures are negative", {
   )
 })
 
+
+# Test 4: Ensure no start dates are after end dates
+
+test_that("No start dates are after end dates", {
+  expect_equal(
+    sum(pollbase$start > pollbase$end),
+    0
+  )
+})
+

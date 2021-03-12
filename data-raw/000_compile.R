@@ -66,7 +66,8 @@ render(
 
 render(
   input = here("documentation", "readme.Rmd"),
-  output_file = here("download", "README.md")
+  output_format = "github_document",
+  output_file = here("README.md")
 )
 
 

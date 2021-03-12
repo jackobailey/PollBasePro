@@ -134,6 +134,7 @@ pollbasepro %>%
     ) +
   jbmisc::theme_bailey() +
   labs(
+    title = paste0("British Poll of Polls, ", str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")),
     colour = "Party",
     fill = "Party",
     y = "Vote Share",

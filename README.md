@@ -9,7 +9,11 @@ a long-format and ready-to-analyse version of Mark Pack’s dataset of
 historic British public opinion polls combined with more recent polling
 data from Wikipedia. The second provides 24,033 daily estimates of
 voting intention figures for each of Britain’s three largest parties
-between 26 May 1955 and 12 March 2021.
+between 26 May 1955 and 12 March 2021. The user guide and codebook is
+available
+[here](https://github.com/jackobailey/PollBasePro/blob/master/download/userguide.pdf)
+and the accompanying paper is available
+[here](https://github.com/jackobailey/PollBasePro/blob/master/download/paper.pdf).
 
 To install the latest version of PollBasePro, run the following code in
 `R`:
@@ -21,12 +25,13 @@ devtools::install_github("jackobailey/PollBasePro")
 We also provide `pollbase` and `pollbasepro` as .dta and .sav files for
 Stata and SPSS users. These files include all necessary value and
 variable labels and should work seamlessly with both software packages.
-Click here to download them.
+[Click here to download
+them](https://github.com/jackobailey/PollBasePro/tree/master/download).
 
 ## Latest Polling Estimates
 
 <center>
-<img src="https://raw.githubusercontent.com/jackobailey/econ_half_life/master/documentation/_assets/timeplot_gh.png">
+<img src="https://raw.githubusercontent.com/jackobailey/PollBasePro/master/documentation/_assets/timeplot_gh.png">
 </center>
 
 As of 12 March 2021, we estimate that **the Conservative Party has the

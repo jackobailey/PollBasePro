@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 # PollBasePro
 
-PollBasePro is a data package for the `R` programming language. It includes two datasets: `pollbase` and `pollbasepro`. The first provides a long-format and ready-to-analyse version of Mark Pack's dataset of historic British public opinion polls combined with more recent polling data from Wikipedia. The second provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. The user guide and codebook is available [here]() and the accompanying paper is available [here]().
+PollBasePro is a data package for the `R` programming language. It includes two datasets: `pollbase` and `pollbasepro`. The first provides a long-format and ready-to-analyse version of Mark Pack's dataset of historic British public opinion polls combined with more recent polling data from Wikipedia. The second provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. The user guide and codebook is available [here](https://github.com/jackobailey/PollBasePro/blob/master/download/userguide.pdf) and the accompanying paper is available [here](https://github.com/jackobailey/PollBasePro/blob/master/download/paper.pdf).
 
 To install the latest version of PollBasePro, run the following code in `R`:
 
@@ -160,7 +160,7 @@ ggsave(
 
 ```
 
-<center><img src="https://raw.githubusercontent.com/jackobailey/econ_half_life/master/documentation/_assets/timeplot_gh.png"></center>
+<center><img src="https://raw.githubusercontent.com/jackobailey/PollBasePro/master/documentation/_assets/timeplot_gh.png"></center>
 
 As of `r str_remove(format(Sys.Date(), "%d %B %Y"), "^0")`, we estimate that **the `r txt_dta$party[1]` `r ifelse(txt_dta$party[1] %in% c("Conservative Party", "Labour Party"), "has", "have")` the largest base of support** with `r paste0(txt_dta$share[1], " (95% CI: ", txt_dta$lower[1], " to ", txt_dta$upper[1], ")")` of the electorate intending to vote for them at the next election. **They hold a lead over the `r txt_dta$party[2]`** of `r paste0(scales::percent(txt_dta$est[1] - txt_dta$est[2]), " (95% CI: ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) - qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), " to ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) + qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), ")")`. **This puts the `r txt_dta$party[2]` in second place** on `r paste0(txt_dta$share[2], " (95% CI: ", txt_dta$lower[2], " to ", txt_dta$upper[2], ")")` of the vote. **In third place is the `r txt_dta$party[3]`**, who gain the support of around `r paste0(txt_dta$share[3], " (95% CI: ", txt_dta$lower[3], " to ", txt_dta$upper[3], ")")` of voters.
 

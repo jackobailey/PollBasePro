@@ -1,11 +1,17 @@
 Package: PollBasePro
 Title: Daily British Voting Intention Estimates, 1955 to 2021
 Version: 0.1.0
-Authors@R: 
-    person(given = "Jack",
+Date: 2021-03-12
+Authors@R: c(person(given = "Jack",
            family = "Bailey",
            role = c("aut", "cre"),
-           email = "jack.bailey@manchester.ac.uk")
+           email = "jack.bailey@manchester.ac.uk"),
+           person(given = "Mark",
+           family = "Pack",
+           role = "ctb"),
+           person(given = "Luke",
+           family = "Mansillo",
+           role = "ctb"))
 Description: What the package does (one paragraph).
 License: GPL (>= 3)
 Encoding: UTF-8

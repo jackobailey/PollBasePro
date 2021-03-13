@@ -34,7 +34,7 @@ them](https://github.com/jackobailey/PollBasePro/tree/master/download).
 <img src="https://raw.githubusercontent.com/jackobailey/PollBasePro/master/documentation/_assets/timeplot_gh.png">
 </center>
 
-As of 12 March 2021, we estimate that **the Conservative Party has the
+As of 13 March 2021, we estimate that **the Conservative Party has the
 largest base of support** with 41% (95% CI: 37% to 44%) of the
 electorate intending to vote for them at the next election. **They hold
 a lead over the Labour Party** of 3% (95% CI: -3% to 8%). **This puts
@@ -62,7 +62,7 @@ PollBasePro are as follows:
 -   **Data:** Bailey, J., M. Pack, and L. Mansillo (2021) PollBasePro:
     Daily Estimates of Aggregate Voting Intention in Great Britain from
     1955 to 2021 v.0.1.0 \[computer file\], March 2021. Retrieved from
-    doi.
+    <https://doi.org/10.7910/DVN/3POIQW>.
 
 -   **Documentation:** Bailey, J., M. Pack, and L. Mansillo (2021)
     PollBasePro v0.1.0: User Guide and Codebook. Retrieved from doi.

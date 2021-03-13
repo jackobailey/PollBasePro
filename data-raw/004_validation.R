@@ -21,7 +21,7 @@ data("pollbasepro")
 # Load Timeline data, filter to include only UK cases, and split by party
 
 timeline <-
-  readRDS(here("inst", "extdata", "timeline.rds")) %>%
+  load_timeline() %>%
   select(
     date = polldate,
     elecdate,

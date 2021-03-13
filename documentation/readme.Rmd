@@ -134,18 +134,32 @@ pollbasepro %>%
     ylim = c(0, 0.62),
     xlim = c(as_date("2019-12-12"), Sys.Date())
     ) +
-  jbmisc::theme_bailey() +
+  theme_minimal() +
+    theme(
+      legend.position = "bottom",
+      legend.title = element_blank(),
+      text = element_text(family = "Cabin", color = "black", size = 8),
+      plot.title = element_text(family = "Cabin", face = "bold", size = rel(1.4), hjust = 0),
+      plot.subtitle = element_text(family = "Cabin", size = rel(1), hjust = 0, margin = margin(b = 10)),
+      axis.line = element_line(lineend = "round"),
+      axis.title.x = element_blank(),
+      axis.text.x = element_text(color = "black", size = rel(1)),
+      axis.ticks.x = element_line(lineend = "round"),
+      axis.title.y = element_text(family = "Cabin", face = "bold", size = rel(1)),
+      axis.text.y = element_text(color = "black", size = rel(1)),
+      strip.text = element_text(family = "Cabin", face = "bold", size = rel(1)),
+      panel.spacing = unit(.3, "cm"),
+      panel.grid.major.y = element_line(size = .5, lineend = "round"),
+      panel.grid.minor.y = element_blank(),
+      panel.grid.major.x = element_blank(),
+      panel.grid.minor.x = element_blank()
+    ) +
   labs(
     title = paste0("British Poll of Polls, ", str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")),
     colour = "Party",
     fill = "Party",
     y = "Vote Share",
     caption = "Based on data from PollBasePro, created by @PoliSciJack, @markpack, and @mansillo: www.github.com/jackobailey/PollBasePro"
-  ) +
-  theme(
-    legend.position = "bottom",
-    legend.title = element_blank(),
-    axis.title.x = element_blank()
   )
 
 

@@ -16,7 +16,7 @@ library(here)
 # Load timeline of elections data
 
 timeline <-
-  readRDS(here("inst", "extdata", "timeline.rds")) %>%
+  load_timeline() %>%
   select(
     polldate,
     elecdate,

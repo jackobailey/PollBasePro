@@ -49,7 +49,6 @@ library(PollBasePro)
 library(kableExtra)
 library(tidyverse)
 library(lubridate)
-library(jbmisc)
 library(brms)
 library(here)
 
@@ -68,7 +67,7 @@ load(here("R", "sysdata.rda"))
 # Load timeline data
 
 timeline <-
-  readRDS(here("inst", "extdata", "timeline.rds")) %>%
+  load_timeline() %>%
   select(
     date = polldate,
     elecdate,
@@ -213,9 +212,25 @@ ggplot() +
     labels = year(seq.Date(as.Date("1960-01-01"), as.Date("2020-01-01"), by = "10 years"))
   ) +
   coord_cartesian(ylim = c(0, 0.05)) +
-  jbmisc::theme_bailey() +
-  labs(y = "Posterior Uncertainty (95%)") +
-  theme(axis.title.x = element_blank())
+   theme_minimal() +
+    theme(legend.title = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   text = element_text(family = "Cabin", color = "black", size = 8),
+                   plot.title = element_text(family = "Cabin", face = "bold", size = rel(1.4), hjust = 0),
+                   plot.subtitle = element_text(family = "Cabin", size = rel(1), hjust = 0, margin = margin(b = 10)),
+                   axis.line = element_line(lineend = "round"),
+                   axis.title.x = element_blank(),
+                   axis.text.x = element_text(color = "black", size = rel(1)),
+                   axis.ticks.x = element_line(lineend = "round"),
+                   axis.title.y = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   axis.text.y = element_text(color = "black", size = rel(1)),
+                   strip.text = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   panel.spacing = unit(.3, "cm"),
+                   panel.grid.major.y = element_line(size = .5, lineend = "round"),
+                   panel.grid.minor.y = element_blank(),
+                   panel.grid.major.x = element_blank(),
+                   panel.grid.minor.x = element_blank()
+    ) +
+  labs(y = "Posterior Uncertainty (95%)")
 
 ```
 
@@ -269,11 +284,27 @@ samplesizes %>%
     labels = year(seq.Date(as.Date("1945-01-01"), as.Date("2020-01-01"), by = "5 years"))
     ) +
   coord_cartesian(ylim = c(0, 2600)) +
-  jbmisc::theme_bailey() +
+  theme_minimal() +
+    theme(legend.title = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   text = element_text(family = "Cabin", color = "black", size = 8),
+                   plot.title = element_text(family = "Cabin", face = "bold", size = rel(1.4), hjust = 0),
+                   plot.subtitle = element_text(family = "Cabin", size = rel(1), hjust = 0, margin = margin(b = 10)),
+                   axis.line = element_line(lineend = "round"),
+                   axis.title.x = element_blank(),
+                   axis.text.x = element_text(color = "black", size = rel(1)),
+                   axis.ticks.x = element_line(lineend = "round"),
+                   axis.title.y = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   axis.text.y = element_text(color = "black", size = rel(1)),
+                   strip.text = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   panel.spacing = unit(.3, "cm"),
+                   panel.grid.major.y = element_line(size = .5, lineend = "round"),
+                   panel.grid.minor.y = element_blank(),
+                   panel.grid.major.x = element_blank(),
+                   panel.grid.minor.x = element_blank()
+    ) +
   labs(
     y = "Imputed Sample Size"
-  ) +
-  theme(axis.title.x = element_blank())
+  )
 
 ```
 
@@ -318,7 +349,7 @@ Poll_{i} &\sim \mathrm{Normal}(\mu_{i}, \sqrt{\sigma^2 + S_{i}^2}) \srlab{Likeli
 \mu_{i} &= \alpha_{Day[i]} + \delta_{Pollster[i]} \srlab{Measurement model on $\mu$} \\
 \alpha_{t} &= \alpha_{t-1} + \tau \omega_{t-1} \text{ for } t \text{ in } 2, ..., T-1 \srlab{Dynamic model on $\alpha_{t}$} \\
 \alpha_{T} &\sim \mathrm{Normal}(\alpha_{T-1}, \tau) \srlab{Adaptive prior on $\alpha_{T}$} \\
-\delta_{j} &\sim \mathrm{Normal}(0, 0.1) \text{ for } j \text{ in } 1, ..., J \srlab{Prior on house effects, $\delta$} \\
+\delta_{j} &\sim \mathrm{Normal}(0, 0.05) \text{ for } j \text{ in } 1, ..., J \srlab{Prior on house effects, $\delta$} \\
 \omega_{t} &\sim \mathrm{Normal}(0, 0.1) \text{ for } t \text{ in } 1, ..., T-1 \srlab{Prior on random shocks, $\omega$} \\
 \tau &\sim \mathrm{Normal}(0, 0.05)^{+} \srlab{Positive prior on scale of innovations, $\tau$} \\
 \sigma &\sim \mathrm{Exponential}(20) \srlab{Prior on residual error, $\sigma$} \\
@@ -343,7 +374,7 @@ pty_cols <-
 # Load Timeline data, filter to include only UK cases, and split by party
 
 tl <-
-  readRDS(here("inst", "extdata", "timeline.rds")) %>%
+  load_timeline() %>%
   select(
     date = polldate,
     elecdate,

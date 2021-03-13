@@ -76,7 +76,7 @@ get_new_polls <- function(){
       pollster =
         pollster %>%
         stringr::str_remove("/.*") %>%
-        stringr::str_remove("-|\u2014") %>%
+        stringr::str_remove("-|–") %>%
         tolower()
     )
 
@@ -115,7 +115,7 @@ get_new_polls <- function(){
     dta %>%
     tidyr::separate(
       col = date,
-      sep = "-|\u2014",
+      sep = "-|–",
       into = c("start", "end")
     )
 

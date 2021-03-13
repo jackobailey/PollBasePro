@@ -40,6 +40,5 @@ Imports:
     tidyr,
     ggplot2,
     haven,
-    jbmisc,
     scales,
     usethis

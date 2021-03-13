@@ -13,7 +13,6 @@ library(lubridate)
 library(labelled)
 library(janitor)
 library(readxl)
-library(jbmisc)
 library(haven)
 library(here)
 
@@ -320,9 +319,9 @@ pollbase <-
   mutate(
     start =
       start %>%
-      mark_na("c.6") %>%
-      mark_na("?") %>%
-      mark_na("") %>%
+      na_if("c.6") %>%
+      na_if("?") %>%
+      na_if("") %>%
       str_remove("/.*") %>%
       str_remove(" ") %>%
       as.numeric() %>%
@@ -337,8 +336,8 @@ pollbase <-
   mutate(
     end =
       end %>%
-      mark_na("?") %>%
-      mark_na("") %>%
+      na_if("?") %>%
+      na_if("") %>%
       as.numeric() %>%
       ifelse(is.na(.) == T,
              paste(year, month, "01", sep = "-") %>%

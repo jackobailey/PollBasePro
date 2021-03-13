@@ -15,7 +15,7 @@ get_2015_polls <- function(){
   # are a whole host of people who keep these pages up to date and it means
   # that we don't have to manage data collection ourselves.
 
-  url1 <- "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2015_United_Kingdom_general_election_(2010\u20142012)"
+  url1 <- "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2015_United_Kingdom_general_election_(2010–2012)"
   url2 <- "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2015_United_Kingdom_general_election"
 
 
@@ -125,7 +125,7 @@ get_2015_polls <- function(){
       pollster =
         pollster %>%
         stringr::str_remove("/.*") %>%
-        stringr::str_remove("-|\u2014") %>%
+        stringr::str_remove("-|–") %>%
         tolower()
     )
 
@@ -164,7 +164,7 @@ get_2015_polls <- function(){
     dta %>%
     tidyr::separate(
       col = date,
-      sep = "-|\u2014",
+      sep = "-|–",
       into = c("start", "end")
     )
 

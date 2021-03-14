@@ -1,5 +1,5 @@
-Package: PollBasePro
-Title: Daily British Voting Intention Estimates, 1955 to 2021
+Package: BritPol
+Title: Data and Functions for Studying British Politics
 Version: 0.1.0
 Date: 2021-03-12
 Authors@R: c(person(given = "Jack",
@@ -12,7 +12,7 @@ Authors@R: c(person(given = "Jack",
            person(given = "Luke",
            family = "Mansillo",
            role = "ctb"))
-Description: What the package does (one paragraph).
+Description: Data and Functions for Studying British Politics
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

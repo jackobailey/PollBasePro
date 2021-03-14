@@ -97,7 +97,7 @@ knitr::opts_chunk$set(dev = "cairo_pdf")
 
 BritPol is a data package for the `R` programming language. It includes two datasets: `pollbase` and `pollbasepro`. The first provides a long-format and ready-to-analyse version of Mark Pack's [-@pack2021] dataset of historic British public opinion polls combined with more recent polling data from Wikipedia. The second provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`.
 
-Both `pollbase` and `pollbasepro` are *living datasets*. Thus, users should endeavour to use only the most recent version of the data when conducting their analyses. This will become more important in the future, as we intend to add new polls and estimates over time. Likewise, we cannot rule out that minor mistakes might have crept into our data processing pipeline. To guard against this, we have made all of our materials available for others to inspect. If you find an error in the code or wish to make a recommendation for a future update, we invite you to raise an issue on the BritPol GitHub repository.
+Both `pollbase` and `pollbasepro` are *living datasets*. Thus, users should endeavour to use only the most recent version of the data when conducting their analyses. This will become more important in the future, as we intend to add new polls and estimates over time. Likewise, we cannot rule out that minor mistakes might have crept into our data processing pipeline. To guard against this, we have made all of our materials available for others to inspect. If you find an error in the code or wish to make a recommendation for a future update, we invite you to [raise an issue on the BritPol GitHub repository](https://github.com/jackobailey/BritPol/issues).
 
 
 
@@ -114,7 +114,7 @@ If you use the `pollbasepro` data, you should also cite it. This is good practic
 
 # Using BritPol
 
-Getting started with BritPol in `R` is simple. It requires only three short steps: first, to install the package; second, to load the package; and, third, to load the data. Once you have taken these three steps, you can then begin analysing the data. Note that BritPol is not yet available on CRAN, the service that hosts most `R` packages. As such, it is not yet possible to install BritPol with `R`'s standard `install.packages()` function. Instead, we must install it directly from its GitHub repository. Thankfully this is straightforward and requires only that you run the following code in your `R` console:
+Getting started with BritPol in `R` is simple. It requires only three short steps: first, to install the package; second, to load the package; and, third, to load the data. Once you have taken these three steps, you can then begin analysing the data. Note that BritPol is not yet available on CRAN, the service that hosts most `R` packages. As such, it is not yet possible to install BritPol with `R`'s standard `install.packages()` function. Instead, we must install it directly from its [GitHub repository](https://github.com/jackobailey/BritPol). Thankfully this is straightforward and requires only that you run the following code in your `R` console:
 
 ```{r install-pbp, eval = FALSE}
 # 1. Install the BritPol package from GitHub
@@ -538,7 +538,7 @@ To validate our estimates, we compare them against raw polling data from Jenning
 
 ## Open-Source Data Pipeline
 
-We recognise that some users will find understanding our modelling decisions more simple if they were able to see our code^[Note that we estimate all of our models using `R` `r str_remove(R.Version()$version.string, "^R*.")` and either version `r packageVersion("brms")` of the `brms` package [@burkner2017] or version `r cmdstanr::cmdstan_version()` of `cmdstan`, an interface to the Stan probabilistic programming language [@carpenter2017]]. This transparency also has other benefits: it allows our users to identify mistakes in our code. After all---and like any project of this nature---our data pipeline likely contains minor errors or inefficiencies that could affect the estimates that we obtain. To guard against this, and provide our users with a more in-depth look at our modelling process, we have hosted our entire data pipeline online for others to inspect. If our users find any errors in our code or wish to make recommendations for future updates, we invite them to raise an issue on the project's GitHub repository or to contact the authors directly.
+We recognise that some users will find understanding our modelling decisions more simple if they were able to see our code^[Note that we estimate all of our models using `R` `r str_remove(R.Version()$version.string, "^R*.")` and either version `r packageVersion("brms")` of the `brms` package [@burkner2017] or version `r cmdstanr::cmdstan_version()` of `cmdstan`, an interface to the Stan probabilistic programming language [@carpenter2017]]. This transparency also has other benefits: it allows our users to identify mistakes in our code. After all---and like any project of this nature---our data pipeline likely contains minor errors or inefficiencies that could affect the estimates that we obtain. To guard against this, and provide our users with a more in-depth look at our modelling process, we have hosted our entire data pipeline online for others to inspect. If our users find any errors in our code or wish to make recommendations for future updates, we invite them to [raise an issue on the project's GitHub repository](https://github.com/jackobailey/BritPol/issues) or to [contact the authors directly](mailto:jack.bailey@manchester.ac.uk).
 
 
 \pagebreak
@@ -565,7 +565,7 @@ make_table(pollbasepro)
 
 # Change Log
 
-For the sake of openness and transparency, we provide a change log that lists all updates and changes made to BritPol over time. If you think that you have found a problem with either the data, code, or documentation, please raise an issue on the project's GitHub repository.
+For the sake of openness and transparency, we provide a change log that lists all updates and changes made to BritPol over time. If you think that you have found a problem with either the data, code, or documentation, please [raise an issue on the project's GitHub repository](https://github.com/jackobailey/BritPol/issues).
 
 ```{r change-log, echo = FALSE, message = FALSE, results = "asis"}
 

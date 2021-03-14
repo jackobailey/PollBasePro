@@ -6,7 +6,7 @@
 
 # Load packages
 
-library(PollBasePro)
+library(BritPol)
 library(tidyverse)
 library(lubridate)
 library(brms)
@@ -23,7 +23,7 @@ data("pollbasepro")
 pollbasepro <-
   pollbasepro %>%
   left_join(
-    read_csv(here("inst", "extdata", "data_2021-Mar-12.csv")) %>%
+    read_csv(here("inst", "extdata", "death_dta.csv")) %>%
       select(
         date,
         deaths = newDeaths28DaysByDeathDate
@@ -117,7 +117,7 @@ death_mod <-
     file =
       here(
         "models",
-        paste0("death_mod_", packageVersion("PollBasePro"))
+        paste0("death_mod_", packageVersion("BritPol"))
       )
   )
 

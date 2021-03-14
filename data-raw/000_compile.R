@@ -1,11 +1,11 @@
 
-# Compile PollBasePro
+# Compile BritPol
 
 # 1. Housekeeping ---------------------------------------------------------
 
 # Load packages
 
-library(PollBasePro)
+library(BritPol)
 library(rmarkdown)
 library(here)
 
@@ -71,7 +71,7 @@ render(
 )
 
 
-# 44 Check and install ----------------------------------------------------
+# 4. Check and install ----------------------------------------------------
 
 # We'll save session information to the "sessions" folder
 

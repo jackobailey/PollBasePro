@@ -106,7 +106,7 @@ timeline <-
 # Load deaths data
 
 death_dta <- 
-read_csv(here("inst", "extdata", "data_2021-Mar-06-deaths.csv")) %>%
+read_csv(here("inst", "extdata", "death_dta.csv")) %>%
       select(
         date,
         deaths = newDeaths28DaysByDeathDate
@@ -152,6 +152,32 @@ cor_all <- readRDS(here("models", paste0("cor_all_", packageVersion("BritPol"), 
 cor_con <- readRDS(here("models", paste0("cor_con_", packageVersion("BritPol"), ".rds")))
 cor_lab <- readRDS(here("models", paste0("cor_lab_", packageVersion("BritPol"), ".rds")))
 cor_lib <- readRDS(here("models", paste0("cor_lib_", packageVersion("BritPol"), ".rds")))
+
+
+# Create custom ggplot theme
+
+
+theme_bailey <- function(){
+  theme_minimal() +
+    theme(legend.title = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   text = element_text(family = "Cabin", color = "black", size = 8),
+                   plot.title = element_text(family = "Cabin", face = "bold", size = rel(1.4), hjust = 0),
+                   plot.subtitle = element_text(family = "Cabin", size = rel(1), hjust = 0, margin = margin(b = 10)),
+                   axis.line = element_line(lineend = "round"),
+                   axis.title.x = element_text(family = "Cabin", face = "bold", margin = margin(t = 10), size = rel(1)),
+                   axis.text.x = element_text(color = "black", size = rel(1)),
+                   axis.ticks.x = element_line(lineend = "round"),
+                   axis.title.y = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   axis.text.y = element_text(color = "black", size = rel(1)),
+                   strip.text = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   panel.spacing = unit(.3, "cm"),
+                   panel.grid.major.y = element_line(size = .5, lineend = "round"),
+                   panel.grid.minor.y = element_blank(),
+                   panel.grid.major.x = element_blank(),
+                   panel.grid.minor.x = element_blank()
+    )
+}
+
 
 
 # Tell knitr to use Cairo PDF when rendering plots so that it uses nice fonts
@@ -736,7 +762,7 @@ It is clear then that PollBasePro has allowed us to reveal an important---if sur
 
 In this paper, we introduce PollBasePro: the most comprehensive time series of British voting intention data assembled to date. The dataset contains `r format(nrow(BritPol::pollbasepro), big.mark = ",")` daily voting intention estimates for each of Britain's three largest parties, beginning at the 1955 General Election on `r format(min(pollbasepro$date), "%d %B %Y")` and ending on `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. Furthermore, our data are well validated and follow the course of British political history. We therefore expect PollBasePro to become a valuable resource for students of British politics in the years to come.
 
-It is important to stress that PollBasePro is a *living dataset*. As a result, we expect to incorporate new estimates into the data as time goes by. Users should, therefore, endeavour to use the most recent data in any of their analyses. It is also important to stress that---like any project of this nature---our data pipeline might contain minor errors or inefficiencies. To guard against this, we have hosted all of our materials online for others to inspect. If our users find any errors in our code or wish to make recommendations for future updates, we invite them to raise an issue on the project's GitHub repository or to contact the authors directly.
+It is important to stress that PollBasePro is a *living dataset*. As a result, we expect to incorporate new estimates into the data as time goes by. Users should, therefore, endeavour to use the most recent data in any of their analyses. It is also important to stress that---like any project of this nature---our data pipeline might contain minor errors or inefficiencies. To guard against this, we have hosted all of our materials online for others to inspect. If our users find any errors in our code or wish to make recommendations for future updates, we invite them to raise an issue on the project's [GitHub repository](https://github.com/jackobailey/BritPol/issues) or to [contact the authors directly](mailto:jack.bailey@manchester.ac.uk).
 
 Though we believe that our data can help to answer all manner of questions, PollBasePro still has room to grow. Three new features would be most useful. First, to estimate aggregate support for the UK leaving the European Union and for Scotland leaving the UK. Both time series would be long-ranging and benefit from having known outcomes to which we could anchor our estimates. Second, to expand the data beyond the three main parties. This would be particularly useful for those who study, for example, the rise of the SNP in Scotland or the influence of UKIP. Third, to collect and incorporate known sample sizes into all of our polling data. At the moment, we use the Timeline of Elections dataset [@jennings2016a] to impute sample sizes for all polls that occurred before the 2010 general election. This is a pragmatic but reasonable decision given that these data do not include sample sizes. Still, were we to have the necessary resources, it would be good to collect the sample sizes associated with these polls to ensure that our estimates are as precise as possible.
 

@@ -6,7 +6,7 @@
 
 # Load packages
 
-library(PollBasePro)
+library(BritPol)
 library(tidyverse)
 library(lubridate)
 library(brms)

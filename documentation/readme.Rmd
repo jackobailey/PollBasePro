@@ -184,12 +184,17 @@ As of `r str_remove(format(Sys.Date(), "%d %B %Y"), "^0")`, we estimate that **t
 
 ## Notes, Usage, and Attribution
 
-Both `pollbase` and `pollbasepro` are living datasets. As such, users should try to use only the most recent version of the data when conducting their analyses. Like any project of this size, we cannot rule out the possibility that minor mistakes might have crept into our data processing pipeline. If you think that you have found an error in our code or wish to make a recommendation for a future update, please [raise an issue](https://github.com/jackobailey/BritPol/issues) or [contact us directly](mailto:jack.bailey@manchester.ac.uk).
+Both `pollbase` and `pollbasepro` are living datasets. As such, users should try to use only the most recent version of the data when conducting their analyses. Like any project of this size, some minor mistakes might have crept into the data processing pipeline. If you think that you have found an error in the code or wish to make a recommendation for a future update, please [raise an issue](https://github.com/jackobailey/BritPol/issues).
 
-We are happy for others to use our code for their own purposes, but ask that they do so *with attribution*. That is, you may reproduce, reuse, and change the code here as you see fit, but must state in each case that you based your analysis on our work. The citations for each item in BritPol are as follows:
+Your may use any BritPol code for your own purposes, but you must do so *with attribution*. That is, you may reproduce, reuse, and change the code here as you see fit, but must state in each case that you used BritPol to produce your work. The citations for each item in BritPol are as follows:
+
+### BritPol
+
+- **Documentation:** Bailey, J. (`r format(Sys.Date(), format = "%Y")`) BritPol v`r packageVersion("BritPol")`: User Guide and Data Codebook. Retrieved from doi.
+
+
+### PollBasePro
 
 - **Data:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")` v.`r packageVersion("BritPol")` [computer file], `r format(Sys.Date(), format = "%B %Y")`. Retrieved from https://doi.org/10.7910/DVN/3POIQW.
-
-- **Documentation:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro v`r packageVersion("BritPol")`: User Guide and Codebook. Retrieved from doi.
 
 - **Paper:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")`. Retrieved from doi.

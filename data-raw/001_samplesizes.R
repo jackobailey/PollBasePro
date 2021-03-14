@@ -6,7 +6,7 @@
 
 # Load packages
 
-library(PollBasePro)
+library(BritPol)
 library(tidyverse)
 library(lubridate)
 library(brms)
@@ -111,10 +111,9 @@ sample_mod <-
     chains = 4,
     threads = threading(3),
     max_treedepth = 20,
-    file = here("models", paste0("sample_mod_", packageVersion("PollBasePro")))
+    file = here("models", paste0("sample_mod_", packageVersion("BritPol")))
   )
 
-conditional_effects(sample_mod, re_formula = NULL)
 
 # We can now use the model to predict sample sizes with error for every
 # day that PollBase covers which we can then use in estimating PollBasePro.
@@ -150,7 +149,7 @@ samplesizes <-
 
 usethis::use_data(
   samplesizes,
-  internal = TRUE,
+  internal = FALSE,
   overwrite = TRUE
 )
 

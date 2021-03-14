@@ -1,37 +1,36 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# PollBasePro
+# BritPol
 
-PollBasePro is a data package for the `R` programming language. It
-includes two datasets: `pollbase` and `pollbasepro`. The first provides
-a long-format and ready-to-analyse version of Mark Pack’s dataset of
+BritPol is a data package for the `R` programming language. It includes
+two datasets: `pollbase` and `pollbasepro`. The first provides a
+long-format and ready-to-analyse version of Mark Pack’s dataset of
 historic British public opinion polls combined with more recent polling
 data from Wikipedia. The second provides 24,035 daily estimates of
 voting intention figures for each of Britain’s three largest parties
-between 26 May 1955 and 14 March 2021. The user guide and codebook is
-available
-[here](https://github.com/jackobailey/PollBasePro/blob/master/download/userguide.pdf)
-and the accompanying paper is available
-[here](https://github.com/jackobailey/PollBasePro/blob/master/download/paper.pdf).
+between 26 May 1955 and 14 March 2021. A user guide and codebook is
+available for `pollbasepro`
+[here](https://github.com/jackobailey/BritPol/blob/master/download/userguide.pdf)
+and an accompanying paper is available
+[here](https://github.com/jackobailey/BritPol/blob/master/download/paper.pdf).
 
-To install the latest version of PollBasePro, run the following code in
-`R`:
+To install the latest version of BritPol, run the following code in `R`:
 
 ``` r
-devtools::install_github("jackobailey/PollBasePro")
+devtools::install_github("jackobailey/BritPol")
 ```
 
 We also provide `pollbase` and `pollbasepro` as .dta and .sav files for
 Stata and SPSS users. These files include all necessary value and
 variable labels and should work seamlessly with both software packages.
 [Click here to download
-them](https://github.com/jackobailey/PollBasePro/tree/master/download).
+them](https://github.com/jackobailey/BritPol/tree/master/download).
 
 ## Latest Polling Estimates
 
 <center>
-<img src="https://raw.githubusercontent.com/jackobailey/PollBasePro/master/documentation/_assets/timeplot_gh.png">
+<img src="https://raw.githubusercontent.com/jackobailey/BritPol/master/documentation/_assets/timeplot_gh.png">
 </center>
 
 As of 14 March 2021, we estimate that **the Conservative Party has the
@@ -50,14 +49,14 @@ conducting their analyses. Like any project of this size, we cannot rule
 out the possibility that minor mistakes might have crept into our data
 processing pipeline. If you think that you have found an error in our
 code or wish to make a recommendation for a future update, please [raise
-an issue](https://github.com/jackobailey/PollBasePro/issues) or [contact
-us directly](mailto:jack.bailey@manchester.ac.uk).
+an issue](https://github.com/jackobailey/BritPol/issues) or [contact us
+directly](mailto:jack.bailey@manchester.ac.uk).
 
 We are happy for others to use our code for their own purposes, but ask
 that they do so *with attribution*. That is, you may reproduce, reuse,
 and change the code here as you see fit, but must state in each case
 that you based your analysis on our work. The citations for each item in
-PollBasePro are as follows:
+BritPol are as follows:
 
 -   **Data:** Bailey, J., M. Pack, and L. Mansillo (2021) PollBasePro:
     Daily Estimates of Aggregate Voting Intention in Great Britain from

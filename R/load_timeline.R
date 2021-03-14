@@ -14,7 +14,7 @@ load_timeline <- function(){
 
   temp <- tempfile()
   utils::download.file("https://utexas.box.com/shared/static/6fevlf9v9s25ciky4vqdhj05rnk3d5ri.zip", temp)
-  data <- read.table(unz(temp, "Dataset-20180111.tab"), sep = "\t", header = T)
+  data <- utils::read.table(unz(temp, "Dataset-20180111.tab"), sep = "\t", header = T)
   unlink(temp)
 
 

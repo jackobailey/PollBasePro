@@ -15,8 +15,8 @@ get_2015_polls <- function(){
   # are a whole host of people who keep these pages up to date and it means
   # that we don't have to manage data collection ourselves.
 
-  url1 <- "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2015_United_Kingdom_general_election_(2010–2012)"
-  url2 <- "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2015_United_Kingdom_general_election"
+  url1 <- "https://w.wiki/365k"
+  url2 <- "https://w.wiki/365o"
 
 
   # Now, we'll use the htmltab() function to scrape the contents of the tables
@@ -116,6 +116,16 @@ get_2015_polls <- function(){
     dplyr::filter(stringr::str_detect(pollster, "election|Election") == F)
 
 
+  # The date column includes non-ASCII chaaracters. Let's sub them out.
+
+  dta <-
+    dta %>%
+    dplyr::mutate(
+      date = iconv(date, "latin1", "ASCII", sub="-"),
+      pollster = iconv(pollster, "latin1", "ASCII", sub="-")
+    )
+
+
   # Likewise we'll remove the clients from the pollster column and
   # convert the pollsters to lower case
 
@@ -125,7 +135,7 @@ get_2015_polls <- function(){
       pollster =
         pollster %>%
         stringr::str_remove("/.*") %>%
-        stringr::str_remove("-|–") %>%
+        stringr::str_remove("---") %>%
         tolower()
     )
 
@@ -164,7 +174,7 @@ get_2015_polls <- function(){
     dta %>%
     tidyr::separate(
       col = date,
-      sep = "-|–",
+      sep = "---",
       into = c("start", "end")
     )
 

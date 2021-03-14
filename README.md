@@ -7,9 +7,9 @@ PollBasePro is a data package for the `R` programming language. It
 includes two datasets: `pollbase` and `pollbasepro`. The first provides
 a long-format and ready-to-analyse version of Mark Pack’s dataset of
 historic British public opinion polls combined with more recent polling
-data from Wikipedia. The second provides 24,033 daily estimates of
+data from Wikipedia. The second provides 24,035 daily estimates of
 voting intention figures for each of Britain’s three largest parties
-between 26 May 1955 and 12 March 2021. The user guide and codebook is
+between 26 May 1955 and 14 March 2021. The user guide and codebook is
 available
 [here](https://github.com/jackobailey/PollBasePro/blob/master/download/userguide.pdf)
 and the accompanying paper is available
@@ -34,13 +34,13 @@ them](https://github.com/jackobailey/PollBasePro/tree/master/download).
 <img src="https://raw.githubusercontent.com/jackobailey/PollBasePro/master/documentation/_assets/timeplot_gh.png">
 </center>
 
-As of 13 March 2021, we estimate that **the Conservative Party has the
-largest base of support** with 41% (95% CI: 37% to 44%) of the
+As of 14 March 2021, we estimate that **the Conservative Party has the
+largest base of support** with 42% (95% CI: 39% to 45%) of the
 electorate intending to vote for them at the next election. **They hold
-a lead over the Labour Party** of 3% (95% CI: -3% to 8%). **This puts
-the Labour Party in second place** on 38% (95% CI: 35% to 41%) of the
-vote. **In third place is the Liberal Democrats**, with support from 9%
-(95% CI: 8% to 11%) of voters.
+a lead over the Labour Party** of 5% (95% CI: 1% to 9%). **This puts the
+Labour Party in second place** on 37% (95% CI: 34% to 39%) of the vote.
+**In third place is the Liberal Democrats**, with support from 9% (95%
+CI: 8% to 10%) of voters.
 
 ## Notes, Usage, and Attribution
 

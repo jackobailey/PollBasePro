@@ -13,17 +13,12 @@ library(brms)
 library(here)
 
 
-# Load data
-
-data("pollbasepro")
-
-
 # Load validation/correlation models
 
-cor_all <- readRDS(here("models", paste0("cor_all_", packageVersion("PollBasePro"), ".rds")))
-cor_con <- readRDS(here("models", paste0("cor_con_", packageVersion("PollBasePro"), ".rds")))
-cor_lab <- readRDS(here("models", paste0("cor_lab_", packageVersion("PollBasePro"), ".rds")))
-cor_lib <- readRDS(here("models", paste0("cor_lib_", packageVersion("PollBasePro"), ".rds")))
+cor_all <- PollBasePro:::cor_mods[[1]]
+cor_con <- PollBasePro:::cor_mods[[2]]
+cor_lab <- PollBasePro:::cor_mods[[3]]
+cor_lib <- PollBasePro:::cor_mods[[4]]
 
 
 

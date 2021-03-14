@@ -12,10 +12,6 @@ library(purrr)
 library(here)
 
 
-# Load data
-
-data("pollbase")
-
 
 # 2. Data tests -----------------------------------------------------------
 

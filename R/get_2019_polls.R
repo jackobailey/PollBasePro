@@ -15,7 +15,7 @@ get_2019_polls <- function(){
   # are a whole host of people who keep these pages up to date and it means
   # that we don't have to manage data collection ourselves.
 
-  url <- "https://en.wikipedia.org/wiki/Opinion_polling_for_the_2019_United_Kingdom_general_election"
+  url <- "https://w.wiki/35RK"
 
 
   # Now, we'll use the htmltab() function to scrape the contents of the tables
@@ -79,6 +79,16 @@ get_2019_polls <- function(){
     dplyr::filter(stringr::str_detect(pollster, "election|Election") == F)
 
 
+  # The date column includes non-ASCII chaaracters. Let's sub them out.
+
+  dta <-
+    dta %>%
+    dplyr::mutate(
+      date = iconv(date, "latin1", "ASCII", sub="-"),
+      pollster = iconv(pollster, "latin1", "ASCII", sub="-")
+    )
+
+
   # Likewise we'll remove the clients from the pollster column and
   # convert the pollsters to lower case
 
@@ -88,7 +98,7 @@ get_2019_polls <- function(){
       pollster =
         pollster %>%
         stringr::str_remove("/.*") %>%
-        stringr::str_remove("-|–") %>%
+        stringr::str_remove("---") %>%
         tolower()
     )
 
@@ -127,7 +137,7 @@ get_2019_polls <- function(){
     dta %>%
     tidyr::separate(
       col = date,
-      sep = "-|–",
+      sep = "---",
       into = c("start", "end")
     )
 

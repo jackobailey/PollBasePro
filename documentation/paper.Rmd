@@ -1,12 +1,12 @@
 ---
 title: |
-  | PollBasePro: Daily Estimates of Aggregate Voting Intention in Britain from `r format(min(PollBasePro::pollbasepro$date), "%Y")` to the Present Day\thanks{This article benefitted from much useful feedback. We owe particular thanks to Chris Hanretty, Y, and Z. We would also like to extend a special thanks to all of the volunteers who have given their time to maintain such a comprehensive list of British opinion polling data on Wikipedia.}
+  | PollBasePro: Daily Estimates of Aggregate Voting Intention in Britain from `r format(min(BritPol::pollbasepro$date), "%Y")` to the Present Day\thanks{This article benefitted from much useful feedback. We owe particular thanks to Chris Hanretty, Y, and Z. We would also like to extend a special thanks to all of the volunteers who have given their time to maintain such a comprehensive list of British opinion polling data on Wikipedia.}
 author: |
   | Jack Bailey\thanks{Research Associate, Department of Politics, University of Manchester, UK. If you have any comments or questions, feel free to contact me either by email (\href{mailto:jack.bailey@manchester.ac.uk}{jack.bailey@manchester.ac.uk}) or on Twitter (\href{https://www.twitter.com/PoliSciJack}{@PoliSciJack}).}, Mark Pack\thanks{President, The Liberal Democrats, UK}, & Luke Mansillo\thanks{PhD Candidate, Department of Government \& International Relations, University of Sydney, Australia}
 date: |
-  | \small This version compiled `r stringr::str_remove(format(Sys.time(), '%d %B %Y'), "^0")` using PollBasePro `r paste0("v", packageVersion("PollBasePro"))`
+  | \small This version compiled `r stringr::str_remove(format(Sys.time(), '%d %B %Y'), "^0")` using PollBasePro `r paste0("v", packageVersion("BritPol"))`
 abstract: |
-  | Political scientists often use public opinion polls to test their theories. Yet these data present some difficulties. First, they are noisy. Second, they occur at irregular intervals. Third, they measure both public preferences and pollsters' survey design choices. We introduce a new dataset, PollBasePro, that accounts for these issues. It includes voting intention estimates for each of Britain's three largest parties on each day between the 1955 general election and the present. Given that the dataset covers `r format(nrow(PollBasePro::pollbasepro), big.mark = ",")` days in total, it is more comprehensive than any existing time series of public opinion in Britain. As a result, we expect PollBasePro to be an important resource for students of British politics in the years to come.
+  | Political scientists often use public opinion polls to test their theories. Yet these data present some difficulties. First, they are noisy. Second, they occur at irregular intervals. Third, they measure both public preferences and pollsters' survey design choices. We introduce a new dataset, PollBasePro, that accounts for these issues. It includes voting intention estimates for each of Britain's three largest parties on each day between the 1955 general election and the present. Given that the dataset covers `r format(nrow(BritPol::pollbasepro), big.mark = ",")` days in total, it is more comprehensive than any existing time series of public opinion in Britain. As a result, we expect PollBasePro to be an important resource for students of British politics in the years to come.
   |
   | \textbf{\textsf{Keywords:}} Opinion polls; public opinion; British politics; Bayesian methods.
 indent: yes
@@ -45,7 +45,7 @@ output:
 
 # Load packages
 
-library(PollBasePro)
+library(BritPol)
 library(kableExtra)
 library(tidyverse)
 library(lubridate)
@@ -143,15 +143,15 @@ pty_cols <-
 
 # Load coronavirus example model
 
-death_mod <- readRDS(here("models", paste0("death_mod_", packageVersion("PollBasePro"), ".rds")))
+death_mod <- readRDS(here("models", paste0("death_mod_", packageVersion("BritPol"), ".rds")))
 
 
 # Load correlation models
 
-cor_all <- readRDS(here("models", paste0("cor_all_", packageVersion("PollBasePro"), ".rds")))
-cor_con <- readRDS(here("models", paste0("cor_con_", packageVersion("PollBasePro"), ".rds")))
-cor_lab <- readRDS(here("models", paste0("cor_lab_", packageVersion("PollBasePro"), ".rds")))
-cor_lib <- readRDS(here("models", paste0("cor_lib_", packageVersion("PollBasePro"), ".rds")))
+cor_all <- readRDS(here("models", paste0("cor_all_", packageVersion("BritPol"), ".rds")))
+cor_con <- readRDS(here("models", paste0("cor_con_", packageVersion("BritPol"), ".rds")))
+cor_lab <- readRDS(here("models", paste0("cor_lab_", packageVersion("BritPol"), ".rds")))
+cor_lib <- readRDS(here("models", paste0("cor_lib_", packageVersion("BritPol"), ".rds")))
 
 
 # Tell knitr to use Cairo PDF when rendering plots so that it uses nice fonts
@@ -734,7 +734,7 @@ It is clear then that PollBasePro has allowed us to reveal an important---if sur
 
 # Conclusions
 
-In this paper, we introduce PollBasePro: the most comprehensive time series of British voting intention data assembled to date. The dataset contains `r format(nrow(PollBasePro::pollbasepro), big.mark = ",")` daily voting intention estimates for each of Britain's three largest parties, beginning at the 1955 General Election on `r format(min(pollbasepro$date), "%d %B %Y")` and ending on `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. Furthermore, our data are well validated and follow the course of British political history. We therefore expect PollBasePro to become a valuable resource for students of British politics in the years to come.
+In this paper, we introduce PollBasePro: the most comprehensive time series of British voting intention data assembled to date. The dataset contains `r format(nrow(BritPol::pollbasepro), big.mark = ",")` daily voting intention estimates for each of Britain's three largest parties, beginning at the 1955 General Election on `r format(min(pollbasepro$date), "%d %B %Y")` and ending on `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. Furthermore, our data are well validated and follow the course of British political history. We therefore expect PollBasePro to become a valuable resource for students of British politics in the years to come.
 
 It is important to stress that PollBasePro is a *living dataset*. As a result, we expect to incorporate new estimates into the data as time goes by. Users should, therefore, endeavour to use the most recent data in any of their analyses. It is also important to stress that---like any project of this nature---our data pipeline might contain minor errors or inefficiencies. To guard against this, we have hosted all of our materials online for others to inspect. If our users find any errors in our code or wish to make recommendations for future updates, we invite them to raise an issue on the project's GitHub repository or to contact the authors directly.
 

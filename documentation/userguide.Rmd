@@ -1,6 +1,6 @@
 ---
 title: |
-  | PollBasePro v`r packageVersion("PollBasePro")` (Beta)
+  | PollBasePro v`r packageVersion("BritPol")` (Beta)
   | User Guide and Codebook
 date: |
   | This version: `r stringr::str_remove(format(Sys.time(), "%d %B %Y"), "^0")`
@@ -81,9 +81,9 @@ timeline <-
 
 # Load correlation models
 
-cor_con <- readRDS(here("models", paste0("cor_con_", packageVersion("PollBasePro"), ".rds")))
-cor_lab <- readRDS(here("models", paste0("cor_lab_", packageVersion("PollBasePro"), ".rds")))
-cor_lib <- readRDS(here("models", paste0("cor_lib_", packageVersion("PollBasePro"), ".rds")))
+cor_con <- readRDS(here("models", paste0("cor_con_", packageVersion("BritPol"), ".rds")))
+cor_lab <- readRDS(here("models", paste0("cor_lab_", packageVersion("BritPol"), ".rds")))
+cor_lib <- readRDS(here("models", paste0("cor_lib_", packageVersion("BritPol"), ".rds")))
 
 
 # Tell knitr to use Cairo PDF when rendering plots so that it uses nice fonts
@@ -105,9 +105,9 @@ Both `pollbase` and `pollbasepro` are *living datasets*. Thus, users should ende
 
 If you use PollBasePro, you should also cite it. This is good practice and also allows the PollBasePro team to monitor how the data have been used. The project comprises three items: the data, this user guide, and a companion paper. The citations for each item are as follows:
 
-- **Data:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")` v.`r packageVersion("PollBasePro")` [computer file], `r format(Sys.Date(), format = "%B %Y")`. Retrieved from https://doi.org/10.7910/DVN/3POIQW.
+- **Data:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")` v.`r packageVersion("BritPol")` [computer file], `r format(Sys.Date(), format = "%B %Y")`. Retrieved from https://doi.org/10.7910/DVN/3POIQW.
 
-- **Documentation:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro v`r packageVersion("PollBasePro")`: User Guide and Codebook. Retrieved from doi.
+- **Documentation:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro v`r packageVersion("BritPol")`: User Guide and Codebook. Retrieved from doi.
 
 - **Paper:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")`. Retrieved from doi.
 
@@ -130,10 +130,10 @@ data("pollbasepro")
 
 Though PollBasePro is first and foremost an `R` data package, we have sought to accommodate those who use Stata and SPSS too. To make this as easy as possible, we have made both the `pollbase` and `pollbasepro` datasets available as .dta and .sav files. These include all necessary value and variable labels and should work seamlessly with both software packages. You can download the latest version of the data by clicking the links below:
 
-- ``r paste0("pollbase_", packageVersion("PollBasePro"), ".dta")``
-- ``r paste0("pollbasepro_", packageVersion("PollBasePro"), ".dta")``
-- ``r paste0("pollbase_", packageVersion("PollBasePro"), ".sav")``
-- ``r paste0("pollbasepro_", packageVersion("PollBasePro"), ".sav")``
+- ``r paste0("pollbase_", packageVersion("BritPol"), ".dta")``
+- ``r paste0("pollbasepro_", packageVersion("BritPol"), ".dta")``
+- ``r paste0("pollbase_", packageVersion("BritPol"), ".sav")``
+- ``r paste0("pollbasepro_", packageVersion("BritPol"), ".sav")``
 
 
 ```{r error-plot, fig.cap = "The posterior uncertainty in the estimates that we include in the pollbasepro dataset are correlated with time. This is because polls have become more frequent and have included larger sample sizes as time has passed. Thus, our estimates also become more precise.", fig.width = 6, fig.height = 2.5, fig.align = "centre", echo = F}

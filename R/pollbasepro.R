@@ -2,7 +2,7 @@
 #'
 #' A dataset containing daily estimates of aggregate voting intention in Britain for each of the country's three largest parties between 1955 and the present.
 #'
-#' @format A data frame with 23,577 rows and 15 variables:
+#' @format A data frame:
 #' \describe{
 #'   \item{date}{Date}
 #'   \item{election}{Date of last general election}

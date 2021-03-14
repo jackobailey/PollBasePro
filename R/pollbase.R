@@ -2,7 +2,7 @@
 #'
 #' A dataset containing Mark Pack's raw pollbase figures for each of Britain's three main parties, tidied and converted to long-format for easy analysis.
 #'
-#' @format A data frame with 6,124 rows and 12 variables:
+#' @format A data frame:
 #' \describe{
 #'   \item{id}{Unique poll identification number}
 #'   \item{election}{Date of last general election}

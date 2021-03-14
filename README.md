@@ -45,26 +45,29 @@ CI: 8% to 10%) of voters.
 
 Both `pollbase` and `pollbasepro` are living datasets. As such, users
 should try to use only the most recent version of the data when
-conducting their analyses. Like any project of this size, we cannot rule
-out the possibility that minor mistakes might have crept into our data
-processing pipeline. If you think that you have found an error in our
-code or wish to make a recommendation for a future update, please [raise
-an issue](https://github.com/jackobailey/BritPol/issues) or [contact us
-directly](mailto:jack.bailey@manchester.ac.uk).
+conducting their analyses. Like any project of this size, some minor
+mistakes might have crept into the data processing pipeline. If you
+think that you have found an error in the code or wish to make a
+recommendation for a future update, please [raise an
+issue](https://github.com/jackobailey/BritPol/issues).
 
-We are happy for others to use our code for their own purposes, but ask
-that they do so *with attribution*. That is, you may reproduce, reuse,
-and change the code here as you see fit, but must state in each case
-that you based your analysis on our work. The citations for each item in
-BritPol are as follows:
+Your may use any BritPol code for your own purposes, but you must do so
+*with attribution*. That is, you may reproduce, reuse, and change the
+code here as you see fit, but must state in each case that you used
+BritPol to produce your work. The citations for each item in BritPol are
+as follows:
+
+### BritPol
+
+-   **Documentation:** Bailey, J. (2021) BritPol v0.1.0: User Guide and
+    Data Codebook. Retrieved from doi.
+
+### PollBasePro
 
 -   **Data:** Bailey, J., M. Pack, and L. Mansillo (2021) PollBasePro:
     Daily Estimates of Aggregate Voting Intention in Great Britain from
     1955 to 2021 v.0.1.0 \[computer file\], March 2021. Retrieved from
     <https://doi.org/10.7910/DVN/3POIQW>.
-
--   **Documentation:** Bailey, J., M. Pack, and L. Mansillo (2021)
-    PollBasePro v0.1.0: User Guide and Codebook. Retrieved from doi.
 
 -   **Paper:** Bailey, J., M. Pack, and L. Mansillo (2021) PollBasePro:
     Daily Estimates of Aggregate Voting Intention in Great Britain from

@@ -159,7 +159,7 @@ pollbasepro %>%
     colour = "Party",
     fill = "Party",
     y = "Vote Share",
-    caption = "Based on data from BritPol, created by @PoliSciJack, @markpack, and @mansillo: www.github.com/jackobailey/BritPol"
+    caption = "Based on data from PollBasePro, created by @PoliSciJack, @markpack, and @mansillo"
   )
 
 

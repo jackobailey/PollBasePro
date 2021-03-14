@@ -5,7 +5,7 @@
 \alias{pollbasepro}
 \title{Daily Estimates of British Voting Intention, 1955 to Present}
 \format{
-A data frame with 23,577 rows and 15 variables:
+A data frame:
 \describe{
 \item{date}{Date}
 \item{election}{Date of last general election}

@@ -12,7 +12,7 @@ Authors@R: c(person(given = "Jack",
            person(given = "Luke",
            family = "Mansillo",
            role = "ctb"))
-Description: Data and Functions for Studying British Politics
+Description: Data and convenience functions to help analyse british politics data.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

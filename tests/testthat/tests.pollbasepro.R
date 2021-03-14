@@ -6,7 +6,7 @@
 
 # Load packages
 
-library(PollBasePro)
+library(BritPol)
 library(dplyr)
 library(purrr)
 library(brms)
@@ -15,10 +15,10 @@ library(here)
 
 # Load validation/correlation models
 
-cor_all <- PollBasePro:::cor_mods[[1]]
-cor_con <- PollBasePro:::cor_mods[[2]]
-cor_lab <- PollBasePro:::cor_mods[[3]]
-cor_lib <- PollBasePro:::cor_mods[[4]]
+cor_all <- BritPol:::cor_mods[[1]]
+cor_con <- BritPol:::cor_mods[[2]]
+cor_lab <- BritPol:::cor_mods[[3]]
+cor_lib <- BritPol:::cor_mods[[4]]
 
 
 

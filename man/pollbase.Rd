@@ -5,7 +5,7 @@
 \alias{pollbase}
 \title{Raw PollBase data in long-format}
 \format{
-A data frame with 6,124 rows and 12 variables:
+A data frame:
 \describe{
 \item{id}{Unique poll identification number}
 \item{election}{Date of last general election}

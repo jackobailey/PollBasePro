@@ -1,4 +1,4 @@
 library(testthat)
-library(PollBasePro)
+library(BritPol)
 
-test_check("PollBasePro")
+test_check("BritPol")

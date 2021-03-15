@@ -34,7 +34,7 @@ them](https://github.com/jackobailey/britpol/tree/master/download).
 <img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/timeplot_gh.png">
 </center>
 
-As of 15 March 2021, we estimate that **the Conservative Party has the
+As of 14 March 2021, we estimate that **the Conservative Party has the
 largest base of support** with 42% (95% CI: 39% to 45%) of the
 electorate intending to vote for them at the next election. **They hold
 a lead over the Labour Party** of 5% (95% CI: 1% to 9%). **This puts the

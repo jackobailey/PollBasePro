@@ -7,5 +7,5 @@
 update_pollbasepro()
 }
 \description{
-This function updates PollBasePro to include the latest polling data and outputs Twitter content.
+This function updates britpol to include the latest polling data and outputs Twitter content.
 }

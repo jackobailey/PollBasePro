@@ -1,6 +1,6 @@
 #' Update Voting Intention Polls, 2019-Present
 #'
-#' This function updates britpol to include the latest polling data and outputs Twitter content.
+#' This function updates the pollbasepro data to include the latest polling data and outputs Twitter content.
 #'
 #'
 #' @export

@@ -9,11 +9,7 @@ a long-format and ready-to-analyse version of Mark Pack’s dataset of
 historic British public opinion polls combined with more recent polling
 data from Wikipedia. The second provides 24,035 daily estimates of
 voting intention figures for each of Britain’s three largest parties
-between 26 May 1955 and 14 March 2021. A user guide and codebook is
-available for `pollbasepro`
-[here](https://github.com/jackobailey/britpol/blob/master/download/userguide.pdf)
-and an accompanying paper is available
-[here](https://github.com/jackobailey/britpol/blob/master/download/paper.pdf).
+between 26 May 1955 and 14 March 2021.
 
 To install the latest version of `britpol`, run the following code in
 `R`:

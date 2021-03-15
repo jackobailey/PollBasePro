@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 
 # britpol
 
-`britpol` is a data package for the `R` programming language. It includes two datasets: `pollbase` and `pollbasepro`. The first provides a long-format and ready-to-analyse version of Mark Pack's dataset of historic British public opinion polls combined with more recent polling data from Wikipedia. The second provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. A user guide and codebook is available for `pollbasepro` [here](https://github.com/jackobailey/britpol/blob/master/download/userguide.pdf) and an accompanying paper is available [here](https://github.com/jackobailey/britpol/blob/master/download/paper.pdf).
+`britpol` is a data package for the `R` programming language. It includes two datasets: `pollbase` and `pollbasepro`. The first provides a long-format and ready-to-analyse version of Mark Pack's dataset of historic British public opinion polls combined with more recent polling data from Wikipedia. The second provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`.
 
 To install the latest version of `britpol`, run the following code in `R`:
 

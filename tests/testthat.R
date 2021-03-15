@@ -1,4 +1,4 @@
 library(testthat)
-library(BritPol)
+library(britpol)
 
-test_check("BritPol")
+test_check("britpol")

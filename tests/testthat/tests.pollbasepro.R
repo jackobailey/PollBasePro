@@ -6,7 +6,7 @@
 
 # Load packages
 
-library(BritPol)
+library(britpol)
 library(dplyr)
 library(purrr)
 library(brms)
@@ -15,10 +15,10 @@ library(here)
 
 # Load validation/correlation models
 
-cor_all <- BritPol:::cor_mods[[1]]
-cor_con <- BritPol:::cor_mods[[2]]
-cor_lab <- BritPol:::cor_mods[[3]]
-cor_lib <- BritPol:::cor_mods[[4]]
+cor_all <- britpol:::cor_mods[[1]]
+cor_con <- britpol:::cor_mods[[2]]
+cor_lab <- britpol:::cor_mods[[3]]
+cor_lib <- britpol:::cor_mods[[4]]
 
 
 

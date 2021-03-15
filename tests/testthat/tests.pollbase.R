@@ -6,7 +6,7 @@
 
 # Load packages
 
-library(BritPol)
+library(britpol)
 library(dplyr)
 library(purrr)
 library(here)

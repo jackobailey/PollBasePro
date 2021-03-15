@@ -5,7 +5,7 @@
 
 # Load packages
 
-library(BritPol)
+library(britpol)
 library(rmarkdown)
 library(here)
 

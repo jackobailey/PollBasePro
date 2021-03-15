@@ -1,6 +1,6 @@
 ---
 title: |
-  | BritPol v`r packageVersion("BritPol")` (Beta)
+  | britpol v`r packageVersion("britpol")` (Beta)
   | User Guide and Data Codebook
 date: |
   | This version: `r stringr::str_remove(format(Sys.time(), "%d %B %Y"), "^0")`
@@ -12,6 +12,9 @@ compact-title: false
 bibliography: _assets/master.bib
 biblio-style: _assets/apsr.bst
 classoption: a4paper
+linkcolor: black
+urlcolor: violet
+citecolor: black
 output: 
   bookdown::pdf_document2: 
     latex_engine: xelatex
@@ -45,7 +48,7 @@ output:
 
 # Load packages
 
-library(BritPol)
+library(britpol)
 library(kableExtra)
 library(tidyverse)
 library(lubridate)
@@ -81,9 +84,9 @@ timeline <-
 
 # Load correlation models
 
-cor_con <- readRDS(here("models", paste0("cor_con_", packageVersion("BritPol"), ".rds")))
-cor_lab <- readRDS(here("models", paste0("cor_lab_", packageVersion("BritPol"), ".rds")))
-cor_lib <- readRDS(here("models", paste0("cor_lib_", packageVersion("BritPol"), ".rds")))
+cor_con <- readRDS(here("models", paste0("cor_con_", packageVersion("britpol"), ".rds")))
+cor_lab <- readRDS(here("models", paste0("cor_lab_", packageVersion("britpol"), ".rds")))
+cor_lib <- readRDS(here("models", paste0("cor_lib_", packageVersion("britpol"), ".rds")))
 
 
 # Tell knitr to use Cairo PDF when rendering plots so that it uses nice fonts
@@ -93,11 +96,11 @@ knitr::opts_chunk$set(dev = "cairo_pdf")
 
 ```
 
-# About BritPol
+# About britpol
 
-BritPol is a data package for the `R` programming language. It includes two datasets: `pollbase` and `pollbasepro`. The first provides a long-format and ready-to-analyse version of Mark Pack's [-@pack2021] dataset of historic British public opinion polls combined with more recent polling data from Wikipedia. The second provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`.
+`britpol` is a data package for the `R` programming language. It includes two datasets: `pollbase` and `pollbasepro`. The first provides a long-format and ready-to-analyse version of Mark Pack's [-@pack2021] dataset of historic British public opinion polls combined with more recent polling data from Wikipedia. The second provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`.
 
-Both `pollbase` and `pollbasepro` are *living datasets*. Thus, users should endeavour to use only the most recent version of the data when conducting their analyses. This will become more important in the future, as we intend to add new polls and estimates over time. Likewise, we cannot rule out that minor mistakes might have crept into our data processing pipeline. To guard against this, we have made all of our materials available for others to inspect. If you find an error in the code or wish to make a recommendation for a future update, we invite you to [raise an issue on the BritPol GitHub repository](https://github.com/jackobailey/BritPol/issues).
+Both `pollbase` and `pollbasepro` are *living datasets*. Thus, users should endeavour to use only the most recent version of the data when conducting their analyses. This will become more important in the future, as we intend to add new polls and estimates over time. Likewise, we cannot rule out that minor mistakes might have crept into our data processing pipeline. To guard against this, we have made all of our materials available for others to inspect. If you find an error in the code or wish to make a recommendation for a future update, we invite you to [raise an issue on the `britpol` GitHub repository](https://github.com/jackobailey/britpol/issues).
 
 
 
@@ -105,35 +108,35 @@ Both `pollbase` and `pollbasepro` are *living datasets*. Thus, users should ende
 
 If you use the `pollbasepro` data, you should also cite it. This is good practice and also allows us monitor how the data have been used. The `pollbasepro` project comprises three items: the data, this user guide, and a companion paper. The citations for each item are as follows:
 
-- **Data:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")` v.`r packageVersion("BritPol")` [computer file], `r format(Sys.Date(), format = "%B %Y")`. Retrieved from https://doi.org/10.7910/DVN/3POIQW.
+- **Data:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")` v.`r packageVersion("britpol")` [computer file], `r format(Sys.Date(), format = "%B %Y")`. Retrieved from https://doi.org/10.7910/DVN/3POIQW.
 
-- **Documentation:** Bailey, J. (`r format(Sys.Date(), format = "%Y")`) BritPol v`r packageVersion("BritPol")`: User Guide and Data Codebook. Retrieved from doi.
+- **Documentation:** Bailey, J. (`r format(Sys.Date(), format = "%Y")`) britpol v`r packageVersion("britpol")`: User Guide and Data Codebook. Retrieved from https://doi.org/10.17605/OSF.IO/2M9GB.
 
 - **Paper:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")`. Retrieved from doi.
 
 
-# Using BritPol
+# Using britpol
 
-Getting started with BritPol in `R` is simple. It requires only three short steps: first, to install the package; second, to load the package; and, third, to load the data. Once you have taken these three steps, you can then begin analysing the data. Note that BritPol is not yet available on CRAN, the service that hosts most `R` packages. As such, it is not yet possible to install BritPol with `R`'s standard `install.packages()` function. Instead, we must install it directly from its [GitHub repository](https://github.com/jackobailey/BritPol). Thankfully this is straightforward and requires only that you run the following code in your `R` console:
+Getting started with `britpol` in `R` is simple. It requires only three short steps: first, to install the package; second, to load the package; and, third, to load the data. Once you have taken these three steps, you can then begin analysing the data. Note that `britpol` is not yet available on CRAN, the service that hosts most `R` packages. As such, it is not yet possible to install `britpol` with `R`'s standard `install.packages()` function. Instead, we must install it directly from its [GitHub repository](https://github.com/jackobailey/britpol). Thankfully this is straightforward and requires only that you run the following code in your `R` console:
 
 ```{r install-pbp, eval = FALSE}
-# 1. Install the BritPol package from GitHub
-devtools::install_github("jackobailey/BritPol")
+# 1. Install the britpol package from GitHub
+devtools::install_github("jackobailey/britpol")
 
-# 2. Load the BritPol package in R
-library(BritPol)
+# 2. Load the britpol package in R
+library(britpol)
 
 # 3. Load the pollbase and pollbasepro datasets
 data("pollbase")
 data("pollbasepro")
 ```
 
-Though BritPol is first and foremost an `R` data package, we have sought to accommodate those who use Stata and SPSS too. To make this as easy as possible, we have made both the `pollbase` and `pollbasepro` datasets available as .dta and .sav files. These include all necessary value and variable labels and should work seamlessly with both software packages. You can download the latest version of the data by clicking the links below:
+Though `britpol` is first and foremost an `R` data package, we have sought to accommodate those who use Stata and SPSS too. To make this as easy as possible, we have made both the `pollbase` and `pollbasepro` datasets available as .dta and .sav files. These include all necessary value and variable labels and should work seamlessly with both software packages. You can download the latest version of the data by clicking the links below:
 
-- ``r paste0("pollbase_", packageVersion("BritPol"), ".dta")``
-- ``r paste0("pollbasepro_", packageVersion("BritPol"), ".dta")``
-- ``r paste0("pollbase_", packageVersion("BritPol"), ".sav")``
-- ``r paste0("pollbasepro_", packageVersion("BritPol"), ".sav")``
+- ``r paste0("pollbase_", packageVersion("britpol"), ".dta")``
+- ``r paste0("pollbasepro_", packageVersion("britpol"), ".dta")``
+- ``r paste0("pollbase_", packageVersion("britpol"), ".sav")``
+- ``r paste0("pollbasepro_", packageVersion("britpol"), ".sav")``
 
 
 ```{r error-plot, fig.cap = "The posterior uncertainty in the estimates that we include in the pollbasepro dataset are correlated with time. This is because polls have become more frequent and have included larger sample sizes as time has passed. Thus, our estimates also become more precise.", fig.width = 6, fig.height = 2.5, fig.align = "centre", echo = F}
@@ -538,7 +541,7 @@ To validate our estimates, we compare them against raw polling data from Jenning
 
 ## Open-Source Data Pipeline
 
-We recognise that some users will find understanding our modelling decisions more simple if they were able to see our code^[Note that we estimate all of our models using `R` `r str_remove(R.Version()$version.string, "^R*.")` and either version `r packageVersion("brms")` of the `brms` package [@burkner2017] or version `r cmdstanr::cmdstan_version()` of `cmdstan`, an interface to the Stan probabilistic programming language [@carpenter2017]]. This transparency also has other benefits: it allows our users to identify mistakes in our code. After all---and like any project of this nature---our data pipeline likely contains minor errors or inefficiencies that could affect the estimates that we obtain. To guard against this, and provide our users with a more in-depth look at our modelling process, we have hosted our entire data pipeline online for others to inspect. If our users find any errors in our code or wish to make recommendations for future updates, we invite them to [raise an issue on the project's GitHub repository](https://github.com/jackobailey/BritPol/issues) or to [contact the authors directly](mailto:jack.bailey@manchester.ac.uk).
+We recognise that some users will find understanding our modelling decisions more simple if they were able to see our code^[Note that we estimate all of our models using `R` `r str_remove(R.Version()$version.string, "^R*.")` and either version `r packageVersion("brms")` of the `brms` package [@burkner2017] or version `r cmdstanr::cmdstan_version()` of `cmdstan`, an interface to the Stan probabilistic programming language [@carpenter2017]]. This transparency also has other benefits: it allows our users to identify mistakes in our code. After all---and like any project of this nature---our data pipeline likely contains minor errors or inefficiencies that could affect the estimates that we obtain. To guard against this, and provide our users with a more in-depth look at our modelling process, we have hosted our entire data pipeline online for others to inspect. If our users find any errors in our code or wish to make recommendations for future updates, we invite them to [raise an issue on the project's GitHub repository](https://github.com/jackobailey/britpol/issues) or to [contact the authors directly](mailto:jack.bailey@manchester.ac.uk).
 
 
 \pagebreak
@@ -565,7 +568,7 @@ make_table(pollbasepro)
 
 # Change Log
 
-For the sake of openness and transparency, we provide a change log that lists all updates and changes made to BritPol over time. If you think that you have found a problem with either the data, code, or documentation, please [raise an issue on the project's GitHub repository](https://github.com/jackobailey/BritPol/issues).
+For the sake of openness and transparency, we provide a change log that lists all updates and changes made to `britpol` over time. If you think that you have found a problem with either the data, code, or documentation, please [raise an issue on the project's GitHub repository](https://github.com/jackobailey/britpol/issues).
 
 ```{r change-log, echo = FALSE, message = FALSE, results = "asis"}
 

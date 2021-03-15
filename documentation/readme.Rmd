@@ -10,7 +10,7 @@ output:
 
 # Load packages
 
-library(BritPol)
+library(britpol)
 library(tidyverse)
 library(lubridate)
 library(here)
@@ -26,17 +26,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-# BritPol
+# britpol
 
-BritPol is a data package for the `R` programming language. It includes two datasets: `pollbase` and `pollbasepro`. The first provides a long-format and ready-to-analyse version of Mark Pack's dataset of historic British public opinion polls combined with more recent polling data from Wikipedia. The second provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. A user guide and codebook is available for `pollbasepro` [here](https://github.com/jackobailey/BritPol/blob/master/download/userguide.pdf) and an accompanying paper is available [here](https://github.com/jackobailey/BritPol/blob/master/download/paper.pdf).
+`britpol` is a data package for the `R` programming language. It includes two datasets: `pollbase` and `pollbasepro`. The first provides a long-format and ready-to-analyse version of Mark Pack's dataset of historic British public opinion polls combined with more recent polling data from Wikipedia. The second provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. A user guide and codebook is available for `pollbasepro` [here](https://github.com/jackobailey/britpol/blob/master/download/userguide.pdf) and an accompanying paper is available [here](https://github.com/jackobailey/britpol/blob/master/download/paper.pdf).
 
-To install the latest version of BritPol, run the following code in `R`:
+To install the latest version of `britpol`, run the following code in `R`:
 
 ``` r
-devtools::install_github("jackobailey/BritPol")
+devtools::install_github("jackobailey/britpol")
 ```
 
-We also provide `pollbase` and `pollbasepro` as .dta and .sav files for Stata and SPSS users. These files include all necessary value and variable labels and should work seamlessly with both software packages. [Click here to download them](https://github.com/jackobailey/BritPol/tree/master/download).
+We also provide `pollbase` and `pollbasepro` as .dta and .sav files for Stata and SPSS users. These files include all necessary value and variable labels and should work seamlessly with both software packages. [Click here to download them](https://github.com/jackobailey/britpol/tree/master/download).
 
 
 ## Latest Polling Estimates
@@ -177,24 +177,24 @@ ggsave(
 
 ```
 
-<center><img src="https://raw.githubusercontent.com/jackobailey/BritPol/master/documentation/_assets/timeplot_gh.png"></center>
+<center><img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/timeplot_gh.png"></center>
 
 As of `r str_remove(format(Sys.Date(), "%d %B %Y"), "^0")`, we estimate that **the `r txt_dta$party[1]` `r ifelse(txt_dta$party[1] %in% c("Conservative Party", "Labour Party"), "has", "have")` the largest base of support** with `r paste0(txt_dta$share[1], " (95% CI: ", txt_dta$lower[1], " to ", txt_dta$upper[1], ")")` of the electorate intending to vote for them at the next election. **They hold a lead over the `r txt_dta$party[2]`** of `r paste0(scales::percent(txt_dta$est[1] - txt_dta$est[2]), " (95% CI: ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) - qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), " to ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) + qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), ")")`. **This puts the `r txt_dta$party[2]` in second place** on `r paste0(txt_dta$share[2], " (95% CI: ", txt_dta$lower[2], " to ", txt_dta$upper[2], ")")` of the vote. **In third place is the `r txt_dta$party[3]`**, with support from `r paste0(txt_dta$share[3], " (95% CI: ", txt_dta$lower[3], " to ", txt_dta$upper[3], ")")` of voters.
 
 
 ## Notes, Usage, and Attribution
 
-Both `pollbase` and `pollbasepro` are living datasets. As such, users should try to use only the most recent version of the data when conducting their analyses. Like any project of this size, some minor mistakes might have crept into the data processing pipeline. If you think that you have found an error in the code or wish to make a recommendation for a future update, please [raise an issue](https://github.com/jackobailey/BritPol/issues).
+Both `pollbase` and `pollbasepro` are living datasets. As such, users should try to use only the most recent version of the data when conducting their analyses. Like any project of this size, some minor mistakes might have crept into the data processing pipeline. If you think that you have found an error in the code or wish to make a recommendation for a future update, please [raise an issue](https://github.com/jackobailey/britpol/issues).
 
-Your may use any BritPol code for your own purposes, but you must do so *with attribution*. That is, you may reproduce, reuse, and change the code here as you see fit, but must state in each case that you used BritPol to produce your work. The citations for each item in BritPol are as follows:
+Your may use the `britpol` codebase for your own purposes, but you must do so *with attribution*. That is, you may reproduce, reuse, and change the code here as you see fit, but must state in each case that you used britpol to produce your work. The citations for each item in `britpol` are as follows:
 
-### BritPol
+### britpol
 
-- **Documentation:** Bailey, J. (`r format(Sys.Date(), format = "%Y")`) BritPol v`r packageVersion("BritPol")`: User Guide and Data Codebook. Retrieved from doi.
+- **Documentation:** Bailey, J. (`r format(Sys.Date(), format = "%Y")`) britpol v`r packageVersion("britpol")`: User Guide and Data Codebook. Retrieved from https://doi.org/10.17605/OSF.IO/2M9GB.
 
 
 ### PollBasePro
 
-- **Data:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")` v.`r packageVersion("BritPol")` [computer file], `r format(Sys.Date(), format = "%B %Y")`. Retrieved from https://doi.org/10.7910/DVN/3POIQW.
+- **Data:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")` v.`r packageVersion("britpol")` [computer file], `r format(Sys.Date(), format = "%B %Y")`. Retrieved from https://doi.org/10.7910/DVN/3POIQW.
 
 - **Paper:** Bailey, J., M. Pack, and L. Mansillo (`r format(Sys.Date(), format = "%Y")`) PollBasePro: Daily Estimates of Aggregate Voting Intention in Great Britain from `r format(min(pollbasepro$date), "%Y")` to `r format(max(pollbasepro$date), "%Y")`. Retrieved from doi.

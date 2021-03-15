@@ -23,10 +23,9 @@ transformed parameters {
   vector[T] alpha; // Initalise latent voting intention parameters
   vector[N] mu; // Initalise expectated outcome parameter
   alpha[1] = alpha_init; // Constrain initial alpha to equal election result
-  alpha[T] = alpha_final; // Constrain final alpha to equal election result
 
   // Specify dynamic model
-  for (i in 2:(T - 1)) {
+  for (i in 2:T) {
     alpha[i] = alpha[i - 1] + tau * omega[i - 1];
   }
 
@@ -40,8 +39,8 @@ model {
   target += normal_lpdf(delta | 0, 0.05); // Prior on pollster effects, delta
   target += normal_lpdf(omega | 0, 0.1); // Prior on random shocks, omega
   target += normal_lpdf(tau | 0, 0.05); // Prior on scale of innovations, tau
-  target += normal_lpdf(alpha[T] | alpha[T - 1], tau); // Prior on final alpha
-  target += normal_lpdf(alpha[T] | alpha[T], 0.00005); // Force final alpha to be close to result
+  target += normal_lpdf(alpha_final | alpha[T - 1], tau); // Prior on final alpha
+  target += normal_lpdf(alpha_final | alpha[T], 0.0005); // Force final alpha to be close to result
   target += exponential_lpdf(sigma | 20); // Prior on residual error
 
   // Likelihood

@@ -28,7 +28,7 @@ update_pollbasepro <- function(){
       values_to = "estimates"
     ) %>%
     dplyr::mutate(
-      alpha_init = BritPol::get_result(election = init, party = party),
+      alpha_init = britpol::get_result(election = init, party = party),
       alpha_final = NA,
       estimates = as.list(rep(NA, dplyr::n()))
     )
@@ -37,7 +37,7 @@ update_pollbasepro <- function(){
   # Get wiki data and mutate
 
   wiki <-
-    BritPol::get_new_polls() %>%
+    britpol::get_new_polls() %>%
     dplyr::mutate(
       election = "2019-12-12",
       id =
@@ -46,12 +46,12 @@ update_pollbasepro <- function(){
           seq(
             as.numeric(
               stringr::str_remove(
-                BritPol::pollbase$id[BritPol::pollbase$end > "2019-12-12"][1], ".*-"
+                britpol::pollbase$id[britpol::pollbase$end > "2019-12-12"][1], ".*-"
               )
             ),
             as.numeric(
               stringr::str_remove(
-                BritPol::pollbase$id[BritPol::pollbase$end > "2019-12-12"][1], ".*-"
+                britpol::pollbase$id[britpol::pollbase$end > "2019-12-12"][1], ".*-"
               )
             ) + nrow(.) - 1,
             by = 1
@@ -96,7 +96,7 @@ update_pollbasepro <- function(){
         purrr::map(
           .x = dplyr::row_number(),
           .f = function(x){
-            BritPol::fit_model(
+            britpol::fit_model(
               data = wiki,
               init = dta$init[x],
               final = dta$final[x],
@@ -116,7 +116,7 @@ update_pollbasepro <- function(){
     dplyr::mutate(
       election =
         date %>%
-        BritPol::get_last_election()
+        britpol::get_last_election()
     ) %>%
     dplyr::distinct() %>%
     tidyr::pivot_wider(
@@ -464,7 +464,7 @@ update_pollbasepro <- function(){
 
   pollbasepro <-
     rbind(
-      BritPol::pollbasepro[BritPol::pollbasepro$date < "2019-12-12", ],
+      britpol::pollbasepro[britpol::pollbasepro$date < "2019-12-12", ],
       dta
     )
 
@@ -494,7 +494,7 @@ update_pollbasepro <- function(){
 
   # Finally, we'll update the replication information
 
-  BritPol::save_info(here::here("sessions", "003_pollbasepro.txt"))
+  britpol::save_info(here::here("sessions", "003_pollbasepro.txt"))
 
 
 }

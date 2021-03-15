@@ -1,6 +1,6 @@
 #' Update Voting Intention Polls, 2019-Present
 #'
-#' This function updates PollBasePro to include the latest polling data and outputs Twitter content.
+#' This function updates britpol to include the latest polling data and outputs Twitter content.
 #'
 #'
 #' @export
@@ -482,12 +482,12 @@ update_pollbasepro <- function(){
 
   haven::write_dta(
     pollbasepro,
-    path = here::here("download", paste0("pollbasepro_", utils::packageVersion("PollBasePro"), ".dta"))
+    path = here::here("download", paste0("pollbasepro_", utils::packageVersion("britpol"), ".dta"))
   )
 
   haven::write_sav(
     pollbasepro,
-    path = here::here("download", paste0("pollbasepro_", utils::packageVersion("PollBasePro"), ".sav")),
+    path = here::here("download", paste0("pollbasepro_", utils::packageVersion("britpol"), ".sav")),
     compress = T
   )
 

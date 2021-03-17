@@ -25,9 +25,7 @@ devtools::install_github("jackobailey/britpol")
 
 ## Latest Polling Estimates from PollBasePro
 
-<center>
-<img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/timeplot_gh.png">
-</center>
+<img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/timeplot_gh.png" alt="Recent polling figures" align="right" width="400" style="padding: 0 15px; float: right;"/>
 
 As of 17 March 2021, **the Conservative Party has the largest base of
 support** at around 41% (95% CI: 38% to 44%) of the electorate. **They

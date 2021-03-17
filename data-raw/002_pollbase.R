@@ -6,7 +6,7 @@
 
 # Load packages
 
-library(BritPol)
+library(britpol)
 library(tidyverse)
 library(magrittr)
 library(lubridate)
@@ -646,12 +646,12 @@ usethis::use_data(
 
 write_dta(
   pollbase,
-  path = here("download", paste0("pollbase_", packageVersion("PollBasePro"), ".dta"))
+  path = here("download", paste0("pollbase_", packageVersion("britpol"), ".dta"))
 )
 
 write_sav(
   pollbase,
-  path = here("download", paste0("pollbase_", packageVersion("PollBasePro"), ".sav")),
+  path = here("download", paste0("pollbase_", packageVersion("britpol"), ".sav")),
   compress = T
 )
 

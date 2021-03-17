@@ -4,7 +4,7 @@
 \alias{fit_model}
 \title{Fit Poll Pooling Model}
 \usage{
-fit_model(data, init, final, party, alpha_init, alpha_final)
+fit_model(data, init, final, party, alpha_init, alpha_final, refresh = 0)
 }
 \arguments{
 \item{data}{Raw pollbase data.}
@@ -18,6 +18,8 @@ fit_model(data, init, final, party, alpha_init, alpha_final)
 \item{alpha_init}{The party's vote share at the initial election.}
 
 \item{alpha_final}{The party's vote share at the final election.}
+
+\item{refresh}{How often to report model iterations. Defaults to 0.}
 }
 \description{
 This function provides a simple way to fit a variant of Simon Jackman's "polling the polls" model.

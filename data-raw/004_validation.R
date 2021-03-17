@@ -6,7 +6,7 @@
 
 # Load packages
 
-library(BritPol)
+library(britpol)
 library(tidyverse)
 library(lubridate)
 library(brms)
@@ -95,7 +95,7 @@ cor_con <-
     file =
       here(
         "models",
-        paste0("cor_con_", packageVersion("PollBasePro"))
+        paste0("cor_con_", packageVersion("britpol"))
       )
   )
 
@@ -119,7 +119,7 @@ cor_lab <-
     file =
       here(
         "models",
-        paste0("cor_lab_", packageVersion("PollBasePro"))
+        paste0("cor_lab_", packageVersion("britpol"))
       )
   )
 
@@ -143,7 +143,7 @@ cor_lib <-
     file =
       here(
         "models",
-        paste0("cor_lib_", packageVersion("PollBasePro"))
+        paste0("cor_lib_", packageVersion("britpol"))
       )
   )
 
@@ -175,7 +175,7 @@ cor_all <-
     file =
       here(
         "models",
-        paste0("cor_all_", packageVersion("PollBasePro"))
+        paste0("cor_all_", packageVersion("britpol"))
       )
   )
 

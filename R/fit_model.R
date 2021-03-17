@@ -79,6 +79,34 @@ fit_model <- function(data, init, final, party, alpha_init, alpha_final, refresh
         max_treedepth = 15
       )
 
+
+    # Get model summary
+
+    mod_sum <-
+      fit$summary(variables = "alpha") %>%
+      dplyr::filter(stringr::str_detect(variable, "alpha") == T) %>%
+      dplyr::mutate(
+        index =
+          variable %>%
+          stringr::str_remove("alpha\\[") %>%
+          stringr::str_remove("\\]"),
+        date = lubridate::as_date({{init}}) + (dplyr::row_number() - 1)
+      ) %>%
+      dplyr::select(
+        date,
+        est = mean,
+        sd
+      ) %>%
+      dplyr::mutate(
+        party = {{party}}
+      )
+
+
+    # Remove final case to prevent duplication
+
+    mod_sum <- mod_sum[1:(nrow(mod_sum)-1), ]
+
+
   } else if(init == "2019-12-12"){
 
     # Compile Stan model
@@ -127,29 +155,28 @@ fit_model <- function(data, init, final, party, alpha_init, alpha_final, refresh
         max_treedepth = 15
       )
 
+    # Get model summary
+
+    mod_sum <-
+      fit$summary(variables = "alpha") %>%
+      dplyr::filter(stringr::str_detect(variable, "alpha") == T) %>%
+      dplyr::mutate(
+        index =
+          variable %>%
+          stringr::str_remove("alpha\\[") %>%
+          stringr::str_remove("\\]"),
+        date = lubridate::as_date({{init}}) + (dplyr::row_number() - 1)
+      ) %>%
+      dplyr::select(
+        date,
+        est = mean,
+        sd
+      ) %>%
+      dplyr::mutate(
+        party = {{party}}
+      )
+
   }
-
-
-  # Get model summary
-
-  mod_sum <-
-    fit$summary(variables = "alpha") %>%
-    dplyr::filter(stringr::str_detect(variable, "alpha") == T) %>%
-    dplyr::mutate(
-      index =
-        variable %>%
-        stringr::str_remove("alpha\\[") %>%
-        stringr::str_remove("\\]"),
-      date = lubridate::as_date({{init}}) + (dplyr::row_number() - 1)
-    ) %>%
-    dplyr::select(
-      date,
-      est = mean,
-      sd
-    ) %>%
-    dplyr::mutate(
-      party = {{party}}
-    )
 
 
   # Return model summary to user

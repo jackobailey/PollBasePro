@@ -6,7 +6,7 @@
 
 # Load packages
 
-library(BritPol)
+library(britpol)
 library(tidyverse)
 library(lubridate)
 library(brms)

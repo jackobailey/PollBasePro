@@ -136,10 +136,10 @@ pollbasepro %>%
     ) +
   theme_minimal() +
     theme(
-      legend.position = "bottom",
+      legend.position = "none",
       legend.title = element_blank(),
       text = element_text(family = "Cabin", color = "black", size = 8),
-      plot.title = element_text(family = "Cabin", face = "bold", size = rel(1.4), hjust = 0),
+      plot.title = element_blank(),
       plot.subtitle = element_text(family = "Cabin", size = rel(1), hjust = 0, margin = margin(b = 10)),
       axis.line = element_line(lineend = "round"),
       axis.title.x = element_blank(),
@@ -170,7 +170,7 @@ ggsave(
   plot = timeplot,
   path = here("documentation", "_assets"),
   width = 3.5,
-  height = 3.5,
+  height = 3,
   units = "in",
   dpi = 320
 )
@@ -181,11 +181,11 @@ ggsave(
 
 **British Poll of Polls, `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`:**
 
-- **`r txt_dta$party[1]`:** `r paste0(txt_dta$share[1], " (95% CI: ", txt_dta$lower[1], " to ", txt_dta$upper[1], ")")`
-- **`r txt_dta$party[2]`:** `r paste0(txt_dta$share[2], " (95% CI: ", txt_dta$lower[2], " to ", txt_dta$upper[2], ")")`
-- **`r txt_dta$party[3]`:** `r paste0(txt_dta$share[3], " (95% CI: ", txt_dta$lower[3], " to ", txt_dta$upper[3], ")")`
+- **`r txt_dta$party[1]`:** `r paste0(txt_dta$share[1], " (", txt_dta$lower[1], " to ", txt_dta$upper[1], ")")`
+- **`r txt_dta$party[2]`:** `r paste0(txt_dta$share[2], " (", txt_dta$lower[2], " to ", txt_dta$upper[2], ")")`
+- **`r txt_dta$party[3]`:** `r paste0(txt_dta$share[3], " (", txt_dta$lower[3], " to ", txt_dta$upper[3], ")")`
 
-As of `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`, **the `r txt_dta$party[1]` `r ifelse(txt_dta$party[1] %in% c("Conservative Party", "Labour Party"), "is", "are")` the largest party**. **They hold a lead over the `r txt_dta$party[2]`** of `r paste0(scales::percent(txt_dta$est[1] - txt_dta$est[2]), " (95% CI: ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) - qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), " to ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) + qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), ")")`. **This puts the `r txt_dta$party[2]` in second place** and **the `r txt_dta$party[3]` in third place**.
+As of `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`, the `pollbasepro` model suggests that **the `r txt_dta$party[1]` `r ifelse(txt_dta$party[1] %in% c("Conservative Party", "Labour Party"), "is", "are")` the largest party** in Britain. **They hold a lead over the `r txt_dta$party[2]`** of `r paste0(scales::percent(txt_dta$est[1] - txt_dta$est[2]), " (95% CI: ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) - qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), " to ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) + qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), ")")`. **This puts the `r txt_dta$party[2]` in second place** and **the `r txt_dta$party[3]` in third place**.
 
 
 ## Notes, Usage, and Attribution

@@ -4,7 +4,7 @@ library(hexSticker)
 library(here)
 
 sticker(
-  here("documentation", "_assets", "icons", "big-ben.png"),
+  here("documentation", "_assets", "big-ben.png"),
   package="britpol",
   p_size = 30,
   p_x = 1,

@@ -33,10 +33,10 @@ devtools::install_github("jackobailey/britpol")
 -   **Labour Party:** 37% (34% to 40%)
 -   **Liberal Democrats:** 9% (7% to 10%)
 
-As of 17 March 2021, the `pollbasepro` model suggests that **the
-Conservative Party is the largest party** in Britain. **They hold a lead
-over the Labour Party** of 5% (95% CI: 1% to 8%). **This puts the Labour
-Party in second place** and **the Liberal Democrats in third place**.
+As of 17 March 2021, `pollbasepro` suggests that **the Conservative
+Party is the largest party** in Britain. **They hold a lead over the
+Labour Party** of 5% (95% CI: 1% to 8%). **This puts the Labour Party in
+second place** and **the Liberal Democrats in third place**.
 
 ## Notes, Usage, and Attribution
 

@@ -13,7 +13,7 @@ opinion polls combined with more recent data from Wikipedia. The second
 dataset, `pollbasepro`, provides 24,038 daily estimates of voting
 intention figures for each of Britain’s three largest parties between 26
 May 1955 and 17 March 2021. [Stata and SPSS versions of the data are
-also available
+available
 too](https://github.com/jackobailey/britpol/tree/master/download).
 
 To install the latest version of `{britpol}`, run the following code in

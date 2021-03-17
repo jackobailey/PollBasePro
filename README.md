@@ -3,6 +3,8 @@
 
 # britpol
 
+<img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/hex.png" alt="The britpol hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
+
 `{britpol}` is an `R` package that makes analysing British political
 data quick and simple. It contains two pre-formatted datasets, plus a
 host of useful functions. The first dataset, `pollbase`, is a
@@ -22,6 +24,927 @@ devtools::install_github("jackobailey/britpol")
 ```
 
 ## Latest Polling Estimates from PollBasePro
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+
+    #> Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin' not
+    #> found, will use 'sans' instead
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
+
+    #> Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, : font family 'Cabin'
+    #> not found, will use 'sans' instead
 
 <center>
 <img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/timeplot_gh.png">

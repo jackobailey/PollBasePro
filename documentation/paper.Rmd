@@ -159,7 +159,6 @@ cor_lib <- readRDS(here("models", paste0("cor_lib_", packageVersion("britpol"), 
 
 # Create custom ggplot theme
 
-
 theme_bailey <- function(){
   theme_minimal() +
     theme(legend.title = element_text(family = "Cabin", face = "bold", size = rel(1)),

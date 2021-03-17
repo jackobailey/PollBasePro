@@ -38,7 +38,7 @@ of 9% (95% CI: 7% to 10%) of voters.
 
 ## Notes, Usage, and Attribution
 
-{britpol}, `pollbase`, and `pollbasepro` will change over time as
+`{britpol}`, `pollbase`, and `pollbasepro` will change over time as
 elections come and go. Users should use only the most recent version of
 the package when conducting their analyses. Like any project, some minor
 mistakes might have crept into the code. If you think that you have

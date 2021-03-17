@@ -170,7 +170,7 @@ ggsave(
   plot = timeplot,
   path = here("documentation", "_assets"),
   width = 3.5,
-  height = 2.2,
+  height = 2.3,
   units = "in",
   dpi = 320
 )

@@ -47,10 +47,12 @@ update, please [raise an
 issue](https://github.com/jackobailey/britpol/issues).
 
 You may also use the `{britpol}` codebase for your own purposes in line
-with our license. But you must do so *with attribution*. That is, you
-may reproduce, reuse, and adapt the code as you see fit, but must state
-in each case that you used `{britpol}` to produce your work. The
-relevant citations are as follows:
+with [our
+license](https://github.com/jackobailey/britpol/blob/master/LICENSE.md).
+But you must do so *with attribution*. That is, you may reproduce,
+reuse, and adapt the code as you see fit, but must state in each case
+that you used `{britpol}` to produce your work. The relevant citations
+are as follows:
 
 ### britpol
 

@@ -186,7 +186,7 @@ As of `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`, **the `r 
 
 `{britpol}`, `pollbase`, and `pollbasepro` will change over time as elections come and go. Users should use only the most recent version of the package when conducting their analyses. Like any project, some minor mistakes might have crept into the code. If you think that you have found an error or would like to make a recommendation for a future update, please [raise an issue](https://github.com/jackobailey/britpol/issues).
 
-You may also use the `{britpol}` codebase for your own purposes in line with our license. But you must do so *with attribution*. That is, you may reproduce, reuse, and adapt the code as you see fit, but must state in each case that you used `{britpol}` to produce your work. The relevant citations are as follows:
+You may also use the `{britpol}` codebase for your own purposes in line with [our license](https://github.com/jackobailey/britpol/blob/master/LICENSE.md). But you must do so *with attribution*. That is, you may reproduce, reuse, and adapt the code as you see fit, but must state in each case that you used `{britpol}` to produce your work. The relevant citations are as follows:
 
 ### britpol
 

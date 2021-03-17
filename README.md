@@ -17,7 +17,9 @@ too](https://github.com/jackobailey/britpol/tree/master/download).
 To install the latest version of `{britpol}`, run the following code in
 `R`:
 
-\`\`\` r devtools::install\_github(“jackobailey/britpol”)
+``` r
+devtools::install_github("jackobailey/britpol")
+```
 
 ## Latest Polling Estimates from PollBasePro
 

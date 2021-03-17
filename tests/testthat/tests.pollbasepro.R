@@ -7,18 +7,6 @@
 # Load packages
 
 library(britpol)
-library(dplyr)
-library(purrr)
-library(brms)
-library(here)
-
-
-# Load validation/correlation models
-
-cor_all <- britpol:::cor_mods[[1]]
-cor_con <- britpol:::cor_mods[[2]]
-cor_lab <- britpol:::cor_mods[[3]]
-cor_lib <- britpol:::cor_mods[[4]]
 
 
 
@@ -68,15 +56,15 @@ test_that("All voting intention estimates are between 0 and 1", {
 
 test_that("Correlations between voting intention figures are negative", {
   expect_lt(
-    median(pluck(posterior_samples(cor_all, "rescor__libest__conest"), 1)),
+    cor.test(pollbasepro$lib_est, pollbasepro$con_est)$estimate,
     0
   )
   expect_lt(
-    median(pluck(posterior_samples(cor_all, "rescor__libest__labest"), 1)),
+    cor.test(pollbasepro$lib_est, pollbasepro$lab_est)$estimate,
     0
   )
   expect_lt(
-    median(pluck(posterior_samples(cor_all, "rescor__conest__labest"), 1)),
+    cor.test(pollbasepro$con_est, pollbasepro$lab_est)$estimate,
     0
   )
 })
@@ -86,15 +74,15 @@ test_that("Correlations between voting intention figures are negative", {
 
 test_that("Correlations between voting intention figures are negative", {
   expect_gt(
-    median(pluck(posterior_samples(cor_con, "rescor"), 1)),
+    cor.test(pollbasepro$con_est[match(pollbase$end, pollbasepro$date)], pollbase$con)$estimate,
     0.8
   )
   expect_gt(
-    median(pluck(posterior_samples(cor_lab, "rescor"), 1)),
+    cor.test(pollbasepro$lab_est[match(pollbase$end, pollbasepro$date)], pollbase$lab)$estimate,
     0.8
   )
   expect_gt(
-    median(pluck(posterior_samples(cor_lib, "rescor"), 1)),
+    cor.test(pollbasepro$lib_est[match(pollbase$end, pollbasepro$date)], pollbase$lib)$estimate,
     0.8
   )
 })

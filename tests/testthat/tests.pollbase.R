@@ -7,9 +7,6 @@
 # Load packages
 
 library(britpol)
-library(dplyr)
-library(purrr)
-library(here)
 
 
 

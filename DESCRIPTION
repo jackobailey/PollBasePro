@@ -24,22 +24,5 @@ Depends:
 Suggests: 
     testthat
 Imports: 
-    dplyr,
-    stats,
-    here,
-    lubridate,
-    magrittr,
-    rstan,
-    stringr,
-    tibble,
-    brms,
-    purrr,
-    cmdstanr,
-    htmltab,
-    kableExtra,
-    labelled,
-    tidyr,
-    ggplot2,
     haven,
-    scales,
-    usethis
+    dplyr

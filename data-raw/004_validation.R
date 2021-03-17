@@ -65,6 +65,13 @@ lib <-
   na.omit()
 
 
+# Load internal functions
+
+for(i in dir(here("R_int"))){
+  source(here("R_int", i))
+  rm(i)
+}
+
 
 # 3. Fit correlation models -----------------------------------------------
 
@@ -183,15 +190,6 @@ cor_all <-
 # Let's now combine these models into a list
 
 cor_mods <- list(cor_all, cor_con, cor_lab, cor_lib)
-
-
-# We'll now save the files so that we can call them in our unit tests
-
-usethis::use_data(
-  cor_mods,
-  internal = TRUE,
-  overwrite = TRUE
-)
 
 
 # Finally, we'll install and restart the package so that subsequent scripts

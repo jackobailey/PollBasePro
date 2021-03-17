@@ -9,7 +9,6 @@
 #' @param alpha_init The party's vote share at the initial election.
 #' @param alpha_final The party's vote share at the final election.
 #' @param refresh How often to report model iterations. Defaults to 0.
-#' @export
 
 fit_model <- function(data, init, final, party, alpha_init, alpha_final, refresh = 0){
 

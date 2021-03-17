@@ -62,6 +62,14 @@ pollbase <-
 load(here("R", "sysdata.rda"))
 
 
+# Load internal functions
+
+for(i in dir(here("R_int"))){
+  source(here("R_int", i))
+  rm(i)
+}
+
+
 
 # 2. Transform PollBase data ----------------------------------------------
 

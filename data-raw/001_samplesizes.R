@@ -26,6 +26,14 @@ timeline <-
   na.omit()
 
 
+# Load internal functions
+
+for(i in dir(here("R_int"))){
+  source(here("R_int", i))
+  rm(i)
+}
+
+
 
 # 2. Transform data -------------------------------------------------------
 

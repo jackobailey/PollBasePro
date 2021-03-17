@@ -181,6 +181,14 @@ theme_bailey <- function(){
 }
 
 
+# Load internal functions
+
+for(i in dir(here("R_int"))){
+  source(here("R_int", i))
+  rm(i)
+}
+
+
 
 # Tell knitr to use Cairo PDF when rendering plots so that it uses nice fonts
 

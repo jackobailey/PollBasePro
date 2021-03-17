@@ -32,6 +32,14 @@ pollbasepro <-
   )
 
 
+# Load internal functions
+
+for(i in dir(here("R_int"))){
+  source(here("R_int", i))
+  rm(i)
+}
+
+
 
 # 2. Transform data -------------------------------------------------------
 
@@ -117,7 +125,7 @@ death_mod <-
     file =
       here(
         "models",
-        paste0("death_mod_", packageVersion("BritPol"))
+        paste0("death_mod_", packageVersion("britpol"))
       )
   )
 

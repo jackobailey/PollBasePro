@@ -13,6 +13,7 @@ Authors@R: c(person(given = "Jack",
            family = "Mansillo",
            role = "ctb"))
 Description: Data and convenience functions to help analyse british politics data.
+BugReports: https://github.com/jackobailey/britpol/issues
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

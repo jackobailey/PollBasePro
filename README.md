@@ -27,12 +27,16 @@ devtools::install_github("jackobailey/britpol")
 
 <img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/timeplot_gh.png" alt="Recent polling figures" align="right" width="400" style="padding: 0 15px; float: right;"/>
 
-As of 17 March 2021, **the Conservative Party has the largest base of
-support** at around 41% (95% CI: 38% to 44%) of the electorate. **They
-hold a lead over the Labour Party** of 5% (95% CI: 1% to 8%). **This
-puts the Labour Party in second place** on 37% (95% CI: 34% to 40%) of
-the vote. **The Liberal Democrats are in third place** with the support
-of 9% (95% CI: 7% to 10%) of voters.
+**British Poll of Polls, 17 March 2021:**
+
+-   **Conservative Party:** 41% (95% CI: 38% to 44%)
+-   **Labour Party:** 37% (95% CI: 34% to 40%)
+-   **Liberal Democrats:** 9% (95% CI: 7% to 10%)
+
+As of 17 March 2021, **the Conservative Party is the largest party**.
+**They hold a lead over the Labour Party** of 5% (95% CI: 1% to 8%).
+**This puts the Labour Party in second place** and **the Liberal
+Democrats in third place**.
 
 ## Notes, Usage, and Attribution
 

@@ -29,7 +29,6 @@ Suggests:
     htmltab,
     kableExtra,
     labelled,
-    lubridate,
     magrittr,
     purrr,
     scales,
@@ -39,4 +38,5 @@ Suggests:
     usethis
 Imports: 
     haven,
-    dplyr
+    dplyr,
+    lubridate

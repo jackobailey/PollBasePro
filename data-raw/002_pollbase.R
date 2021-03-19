@@ -59,15 +59,7 @@ pollbase <-
 
 # Load sample size data
 
-load(here("R", "sysdata.rda"))
-
-
-# Load internal functions
-
-for(i in dir(here("R_int"))){
-  source(here("R_int", i))
-  rm(i)
-}
+data("samplesizes")
 
 
 
@@ -647,20 +639,6 @@ usethis::use_data(
   pollbase,
   internal = FALSE,
   overwrite = TRUE
-)
-
-
-# And we'll also save the file as a .dta and .sav file for easy use
-
-write_dta(
-  pollbase,
-  path = here("download", paste0("pollbase_", packageVersion("britpol"), ".dta"))
-)
-
-write_sav(
-  pollbase,
-  path = here("download", paste0("pollbase_", packageVersion("britpol"), ".sav")),
-  compress = T
 )
 
 

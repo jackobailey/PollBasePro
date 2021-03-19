@@ -52,13 +52,6 @@ elec_dates <-
   )
 
 
-# Load internal functions
-
-for(i in dir(here("R_int"))){
-  source(here("R_int", i))
-  rm(i)
-}
-
 
 # 2. Transform data -------------------------------------------------------
 
@@ -403,20 +396,6 @@ usethis::use_data(
   pollbasepro,
   internal = FALSE,
   overwrite = TRUE
-)
-
-
-# And we'll also save the file as a .dta and .sav file for easy use
-
-write_dta(
-  pollbasepro,
-  path = here("download", paste0("pollbasepro_", packageVersion("britpol"), ".dta"))
-)
-
-write_sav(
-  pollbasepro,
-  path = here("download", paste0("pollbasepro_", packageVersion("britpol"), ".sav")),
-  compress = T
 )
 
 

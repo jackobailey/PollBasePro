@@ -10,16 +10,13 @@ library(rmarkdown)
 library(here)
 
 
-# Load internal functions
-
-for(i in dir(here("R_int"))){
-  source(here("R_int", i))
-  rm(i)
-}
-
-
 
 # 2. Compile data and models ----------------------------------------------
+
+# Create mini datasets
+
+source(here("data-raw", "006_mini_data.R"))
+
 
 # Fit sample size imputation model
 
@@ -53,7 +50,7 @@ source(here("data-raw", "005_example.R"))
 
 render(
   input = here("documentation", "paper.Rmd"),
-  output_file = here("download", "paper.pdf")
+  output_file = here("documentation", "paper.pdf")
 )
 
 
@@ -66,7 +63,7 @@ source(here("documentation", "_assets", "cover.R"))
 
 render(
   input = here("documentation", "userguide.Rmd"),
-  output_file = here("download", "userguide.pdf")
+  output_file = here("documentation", "userguide.pdf")
 )
 
 

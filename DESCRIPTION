@@ -22,7 +22,21 @@ RoxygenNote: 7.1.1
 Depends: 
     R (>= 3.5.0)
 Suggests: 
-    testthat
+    ggplot2,
+    cmdstanr,
+    testthat,
+    here,
+    htmltab,
+    kableExtra,
+    labelled,
+    lubridate,
+    magrittr,
+    purrr,
+    scales,
+    stringr,
+    tibble,
+    tidyr,
+    usethis
 Imports: 
     haven,
     dplyr

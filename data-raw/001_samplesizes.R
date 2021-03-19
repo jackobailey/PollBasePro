@@ -16,7 +16,7 @@ library(here)
 # Load timeline of elections data
 
 timeline <-
-  load_timeline() %>%
+  britpol:::load_timeline() %>%
   select(
     polldate,
     elecdate,
@@ -24,14 +24,6 @@ timeline <-
     sample
   ) %>%
   na.omit()
-
-
-# Load internal functions
-
-for(i in dir(here("R_int"))){
-  source(here("R_int", i))
-  rm(i)
-}
 
 
 
@@ -133,15 +125,15 @@ samplesizes <-
     sample_mod,
     newdata =
       tibble(
-        date = seq.Date(as_date("1945-01-01"), as_date(Sys.Date()), "day"),
-        time = interval(as_date("1945-01-01"), date)/years(10),
+        date = seq.Date(as_date("1955-01-01"), as_date("2013-01-01"), "day"),
+        time = interval(as_date("1955-01-01"), date)/years(10),
         country = "United Kingdom"
       ),
     re_formula = NULL
   ) %>%
   data.frame() %>%
   tibble() %>%
-  mutate(date = seq.Date(as_date("1945-01-01"), as_date(Sys.Date()), "day")) %>%
+  mutate(date = seq.Date(as_date("1955-01-01"), as_date("2013-01-01"), "day")) %>%
   select(
     date,
     n_est = Estimate

@@ -21,7 +21,7 @@ data("pollbasepro")
 # Load Timeline data, filter to include only UK cases, and split by party
 
 timeline <-
-  load_timeline() %>%
+  britpol:::load_timeline() %>%
   select(
     date = polldate,
     elecdate,
@@ -65,14 +65,6 @@ lib <-
   na.omit()
 
 
-# Load internal functions
-
-for(i in dir(here("R_int"))){
-  source(here("R_int", i))
-  rm(i)
-}
-
-
 # 3. Fit correlation models -----------------------------------------------
 
 # We're going to validate the PollBasePro data by calculating the correlation
@@ -99,11 +91,7 @@ cor_con <-
     seed = 666,
     chains = 4,
     cores = 4,
-    file =
-      here(
-        "models",
-        paste0("cor_con_", packageVersion("britpol"))
-      )
+    thin = 4 # Thin to save memory
   )
 
 cor_lab <-
@@ -123,11 +111,7 @@ cor_lab <-
     seed = 666,
     chains = 4,
     cores = 4,
-    file =
-      here(
-        "models",
-        paste0("cor_lab_", packageVersion("britpol"))
-      )
+    thin = 4 # Thin to save memory
   )
 
 cor_lib <-
@@ -147,11 +131,7 @@ cor_lib <-
     seed = 666,
     chains = 4,
     cores = 4,
-    file =
-      here(
-        "models",
-        paste0("cor_lib_", packageVersion("britpol"))
-      )
+    thin = 4 # Thin to save memory
   )
 
 
@@ -179,17 +159,30 @@ cor_all <-
     seed = 666,
     chains = 4,
     cores = 4,
-    file =
-      here(
-        "models",
-        paste0("cor_all_", packageVersion("britpol"))
-      )
+    thin = 4 # Thin to save memory
   )
 
 
-# Let's now combine these models into a list
+# Let's now combine the residual correlations into a list
 
-cor_mods <- list(cor_all, cor_con, cor_lab, cor_lib)
+cor_mods <-
+  list(
+    posterior_samples(cor_all, pars = ""),
+    posterior_samples(cor_all, pars = ""),
+    posterior_samples(cor_all, pars = ""),
+    posterior_samples(cor_con, pars = ""),
+    posterior_samples(cor_lab, pars = ""),
+    posterior_samples(cor_lib, pars = "")
+  )
+
+
+# Then we'll save them as system data
+
+usethis::use_data(
+  cor_mods,
+  internal = TRUE,
+  overwrite = TRUE
+)
 
 
 # Finally, we'll install and restart the package so that subsequent scripts

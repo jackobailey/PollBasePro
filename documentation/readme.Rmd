@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 
 <img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/hex.png" alt="The britpol hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
 
-`{britpol}` is an `R` package that makes analysing British political data quick and simple. It contains two pre-formatted datasets, plus a host of useful functions. The first dataset, `pollbase`, is a long-format version of Mark Pack's dataset of historic British public opinion polls combined with more recent data from Wikipedia. The second dataset, `pollbasepro`, provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties between `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` and `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. [Stata and SPSS versions of the data are available too](https://github.com/jackobailey/britpol/tree/master/download).
+`{britpol}` is an `R` package that makes analysing British political data quick and simple. It contains two pre-formatted datasets, plus a host of useful functions. The first dataset, `pollbase`, is a long-format version of Mark Pack's dataset of historic British public opinion polls combined with more recent data from Wikipedia. The second dataset, `pollbasepro`, provides `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of voting intention figures for each of Britain's three largest parties from `r str_remove(format(min(pollbasepro$date), "%d %B %Y"), "^0")` to `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`.
 
 To install the latest version of `{britpol}`, run the following code in `R`:
 
@@ -192,7 +192,7 @@ As of `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`, `pollbase
 
 `{britpol}`, `pollbase`, and `pollbasepro` will change over time as elections come and go. Users should use only the most recent version of the package when conducting their analyses. Like any project, some minor mistakes might have crept into the code. If you think that you have found an error or would like to make a recommendation for a future update, please [raise an issue](https://github.com/jackobailey/britpol/issues).
 
-You may also use the `{britpol}` codebase for your own purposes in line with [our license](https://github.com/jackobailey/britpol/blob/master/LICENSE.md). But you must do so *with attribution*. That is, you may reproduce, reuse, and adapt the code as you see fit, but must state in each case that you used `{britpol}` to produce your work. The relevant citations are as follows:
+You may also use the `{britpol}` codebase for your own purposes in line with [its license](https://github.com/jackobailey/britpol/blob/master/LICENSE.md). But you must do so *with attribution*. That is, you may reproduce, reuse, and adapt the code as you see fit, but must state in each case that you used `{britpol}` to produce your work. The relevant citations are as follows:
 
 ### britpol
 

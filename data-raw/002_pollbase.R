@@ -408,10 +408,10 @@ pollbase <-
 pollbase <-
   rbind(
     pollbase,
-    get_2015_polls(),
-    get_2017_polls(),
-    get_2019_polls(),
-    get_new_polls()
+    britpol:::get_2015_polls(),
+    britpol:::get_2017_polls(),
+    britpol:::get_2019_polls(),
+    britpol:::get_new_polls()
   )
 
 
@@ -422,13 +422,6 @@ pollbase <-
   mutate(id = paste0("poll-", row_number()))
 
 
-# Next, we'll assign each poll to its respective prior election
-
-pollbase <-
-  pollbase %>%
-  mutate(election = get_last_election(start))
-
-
 # Then, we'll select only those variables that we want to carry over to
 # the modelling stage.
 
@@ -436,7 +429,6 @@ pollbase <-
   pollbase %>%
   select(
     id,
-    election,
     start,
     end,
     pollster,
@@ -444,187 +436,6 @@ pollbase <-
     con,
     lab,
     lib
-  )
-
-
-# We'll also add an indicator to show which party controlled the government
-# at each election
-
-pollbase <-
-  pollbase %>%
-  mutate(
-    govt =
-      case_when(
-        election == as_date("1935-11-14") ~ 3,
-        election == as_date("1945-07-05") ~ 2,
-        election == as_date("1950-02-23") ~ 2,
-        election == as_date("1951-10-25") ~ 2,
-        election == as_date("1955-05-26") ~ 1,
-        election == as_date("1959-10-08") ~ 1,
-        election == as_date("1964-10-15") ~ 2,
-        election == as_date("1966-03-31") ~ 2,
-        election == as_date("1970-06-18") ~ 1,
-        election == as_date("1974-02-28") ~ 2,
-        election == as_date("1974-10-10") ~ 2,
-        election == as_date("1979-05-03") ~ 1,
-        election == as_date("1983-06-09") ~ 1,
-        election == as_date("1987-06-11") ~ 1,
-        election == as_date("1992-04-09") ~ 1,
-        election == as_date("1997-05-01") ~ 2,
-        election == as_date("2001-06-07") ~ 2,
-        election == as_date("2005-05-05") ~ 2,
-        election == as_date("2010-05-06") ~ 1,
-        election == as_date("2015-05-07") ~ 1,
-        election == as_date("2017-06-08") ~ 1,
-        election == as_date("2019-12-12") ~ 1
-      ) %>%
-      labelled(labels = c(Conservative = 1, Labour = 2, National = 3))
-  ) %>%
-  relocate(govt, .before = "start")
-
-
-# Plus we'll also add indicators that show who led each party on each start date
-
-pollbase <-
-  pollbase %>%
-  mutate(
-    con_ldr =
-      case_when(
-        start < as_date("1955-04-21") ~ 0,
-        start >= as_date("1955-04-21") & start < as_date("1957-01-22") ~ 1,
-        start >= as_date("1957-01-22") & start < as_date("1963-11-11") ~ 2,
-        start >= as_date("1963-11-11") & start < as_date("1965-07-27") ~ 3,
-        start >= as_date("1965-07-27") & start < as_date("1975-02-11") ~ 4,
-        start >= as_date("1975-02-11") & start < as_date("1990-11-27") ~ 5,
-        start >= as_date("1990-11-27") & start < as_date("1997-06-19") ~ 6,
-        start >= as_date("1997-06-19") & start < as_date("2001-09-13") ~ 7,
-        start >= as_date("2001-09-13") & start < as_date("2003-11-06") ~ 8,
-        start >= as_date("2003-11-06") & start < as_date("2005-12-06") ~ 9,
-        start >= as_date("2005-12-06") & start < as_date("2016-07-11") ~ 10,
-        start >= as_date("2016-07-11") & start < as_date("2019-07-23") ~ 11,
-        start >= as_date("2019-07-23") ~ 12
-      ) %>%
-      labelled(
-        labels =
-          c(
-            `Winston Churchill` = 0,
-            `Anthony Eden` = 1,
-            `Harold Macmillan` = 2,
-            `Alec Douglas-Home` = 3,
-            `Edward Heath` = 4,
-            `Margaret Thatcher` = 5,
-            `John Major` = 6,
-            `William Hague` = 7,
-            `Iain Duncan Smith` = 8,
-            `Michael Howard` = 9,
-            `David Cameron` = 10,
-            `Theresa May` = 11,
-            `Boris Johnson` = 12
-          )
-      ),
-    lab_ldr =
-      case_when(
-        start >= as_date("1935-10-08") & start < as_date("1955-12-07") ~ 1,
-        start >= as_date("1955-12-07") & start < as_date("1955-12-14") ~ 2,
-        start >= as_date("1955-12-14") & start < as_date("1963-01-18") ~ 3,
-        start >= as_date("1963-01-18") & start < as_date("1963-02-14") ~ 4,
-        start >= as_date("1963-02-14") & start < as_date("1976-04-05") ~ 5,
-        start >= as_date("1976-04-05") & start < as_date("1980-11-10") ~ 6,
-        start >= as_date("1980-11-10") & start < as_date("1983-10-02") ~ 7,
-        start >= as_date("1983-10-02") & start < as_date("1992-07-18") ~ 8,
-        start >= as_date("1992-07-18") & start < as_date("1994-05-12") ~ 9,
-        start >= as_date("1994-05-12") & start < as_date("1994-07-21") ~ 10,
-        start >= as_date("1994-07-21") & start < as_date("2007-06-24") ~ 11,
-        start >= as_date("2007-06-24") & start < as_date("2010-05-11") ~ 12,
-        start >= as_date("2010-05-11") & start < as_date("2010-09-25") ~ 13,
-        start >= as_date("2010-09-25") & start < as_date("2015-05-08") ~ 14,
-        start >= as_date("2015-05-08") & start < as_date("2015-09-12") ~ 13,
-        start >= as_date("2015-09-12") & start < as_date("2020-04-04") ~ 15,
-        start >= as_date("2020-04-04") ~ 16
-      ) %>%
-      labelled(
-        labels =
-          c(
-            `Clement Attlee` = 1,
-            `Herbert Morrison` = 2,
-            `Hugh Gaitskell` = 3,
-            `George Brown` = 4,
-            `Harold Wilson` = 5,
-            `James Callaghan` = 6,
-            `Michael Foot` = 7,
-            `Neil Kinnock` = 8,
-            `John Smith` = 9,
-            `Margaret Beckett` = 10,
-            `Tony Blair` = 11,
-            `Gordon Brown` = 12,
-            `Harriet Harman` = 13,
-            `Ed Miliband` = 14,
-            `Jeremy Corbyn` = 15,
-            `Keir Starmer` = 16
-          )
-      ),
-    lib_ldr =
-      case_when(
-        start < as_date("1945-08-02") ~ 0,
-        start >= as_date("1945-08-02") & start < as_date("1956-11-05") ~ 1,
-        start >= as_date("1956-11-05") & start < as_date("1967-01-18") ~ 2,
-        start >= as_date("1967-01-18") & start < as_date("1976-05-12") ~ 3,
-        start >= as_date("1976-05-12") & start < as_date("1976-07-07") ~ 2,
-        start >= as_date("1976-07-07") & start < as_date("1988-03-03") ~ 4,
-        start >= as_date("1988-03-03") & start < as_date("1988-07-16") ~ 5,
-        start >= as_date("1988-07-16") & start < as_date("1999-08-09") ~ 6,
-        start >= as_date("1999-08-09") & start < as_date("2006-01-07") ~ 7,
-        start >= as_date("2006-01-07") & start < as_date("2007-10-15") ~ 8,
-        start >= as_date("2007-10-15") & start < as_date("2007-12-18") ~ 9,
-        start >= as_date("2007-12-18") & start < as_date("2015-07-16") ~ 10,
-        start >= as_date("2015-07-16") & start < as_date("2017-07-20") ~ 11,
-        start >= as_date("2017-07-20") & start < as_date("2019-07-22") ~ 9,
-        start >= as_date("2019-07-22") & start < as_date("2019-12-13") ~ 12,
-        start >= as_date("2019-12-13") & start < as_date("2020-01-01") ~ 13,
-        start >= as_date("2020-01-01") & start < as_date("2020-08-27") ~ 14,
-        start >= as_date("2020-08-27") ~ 15
-      ) %>%
-      labelled(
-        labels =
-          c(
-            `Archibald Sinclair` = 0,
-            `Clement Davies` = 1,
-            `Jo Grimond` = 2,
-            `Jeremy Thorpe` = 3,
-            `David Steel` = 4,
-            `David Steel & Bob Maclennan` = 5,
-            `Paddy Ashdown` = 6,
-            `Charles Kennedy` = 7,
-            `Menzies Campbell` = 8,
-            `Vince Cable` = 9,
-            `Nick Clegg` = 10,
-            `Tim Farron` = 11,
-            `Jo Swinson` = 12,
-            `Ed Davey & Sal Brinton` = 13,
-            `Ed Davey & Mark Pack` = 14,
-            `Ed Davey` = 15
-          )
-      )
-  )
-
-
-# Finally, we'll add variable labels to inform users
-
-var_label(pollbase) <-
-  list(
-    id = "Unique poll identification number",
-    election = "Date of last general election",
-    govt = "Largest party in government after the last general election",
-    start = "First day of fieldwork",
-    end = "Last day of fieldwork",
-    pollster = "Polling company that conducted the poll",
-    n = "Sample size",
-    con = "Voting intention: Conservative",
-    lab = "Voting intention: Labour",
-    lib = "Voting intention: Liberal",
-    con_ldr = "Leader of the Conservative Party",
-    lab_ldr = "Leader of the Labour Party",
-    lib_ldr = "Leader of the Liberals (various forms)"
   )
 
 
@@ -654,6 +465,6 @@ devtools::install(upgrade = "never")
 # Save system data to the "sessions" folder for the sake of transparency and
 # future replication.
 
-save_info(path = here("sessions", "002_pollbase.txt"))
+britpol:::save_info(path = here("sessions", "002_pollbase.txt"))
 
 

@@ -32,8 +32,8 @@ devtools::install_github("jackobailey/britpol")
 
 The `pollbasepro` data suggest that the Conservative Party is the
 largest party in Britain. They hold a lead over the Labour Party of
-around 3% (-1% to 7%). This puts the Labour Party in second place and
-the Liberal Democrats in third place.
+around 3% (-1% to 7%). This puts the Labour Party in second and the
+Liberal Democrats in third.
 
 ## Notes, Usage, and Attribution
 

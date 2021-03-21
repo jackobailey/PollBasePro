@@ -5,13 +5,10 @@
 #' @param x A vector of constituency names.
 #' @return A vector of cleaned constituency names.
 #' @examples
-#' clean_constituencies("Ynys Môn")
+#' clean_pcon_names("Ynys Môn")
 #' @export
 
 clean_pcon_names <- function(x){
-
-
-  x <- c("Aberavon", "Ynys Môn", "Derby North")
 
   # Convert names vector to lower case and remove punctuation, spaces, and diacritics
 

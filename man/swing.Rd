@@ -4,12 +4,16 @@
 \alias{swing}
 \title{Compute Two-Party Swing}
 \usage{
-swing(party_a = NULL, party_b = NULL, type = "butler")
+swing(a1, a2, b1, b2, type = "butler")
 }
 \arguments{
-\item{party_a}{A vector of length 2. The first value corresponds to the most recent election.}
+\item{a1}{Party A vote share at time 1.}
 
-\item{party_b}{A vector of length 2. The first value corresponds to the most recent election.}
+\item{a2}{Party A vote share at time 2.}
+
+\item{b1}{Party B vote share at time 1.}
+
+\item{b2}{Party B vote share at time 2.}
 
 \item{type}{Which swing calculation to use. Either "butler" or "steed". Defaults to "butler".}
 }
@@ -18,6 +22,6 @@ This convenience function takes two numeric vectors of vote share data and retur
 }
 \examples{
 \dontrun{
-swing(party_a = c(0.5, 0.4), party_b = c(0.5, 0.6), type = "butler")
+swing(a1 = .5, a2 = .4, b1 = .5, b2 = .6, type = "butler")
 }
 }

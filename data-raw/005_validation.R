@@ -173,7 +173,13 @@ cor_mods <-
     "con_lab" = posterior_samples(cor_all, pars = "rescor__conest__labest")[[1]],
     "tl_con" = posterior_samples(cor_con, pars = "rescor__vote__conest")[[1]],
     "tl_lab" = posterior_samples(cor_lab, pars = "rescor__vote__labest")[[1]],
-    "tl_lib" = posterior_samples(cor_lib, pars = "rescor__vote__libest")[[1]]
+    "tl_lib" = posterior_samples(cor_lib, pars = "rescor__vote__libest")[[1]],
+    "mae_con" = britpol:::mae(cor_con$data$con_est*100, cor_con$data$vote*100),
+    "mae_lab" = britpol:::mae(cor_lab$data$lab_est*100, cor_lab$data$vote*100),
+    "mae_lib" = britpol:::mae(cor_lib$data$lib_est*100, cor_lib$data$vote*100),
+    "rmse_con" = britpol:::rmse(cor_con$data$con_est, cor_con$data$vote),
+    "rmse_lab" = britpol:::rmse(cor_lab$data$lab_est, cor_lab$data$vote),
+    "rmse_lib" = britpol:::rmse(cor_lib$data$lib_est, cor_lib$data$vote)
   )
 
 

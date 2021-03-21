@@ -60,9 +60,10 @@ library(here)
 
 data("pollbase")
 data("pollbasepro")
+data("samplesizes")
 
 
-# Load imputed sample sizes
+# Load correlations
 
 load(here("R", "sysdata.rda"))
 
@@ -70,7 +71,7 @@ load(here("R", "sysdata.rda"))
 # Load timeline data
 
 timeline <-
-  load_timeline() %>%
+  britpol:::load_timeline() %>%
   select(
     date = polldate,
     elecdate,
@@ -80,13 +81,6 @@ timeline <-
   ) %>%
   filter(country == "United Kingdom") %>% 
   na.omit()
-
-
-# Load correlation models
-
-cor_con <- readRDS(here("models", paste0("cor_con_", packageVersion("britpol"), ".rds")))
-cor_lab <- readRDS(here("models", paste0("cor_lab_", packageVersion("britpol"), ".rds")))
-cor_lib <- readRDS(here("models", paste0("cor_lib_", packageVersion("britpol"), ".rds")))
 
 
 # Create custom ggplot theme
@@ -169,7 +163,7 @@ Though `britpol` is first and foremost an `R` data package, the data are availab
 
 ```{r pollbase-details, echo = F}
 
-make_table(pollbase)
+britpol:::make_table(pollbase)
 
 ```
 
@@ -288,7 +282,7 @@ We advise all those who use the `pollbasepro` dataset to include this uncertaint
 
 ```{r pollbasepro-details, echo = F}
 
-make_table(pollbasepro)
+britpol:::make_table(pollbasepro)
 
 ```
 
@@ -425,7 +419,7 @@ pty_cols <-
 # Load Timeline data, filter to include only UK cases, and split by party
 
 tl <-
-  load_timeline() %>%
+  britpol:::load_timeline() %>%
   select(
     date = polldate,
     elecdate,
@@ -585,7 +579,7 @@ ggplot() +
   theme_bailey()
 ```
 
-To validate our estimates, we compare them against raw polling data from Jennings and Wlezien's "Timeline of Elections" dataset [-@jennings2016a]. These data contain `r format(nrow(timeline[timeline$party == 1, ]), big.mark = ",")` polls from Britain between `r str_remove(format(min(as_date(timeline$date)), "%d %B %Y"), "^0")` and `r str_remove(format(max(as_date(timeline$date)), "%d %B %Y"), "^0")`. Given that the data we use to produce our estimates are so comprehensive, it is likely that most polls appear in both datasets. Still, the Timeline data provide a good test as Jennings and Wlezien compiled them independently. As figure \@ref(fig:val-plot) shows, our estimates are well validated. Correlations between the two series are strong and positive, as we would expect. Their mean absolute error (MAE) and root-mean-square error (RMSE) are also low in all cases. The Conservatives showed a correlation of `r in_text(pluck(posterior_samples(cor_con, "rescor"), 1)*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(mae(cor_con$data$con_est*100, cor_con$data$vote*100), 2), " percentage points")`, and an RMSE of `r round(rmse(cor_con$data$con_est, cor_con$data$vote), 2)`; Labour, a correlation of `r in_text(pluck(posterior_samples(cor_lab, "rescor"), 1)*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(mae(cor_lab$data$lab_est*100, cor_lab$data$vote*100), 2), " points")`, and an RMSE of `r round(rmse(cor_lab$data$lab_est, cor_lab$data$vote), 2)`; and the Liberals, a correlation of `r in_text(pluck(posterior_samples(cor_lib, "rescor"), 1)*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(mae(cor_lib$data$lib_est*100, cor_lib$data$vote*100), 2), " points")`, and an RMSE of `r round(rmse(cor_lib$data$lib_est, cor_lib$data$vote), 2)`.
+To validate our estimates, we compare them against raw polling data from Jennings and Wlezien's "Timeline of Elections" dataset [-@jennings2016a]. These data contain `r format(nrow(timeline[timeline$party == 1, ]), big.mark = ",")` polls from Britain between `r str_remove(format(min(as_date(timeline$date)), "%d %B %Y"), "^0")` and `r str_remove(format(max(as_date(timeline$date)), "%d %B %Y"), "^0")`. Given that the data we use to produce our estimates are so comprehensive, it is likely that most polls appear in both datasets. Still, the Timeline data provide a good test as Jennings and Wlezien compiled them independently. As figure \@ref(fig:val-plot) shows, our estimates are well validated. Correlations between the two series are strong and positive, as we would expect. Their mean absolute error (MAE) and root-mean-square error (RMSE) are also low in all cases. The Conservatives showed a correlation of `r britpol:::in_text(cor_mods$tl_con*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(cor_mods$mae_con, 2), " percentage points")`, and an RMSE of `r round(cor_mods$rmse_con, 2)`; Labour, a correlation of `r britpol:::in_text(cor_mods$tl_lab*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(cor_mods$mae_lab, 2), " points")`, and an RMSE of `r round(cor_mods$rmse_lab, 2)`; and the Liberals, a correlation of `r britpol:::in_text(cor_mods$tl_lib*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(cor_mods$mae_lib, 2), " points")`, and an RMSE of `r round(cor_mods$rmse_lib, 2)`.
 
 ## Open-Source Data Pipeline
 
@@ -623,6 +617,6 @@ cat(paste0(change_log, collapse = "\n"))
 
 # Save session information to the "sessions" folder
 
-save_info(path = here("sessions", "007_codebook.txt"))
+britpol:::save_info(path = here("sessions", "008_codebook.txt"))
 
 ```

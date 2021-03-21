@@ -1023,6 +1023,25 @@ load_timeline <- function(){
 
 }
 
+
+#' Load historic election results from the House of Commons library
+#'
+#' This function downloads and loads historic elections data.
+
+load_results <- function(){
+
+  # Download csv
+
+  data <- utils::read.csv("https://researchbriefings.files.parliament.uk/documents/CBP-8647/1918_2019election_results.csv")
+
+
+  # Return data to user
+
+  return(data)
+
+}
+
+
 #' Mean Absolute Error
 #'
 #' This function provides a simple way to compute MAE.
@@ -1191,6 +1210,7 @@ update_pollbasepro <- function(){
       id,
       days,
       date,
+      election,
       pollster,
       n,
       con,
@@ -1226,11 +1246,6 @@ update_pollbasepro <- function(){
 
   dta <-
     do.call("rbind.data.frame", dta$estimates) %>%
-    dplyr::mutate(
-      election =
-        date %>%
-        get_last_election()
-    ) %>%
     dplyr::distinct() %>%
     tidyr::pivot_wider(
       names_from = party,
@@ -1238,7 +1253,6 @@ update_pollbasepro <- function(){
     ) %>%
     dplyr::select(
       date,
-      election,
       con_est = est_con,
       con_err = sd_con,
       lab_est = est_lab,
@@ -1254,8 +1268,6 @@ update_pollbasepro <- function(){
   labelled::var_label(dta) <-
     list(
       date = "Date",
-      election = "Date of last general election",
-      govt = "Largest party in government after the last  general election",
       con_est = "Posterior mean: Conservative voting intention",
       con_err = "Posterior error: Conservative voting intention",
       lab_est = "Posterior mean: Labour voting intention",
@@ -1283,23 +1295,9 @@ update_pollbasepro <- function(){
   )
 
 
-  # And we'll also save the file as a .dta and .sav file for easy use
-
-  haven::write_dta(
-    pollbasepro,
-    path = here::here("download", paste0("pollbasepro_", utils::packageVersion("britpol"), ".dta"))
-  )
-
-  haven::write_sav(
-    pollbasepro,
-    path = here::here("download", paste0("pollbasepro_", utils::packageVersion("britpol"), ".sav")),
-    compress = T
-  )
-
-
   # Finally, we'll update the replication information
 
-  save_info(here::here("sessions", "003_pollbasepro.txt"))
+  save_info(here::here("sessions", "004_pollbasepro.txt"))
 
 
 }

@@ -438,6 +438,20 @@ pollbase <-
     lib
   )
 
+# Then we'll add variable labels
+
+var_label(pollbase) <-
+  list(
+    id = "Unique poll ID number",
+    start = "Date of first day of fieldwork",
+    end = "Date of last day of fieldwork",
+    pollster = "Polling company",
+    n = "Sample size",
+    con = "Conservative Party vote share",
+    lab = "Labour Party vote share",
+    lib = "Liberal (various forms) vote share"
+  )
+
 
 
 # 3. Save data ------------------------------------------------------------

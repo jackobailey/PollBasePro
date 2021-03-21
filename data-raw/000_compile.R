@@ -81,7 +81,7 @@ render(
 
 # We'll save session information to the "sessions" folder
 
-save_info(path = here("sessions", "000_compile.txt"))
+britpol:::save_info(path = here("sessions", "000_compile.txt"))
 
 
 # Now, we'll run our unit tests to check that nothing weird is happening or

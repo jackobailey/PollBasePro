@@ -5,16 +5,13 @@
 
 <img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/hex.png" alt="The britpol hexlogo" align="right" width="200" style="padding: 0 15px; float: right;"/>
 
-`{britpol}` is an `R` package that makes analysing British political
-data quick and simple. It contains two pre-formatted datasets, plus a
-host of useful functions. The first dataset, `pollbase`, is a
-long-format version of Mark Pack’s dataset of historic British public
-opinion polls combined with more recent data from Wikipedia. The second
-dataset, `pollbasepro`, provides 24,038 daily estimates of voting
-intention figures for each of Britain’s three largest parties between 26
-May 1955 and 17 March 2021. [Stata and SPSS versions of the data are
-available
-too](https://github.com/jackobailey/britpol/tree/master/download).
+The `{britpol}` package makes analysing British political data quick and
+simple. It contains two pre-formatted datasets, plus a host of useful
+functions. The first dataset, `pollbase`, is a long-format version of
+Mark Pack’s dataset of historic British public opinion polls combined
+with more recent data from Wikipedia. The second, `pollbasepro`,
+provides 24,042 daily estimates of voting intention figures for each of
+Britain’s three largest parties from 26 May 1955 to 21 March 2021.
 
 To install the latest version of `{britpol}`, run the following code in
 `R`:
@@ -27,15 +24,15 @@ devtools::install_github("jackobailey/britpol")
 
 <img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/timeplot_gh.png" alt="Recent polling figures" align="right" width="400" style="padding: 0 15px; float: right;"/>
 
-**British Poll of Polls, 17 March 2021:**
+**British Poll of Polls, 21 March 2021:**
 
--   **Conservative Party:** 41% (38% to 44%)
+-   **Conservative Party:** 40% (37% to 43%)
 -   **Labour Party:** 37% (34% to 40%)
--   **Liberal Democrats:** 9% (7% to 10%)
+-   **Liberal Democrats:** 9% (8% to 11%)
 
-As of 17 March 2021, `pollbasepro` suggests that the Conservative Party
-is the largest party in Britain. They hold a lead over the Labour Party
-of around 5% (1% to 8%). This puts the Labour Party in second place and
+The `pollbasepro` data suggest that the Conservative Party is the
+largest party in Britain. They hold a lead over the Labour Party of
+around 3% (-1% to 7%). This puts the Labour Party in second place and
 the Liberal Democrats in third place.
 
 ## Notes, Usage, and Attribution
@@ -49,7 +46,7 @@ update, please [raise an
 issue](https://github.com/jackobailey/britpol/issues).
 
 You may also use the `{britpol}` codebase for your own purposes in line
-with [our
+with [its
 license](https://github.com/jackobailey/britpol/blob/master/LICENSE.md).
 But you must do so *with attribution*. That is, you may reproduce,
 reuse, and adapt the code as you see fit, but must state in each case

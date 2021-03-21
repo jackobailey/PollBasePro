@@ -48,7 +48,7 @@ devtools::install_github("jackobailey/britpol")
 txt_dta <-
   pollbasepro[pollbasepro$date == max(pollbasepro$date), ] %>%
   pivot_longer(
-    cols = c(-date, -election, -govt, -matches("_ldr"), -week, -month, -quarter, -year),
+    cols = -date,
     names_to = c("party", ".value"),
     names_sep = "_"
     ) %>%
@@ -89,7 +89,7 @@ pty_cols <-
 timeplot <- 
 pollbasepro %>% 
   pivot_longer(
-    cols = c(-date, -election, -govt, -week, -month, -quarter, -year, -con_ldr, -lab_ldr, -lib_ldr),
+    cols = -date,
     names_to = c("party", ".value"),
     names_sep = "_",
   ) %>%

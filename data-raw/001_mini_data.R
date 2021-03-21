@@ -7,6 +7,7 @@
 
 library(tidyverse)
 library(lubridate)
+library(labelled)
 library(htmltab)
 library(haven)
 library(here)
@@ -51,6 +52,12 @@ election_dates <-
   filter(date > "1928-01-01") %>%
   arrange(date) %>%
   tibble()
+
+
+# Next, we'll give the data some variable labels
+
+var_label(election_dates) <-
+  list(date = "Date of election")
 
 
 # Finally, we'll save the data to use later
@@ -132,6 +139,17 @@ prime_ministers <-
     pm_party =
       pm_party %>%
       str_remove("\\s*\\([^\\)]+\\)")
+  )
+
+
+# Next, we'll give the data some variable labels
+
+var_label(prime_ministers) <-
+  list(
+    prime_minister = "Name of Prime Minister",
+    pm_party = "Prime Minister's party",
+    start = "Date of first day of Prime Minister's term",
+    end = "Date of last day of Prime Minister's term"
   )
 
 
@@ -309,6 +327,18 @@ party_leaders <-
     con_ldr,
     lab_ldr,
     lib_ldr
+  ) %>%
+  relocate("party", .before = "start")
+
+
+# Next, we'll give the data some variable labels
+
+var_label(party_leaders) <-
+  list(
+    leader = "Name of party leader",
+    party = "Party leader's party",
+    start = "Date of first day of leader's term",
+    end = "Date of last day of leader's term"
   )
 
 
@@ -413,6 +443,15 @@ red_wall <-
   )
 
 
+# Next, we'll give the data some variable labels
+
+var_label(red_wall) <-
+  list(
+    constituency_name = "Name of parliamentary constituency",
+    constituency_code = "Parliamentary constituency code"
+  )
+
+
 # Finally, we'll save the data to use later
 
 usethis::use_data(
@@ -423,7 +462,93 @@ usethis::use_data(
 
 
 
-# 6. Create replication info ----------------------------------------------
+# 6. Get historic constituency results ------------------------------------
+
+# First, let's download the historic election results
+
+election_results <- britpol:::load_results()
+
+
+# Next, we'll filter out any pre-1928 cases
+
+election_results <-
+  election_results %>%
+  filter(election >= 1928)
+
+
+# And then we'll select the variables we need and convert to a tibble
+
+election_results <-
+  election_results %>%
+  select(
+    constituency,
+    seats,
+    region = country.region,
+    election,
+    electorate,
+    con_votes,
+    lab_votes,
+    lib_votes,
+    nat_votes = natSW_votes,
+    oth_votes
+  ) %>%
+  tibble()
+
+
+# Now, we'll convert the constituency names to title case
+
+election_results <-
+  election_results %>%
+  mutate(
+    constituency =
+      constituency %>%
+      snakecase::to_title_case()
+  )
+
+
+# And we'll replace the election year with the actual election date
+
+election_results <-
+  election_dates %>%
+  mutate(
+    year = year(date),
+    month = month(date)
+  ) %>%
+  right_join(
+    election_results,
+    by = c("year" = "election")
+  ) %>%
+  select(-year, -month)
+
+
+# Next, we'll give the data some variable labels
+
+var_label(election_results) <-
+  list(
+    constituency = "Name of parliamentary constituency",
+    seats = "Number of seats the constituency contains",
+    region = "Region or country",
+    election = "Date of election",
+    electorate = "Size of electorate",
+    con_votes = "Number of Conservative votes",
+    lab_votes = "Number of Labour votes",
+    lib_votes = "Number of Liberal votes",
+    nat_votes = "Number of Nationalist votes (Scotland and Wales only)",
+    oth_votes = "Number of other votes"
+  )
+
+
+# Finally, we'll save the data to the package
+
+usethis::use_data(
+  election_results,
+  internal = FALSE,
+  overwrite = TRUE
+)
+
+
+
+# 7. Create replication info ----------------------------------------------
 
 # We'll install and restart the package so that subsequent scripts call the
 # most recent data.

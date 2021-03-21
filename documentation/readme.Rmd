@@ -185,7 +185,7 @@ ggsave(
 - **`r txt_dta$party[2]`:** `r paste0(txt_dta$share[2], " (", txt_dta$lower[2], " to ", txt_dta$upper[2], ")")`
 - **`r txt_dta$party[3]`:** `r paste0(txt_dta$share[3], " (", txt_dta$lower[3], " to ", txt_dta$upper[3], ")")`
 
-The `pollbasepro` data suggest that the `r txt_dta$party[1]` `r ifelse(txt_dta$party[1] %in% c("Conservative Party", "Labour Party"), "is", "are")` the largest party in Britain. They hold a lead over the `r txt_dta$party[2]` of around `r paste0(scales::percent(txt_dta$est[1] - txt_dta$est[2]), " (", scales::percent((txt_dta$est[1] - txt_dta$est[2]) - qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), " to ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) + qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), ")")`. This puts the `r txt_dta$party[2]` in second and the `r txt_dta$party[3]` in third.
+`pollbasepro` suggests that the `r txt_dta$party[1]` `r ifelse(txt_dta$party[1] %in% c("Conservative Party", "Labour Party"), "is", "are")` the largest party in Britain. They hold a lead over the `r txt_dta$party[2]` of around `r paste0(scales::percent(txt_dta$est[1] - txt_dta$est[2]), " (", scales::percent((txt_dta$est[1] - txt_dta$est[2]) - qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), " to ", scales::percent((txt_dta$est[1] - txt_dta$est[2]) + qnorm(.975)*sqrt(txt_dta$err[1]^2 + txt_dta$err[2]^2)), ")")`. This puts the `r txt_dta$party[2]` in second and the `r txt_dta$party[3]` in third.
 
 
 ## Notes, Usage, and Attribution

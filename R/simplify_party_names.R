@@ -75,6 +75,11 @@ simplify_party_names <- function(x, party_names = list("^con|^tor|^thecon|^theto
   }
 
 
+  # Mark all other names as "Other"
+
+  x[!x %in% unlist(party_names) & is.na(x) == F] <- "Other"
+
+
   # Return the simplified data to the user
 
   return(x)

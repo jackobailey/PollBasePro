@@ -37,7 +37,7 @@ transformed parameters {
 model {
   // Priors
   target += normal_lpdf(delta | 0, 0.05); // Prior on pollster effects, delta
-  target += normal_lpdf(omega | 0, 0.05); // Prior on random shocks, omega
+  target += normal_lpdf(omega | 0, 0.025); // Prior on random shocks, omega
   target += normal_lpdf(tau | 0, 0.05); // Prior on scale of innovations, tau
   target += normal_lpdf(alpha_final | alpha[T-1], tau); // Prior on penultimate alpha
   target += normal_lpdf(alpha_final | alpha[T], 0.0005); // Constraint on final alpha

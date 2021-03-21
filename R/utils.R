@@ -1301,3 +1301,150 @@ update_pollbasepro <- function(){
 
 
 }
+
+
+#' Create Twitter images and text
+#'
+#' This function calls the latest pollbasepro data and uses it to create and save social media content.
+#'
+#'
+
+create_twitter_content <- function(data = britpol::pollbasepro, path = NULL){
+
+  # Define party colours
+
+  pty_cols <-
+    c(
+      "Conservative Party" = "#0087dc",
+      "Labour Party" = "#d50000",
+      "Liberals (Various Forms)" = "#fdbb30"
+    )
+
+
+  # Create twitter plot
+
+  plot <-
+    data %>%
+    tidyr::pivot_longer(
+      cols = -date,
+      names_to = c("party", ".value"),
+      names_sep = "_",
+    ) %>%
+    dplyr::mutate(
+      party =
+        dplyr::case_when(
+          party == "con" ~ "Conservative Party",
+          party == "lab" ~ "Labour Party",
+          party == "lib" ~ "Liberals (Various Forms)"
+        ) %>%
+        factor(
+          levels =
+            c("Conservative Party",
+              "Labour Party",
+              "Liberals (Various Forms)"
+            )
+        )
+    ) %>%
+    ggplot2::ggplot(
+      ggplot2::aes(
+        x = date,
+        y = est,
+        ymin = est - stats::qnorm(0.975)*err,
+        ymax = est + stats::qnorm(0.975)*err,
+        colour = party,
+        fill = party
+      )
+    ) +
+    ggplot2::geom_ribbon(alpha = .3, colour = NA) +
+    ggplot2::geom_line() +
+    ggplot2::scale_colour_manual(values = pty_cols) +
+    ggplot2::scale_fill_manual(values = pty_cols) +
+    ggplot2::scale_y_continuous(
+      breaks = seq(0, .6, by = .1),
+      labels = scales::percent_format(accuracy = 1)
+    ) +
+    ggplot2::scale_x_date(
+      breaks = seq.Date(max(data$date) - 365, max(data$date), by = "months"),
+      labels = format(seq.Date(max(data$date) - 365, max(data$date), by = "months"), "%b %y")
+    ) +
+    ggplot2::coord_cartesian(
+      ylim = c(0, 0.62),
+      xlim = c(max(data$date) - 365, max(data$date))
+    ) +
+    ggplot2::theme_minimal() +
+    ggplot2::theme(
+      legend.position = "none",
+      text = ggplot2::element_text(family = "Cabin", color = "black", size = 8),
+      plot.title = ggplot2::element_text(family = "Cabin", face = "bold", size = ggplot2::rel(1.4), hjust = 0),
+      plot.subtitle = ggplot2::element_text(family = "Cabin", size = ggplot2::rel(1), hjust = 0, margin = ggplot2::margin(b = 10)),
+      axis.line = ggplot2::element_line(lineend = "round"),
+      axis.title.x = ggplot2::element_blank(),
+      axis.text.x = ggplot2::element_text(color = "black", size = ggplot2::rel(1)),
+      axis.ticks.x = ggplot2::element_line(lineend = "round"),
+      axis.title.y = ggplot2::element_blank(),
+      axis.text.y = ggplot2::element_text(color = "black", size = ggplot2::rel(1)),
+      strip.text = ggplot2::element_text(family = "Cabin", face = "bold", size = ggplot2::rel(1)),
+      panel.spacing = ggplot2::unit(.3, "cm"),
+      panel.grid.major.y = ggplot2::element_line(size = .5, lineend = "round"),
+      panel.grid.minor.y = ggplot2::element_blank(),
+      panel.grid.major.x = ggplot2::element_blank(),
+      panel.grid.minor.x = ggplot2::element_blank()
+    ) +
+    ggplot2::labs(
+      title =
+        paste0(
+          stringr::str_remove(format(Sys.Date(), "%d %B %Y"), "^0"), ": ",
+          ifelse(which.max(c(data$con_est[data$date == max(data$date)], data$lab_est[data$date == max(data$date)])) == 1, "Conservatives ", "Labour "),
+          ifelse(which.max(c(data$con_est[data$date == max(data$date)], data$lab_est[data$date == max(data$date)])) == 1, round((data$con_est[data$date == max(data$date)] - data$lab_est[data$date == max(data$date)])*100, 0), round((data$lab_est[data$date == max(data$date)] - data$con_est[data$date == max(data$date)])*100, 0)),
+          " Points Ahead"
+        ),
+      caption = "@PoliSciJack"
+    )
+
+
+  # Save plot
+
+  ggplot2::ggsave(
+    plot = plot,
+    filename = "twitter.png",
+    path = ifelse(is.null(path) == T, here::here(), path),
+    device = "png",
+    width = (1200*1.5)/320,
+    height = (675*1.5)/320,
+    units = "in",
+    dpi = 320
+  )
+
+
+  # Create Twitter text
+
+  txt_data <-
+    data[data$date == max(data$date), ] %>%
+    tidyr::pivot_longer(
+      cols = -date,
+      names_to = c("party", ".value"),
+      names_sep = "_"
+    ) %>%
+    dplyr::arrange(dplyr::desc(est)) %>%
+    dplyr::mutate(
+      party = tools::toTitleCase(party),
+      lower = scales::percent(est - stats::qnorm(.975)*err, accuracy = 1),
+      upper = scales::percent(est + stats::qnorm(.975)*err, accuracy = 1),
+      share = scales::percent(est, accuracy = 1)
+    )
+
+  sink(ifelse(is.null(path) == T, paste0(here::here(), "/tweet.txt"), paste0(path, "/tweet.txt")))
+  cat(
+    paste("British Poll of Polls,", stringr::str_remove(format(max(data$date), "%d %B %Y"), "^0")),
+    paste0(
+      "\n\n",
+      txt_data$party[1], " lead of ", scales::percent(txt_data$est[1] - txt_data$est[2]), "\n\n",
+      txt_data$party[1], ": ", txt_data$share[1], " (", txt_data$lower[1], "-", txt_data$upper[1], ")\n",
+      txt_data$party[2], ": ", txt_data$share[2], " (", txt_data$lower[2], "-", txt_data$upper[2], ")\n",
+      txt_data$party[3], ": ", txt_data$share[3], " (", txt_data$lower[3], "-", txt_data$upper[3], ")\n"
+    )
+  )
+  sink()
+
+}
+

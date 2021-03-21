@@ -395,7 +395,7 @@ Poll_{i} &\sim \mathrm{Normal}(\mu_{i}, \sqrt{\sigma^2 + S_{i}^2}) \srlab{Likeli
 \alpha_{t} &= \alpha_{t-1} + \tau \omega_{t-1} \text{ for } t \text{ in } 2, ..., T-1 \srlab{Dynamic model on $\alpha_{t}$} \\
 \alpha_{T} &\sim \mathrm{Normal}(\alpha_{T-1}, \tau) \srlab{Adaptive prior on $\alpha_{T}$} \\
 \delta_{j} &\sim \mathrm{Normal}(0, 0.05) \text{ for } j \text{ in } 1, ..., J \srlab{Prior on house effects, $\delta$} \\
-\omega_{t} &\sim \mathrm{Normal}(0, 0.1) \text{ for } t \text{ in } 1, ..., T-1 \srlab{Prior on random shocks, $\omega$} \\
+\omega_{t} &\sim \mathrm{Normal}(0, 0.025) \text{ for } t \text{ in } 1, ..., T-1 \srlab{Prior on random shocks, $\omega$} \\
 \tau &\sim \mathrm{Normal}(0, 0.05)^{+} \srlab{Positive prior on scale of innovations, $\tau$} \\
 \sigma &\sim \mathrm{Exponential}(20) \srlab{Prior on residual error, $\sigma$} \\
 \end{align*}

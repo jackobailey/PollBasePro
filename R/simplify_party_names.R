@@ -61,13 +61,17 @@ simplify_party_names <- function(x, party_names = list("^con|^tor|^thecon|^theto
         x
       )
 
+  } else {
+
+    x[stringr::str_detect(x, "dk|dontknow|refused|skip|prefernot|miss")] <- "Other"
+
   }
 
 
   # Simplify names (let me know if you know how to speed this up)
 
   for(i in 1:length(party_names)){
-    x[stringr::str_detect(x, expr[i])] <-party_names[[i]]
+    x[stringr::str_detect(x, expr[i])] <- party_names[[i]]
   }
 
 

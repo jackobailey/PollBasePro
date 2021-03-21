@@ -34,11 +34,6 @@ swing <- function(a1, a2, b1, b2, type = "butler"){
 
   } else if(type == "steed"){
 
-    # Compute within-party change
-
-    swing_a <- party_a[[1]] / (party_a[[1]] + party_b[[1]])
-    swing_b <- party_a[[2]] / (party_a[[2]] + party_b[[2]])
-
 
     # Compute swing
 

@@ -115,3 +115,17 @@
 #' }
 "election_results"
 
+
+#' Historic Parliamentary Constituencies
+#'
+#' A dataset containing the names and GSS codes of all historic constituencies since 1918.
+#'
+#' @format A data frame:
+#' \describe{
+#'   \item{name}{Name of parliamentary constituency}
+#'   \item{gss_code}{Government Statistical Service code}
+#'   \item{start}{Date constituency was introduced}
+#'   \item{end}{Date constituency was retired}
+#' }
+"constituencies"
+

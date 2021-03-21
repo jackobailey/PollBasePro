@@ -8,6 +8,7 @@
 library(tidyverse)
 library(lubridate)
 library(labelled)
+library(hansard)
 library(htmltab)
 library(haven)
 library(here)
@@ -548,7 +549,78 @@ usethis::use_data(
 
 
 
-# 7. Create replication info ----------------------------------------------
+# 7. Get historic constituency results ------------------------------------
+
+# First, let's download the constituency data using the hansard package
+
+constituencies <- constituencies()
+
+
+# Now, we'll select and rename the variables
+
+constituencies <-
+  constituencies %>%
+  select(
+    name = label_value,
+    gss_code,
+    start = started_date_value,
+    end = ended_date_value
+  )
+
+
+# Next, we'll organise them by start date and name, convert the
+# start and end dates from POSIXct to date format, and mark any
+# empty gss_codes as NA.
+
+constituencies <-
+  constituencies %>%
+  arrange(start, name) %>%
+  mutate(
+    gss_code = ifelse(gss_code == "", NA, gss_code),
+    start = as_date(start),
+    end = as_date(end)
+  )
+
+
+# The data contain a dummy constituency for some reason, so let's
+# remove it
+
+constituencies <-
+  constituencies %>%
+  filter(name != "Dummy constituency")
+
+
+# Let's also remove any diacritics from the constituency names too
+
+constituencies <-
+  constituencies %>%
+  mutate(
+    name = iconv(name, from = "UTF-8", to = "ASCII//TRANSLIT")
+  )
+
+
+# Next, we'll give the data some variable labels
+
+var_label(constituencies) <-
+  list(
+    name = "Name of parliamentary constituency",
+    gss_code = "Government Statistical Service code",
+    start = "Date constituency was introduced",
+    end = "Date constituency was retired"
+  )
+
+
+# Finally, we'll save the data to the package
+
+usethis::use_data(
+  constituencies,
+  internal = FALSE,
+  overwrite = TRUE
+)
+
+
+
+# 8. Create replication info ----------------------------------------------
 
 # We'll install and restart the package so that subsequent scripts call the
 # most recent data.

@@ -6,6 +6,11 @@
 \usage{
 create_twitter_content(data = britpol::pollbasepro, path = NULL)
 }
+\arguments{
+\item{data}{Instance of pollbasepro to use to create your output.}
+
+\item{path}{The file path to where you would like to save your content.}
+}
 \description{
 This function calls the latest pollbasepro data and uses it to create and save social media content.
 }

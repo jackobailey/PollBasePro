@@ -88,25 +88,7 @@ test_that("Correlations between voting intention figures are negative", {
 })
 
 
-# Test 5: Check that date subset indicators exhibit appropriate frequencies
-
-test_that("Check that date subset indicators exhibit appropriate frequencies", {
-  expect_gt(
-    sum(pollbasepro$week),
-    sum(pollbasepro$month)
-  )
-  expect_gt(
-    sum(pollbasepro$month),
-    sum(pollbasepro$quarter)
-  )
-  expect_gt(
-    sum(pollbasepro$quarter),
-    sum(pollbasepro$year)
-  )
-})
-
-
-# Test 6: Check that election estimates are consistent across parties
+# Test 5: Check that election estimates are consistent across parties
 
 test_that("Check that date subset indicators exhibit appropriate frequencies", {
   expect_equal(

@@ -5,8 +5,6 @@
 #' @format A data frame:
 #' \describe{
 #'   \item{id}{Unique poll identification number}
-#'   \item{election}{Date of last general election}
-#'   \item{govt}{Largest party in government after the last general election}
 #'   \item{start}{First day of fieldwork}
 #'   \item{end}{Last day of fieldwork}
 #'   \item{pollster}{Polling company that conducted the poll}
@@ -14,9 +12,6 @@
 #'   \item{con}{Voting intention: Conservative}
 #'   \item{lab}{Voting intention: Labour}
 #'   \item{lib}{Voting intention: Liberal}
-#'   \item{con_ldr}{Leader of the Conservative Party}
-#'   \item{lab_ldr}{Leader of the Labour Party}
-#'   \item{lib_ldr}{Leader of the Liberals (various forms)}
 #' }
 "pollbase"
 
@@ -28,21 +23,12 @@
 #' @format A data frame:
 #' \describe{
 #'   \item{date}{Date}
-#'   \item{election}{Date of last general election}
-#'   \item{govt}{Largest party in government after the last general election}
 #'   \item{con_est}{Posterior mean: Conservative voting intention}
 #'   \item{con_err}{Posterior error: Conservative voting intention}
 #'   \item{lab_est}{Posterior mean: Labour voting intention}
 #'   \item{lab_err}{Posterior error: Labour voting intention}
 #'   \item{lib_est}{Posterior mean: Liberal voting intention}
 #'   \item{lib_err}{Posterior error: Liberal voting intention}
-#'   \item{con_ldr}{Leader of the Conservative Party}
-#'   \item{lab_ldr}{Leader of the Labour Party}
-#'   \item{lib_ldr}{Leader of the Liberals (various forms)}
-#'   \item{week}{Weekly subset indicator}
-#'   \item{month}{Monthly subset indicator}
-#'   \item{quarter}{Quarterly subset indicator}
-#'   \item{year}{Yearly subset indicator}
 #' }
 "pollbasepro"
 
@@ -96,3 +82,15 @@
 #'   \item{end}{Last day in term as Prime Minister}
 #' }
 "prime_ministers"
+
+
+#' Imputed Sample Sizes for British Polls
+#'
+#' A dataset containing daily estimates of likely sample sizes for British voting intention polls.
+#'
+#' @format A data frame:
+#' \describe{
+#'   \item{date}{Date}
+#'   \item{n_est}{Estimated sample size}
+#' }
+"samplesizes"

@@ -1,15 +1,10 @@
 utils::globalVariables(
   c(
     "con",
-    "con_ldr",
-    "election",
     "end",
-    "govt",
     "id",
     "lab",
-    "lab_ldr",
     "lib",
-    "lib_ldr",
     "n",
     "pollster",
     "start",
@@ -18,10 +13,6 @@ utils::globalVariables(
     "date",
     "lab_err",
     "lab_est",
-    "week",
-    "month",
-    "quarter",
-    "year",
     "sd",
     "Date(s)conducted",
     "Polling organisation/client",
@@ -46,6 +37,11 @@ utils::globalVariables(
     "est_lab",
     "sd_lab",
     "est_lib",
-    "sd_lib"
+    "sd_lib",
+    "..variable",
+    "prime_ministers",
+    "pollbase",
+    "election",
+    "get_last_election"
     )
 )

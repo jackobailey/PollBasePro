@@ -14,11 +14,8 @@ lookup_interval(lookup_date, interval_data, variable)
 \item{variable}{The variable to select values from in the interval_data.}
 }
 \value{
-A vector of data.
+A tibble of data.
 }
 \description{
 Sometimes we need to lookup a value at a particular time based on a date range in another dataset. This function provides a wrapper to data.table to make this quick and easy.
-}
-\examples{
-lookup_interval(lookup_date = pollbasepro$date, interval_data = prime_ministers, variable = "prime_minister")
 }

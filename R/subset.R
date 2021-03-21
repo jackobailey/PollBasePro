@@ -4,13 +4,13 @@
 #'
 #' @param data A dataset that includes a date variable.
 #' @param date The name of your date variable in your data.
-#' @param frequency What frequency to subset to. E.g. "week", "month", etc.
+#' @param freq What frequency to subset to. E.g. "week", "month", etc.
 #' @return A tibble of data.
 #' @examples
-#' subset_date(data = pollbasepro, date = "date", frequency = "week")
+#' subset_date(data = pollbasepro, date = "date", freq = "week")
 #' @export
 
-subset_date <- function(data = NULL, date = "date", frequency = "week"){
+subset_date <- function(data = NULL, date = "date", freq = "week"){
 
   # Return an error if the user provided no data
 
@@ -39,12 +39,19 @@ subset_date <- function(data = NULL, date = "date", frequency = "week"){
   }
 
 
+  # Check period name is ok
+
+  if(!freq %in% c("week", "month", "bimonth", "quarter", "season", "halfyear", "year")){
+    stop("Pick a valid frequency: week, month, bimonth, quarter, season, halfyear, or year.")
+  }
+
+
   # Subset the data to the users frequency of choice
 
   data <-
     dplyr::filter(
       .data = data,
-      date == (lubridate::ceiling_date(date, frequency) - 1)
+      date == (lubridate::ceiling_date(date, freq) - 1)
     )
 
 

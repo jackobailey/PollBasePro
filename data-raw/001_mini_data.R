@@ -37,9 +37,14 @@ election_dates <-
 
 election_dates <-
   election_dates %>%
+  filter(
+    str_detect(date, "The election") == F
+  ) %>%
   mutate(
     date =
       date %>%
+      str_remove(".*–") %>%
+      trimws() %>%
       dmy()
   ) %>%
   na.omit() %>%
@@ -104,8 +109,7 @@ prime_ministers <-
   )
 
 
-# Now we can get rid of the crap in the prime_minister column and convert it to a
-# labelled variable
+# Now we can get rid of the crap in the prime_minister column
 
 prime_ministers <-
   prime_ministers %>%
@@ -116,18 +120,6 @@ prime_ministers <-
       str_remove("MP for.*") %>%
       str_remove("Sir ") %>%
       str_remove("[:digit:].*")
-  ) %>%
-  mutate(
-    prime_minister =
-      prime_minister %>%
-      factor(levels = unique(prime_minister)) %>%
-      as.numeric() %>%
-      labelled(
-        label = "Prime Minister",
-        labels =
-          1:length(unique(prime_minister)) %>%
-          `names<-`(unique(prime_minister))
-      )
   )
 
 
@@ -140,18 +132,6 @@ prime_ministers <-
     pm_party =
       pm_party %>%
       str_remove("\\s*\\([^\\)]+\\)")
-  ) %>%
-  mutate(
-    pm_party =
-      pm_party %>%
-      factor(levels = unique(pm_party)) %>%
-      as.numeric() %>%
-      labelled(
-        label = "Prime Minister's Party",
-        labels =
-          1:length(unique(pm_party)) %>%
-          `names<-`(unique(pm_party))
-      )
   )
 
 
@@ -440,3 +420,19 @@ usethis::use_data(
   internal = FALSE,
   overwrite = TRUE
 )
+
+
+
+# 6. Create replication info ----------------------------------------------
+
+# We'll install and restart the package so that subsequent scripts call the
+# most recent data.
+
+devtools::install(upgrade = "never")
+
+
+# Now that we've saved all of our data, we can save the session information
+# so that we can recall it later if needed.
+
+britpol:::save_info(here("sessions", "001_mini_data.txt"))
+

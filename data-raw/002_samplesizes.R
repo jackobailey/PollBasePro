@@ -149,7 +149,7 @@ samplesizes <-
 
 usethis::use_data(
   samplesizes,
-  internal = FALSE,
+  internal = TRUE,
   overwrite = TRUE
 )
 
@@ -166,6 +166,6 @@ devtools::install(upgrade = "never")
 # Save system data to the "sessions" folder for the sake of transparency and
 # future replication.
 
-save_info(path = here("sessions", "001_samplesizes.txt"))
+britpol:::save_info(path = here("sessions", "002_samplesizes.txt"))
 
 

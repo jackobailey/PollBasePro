@@ -65,6 +65,7 @@ lib <-
   na.omit()
 
 
+
 # 3. Fit correlation models -----------------------------------------------
 
 # We're going to validate the PollBasePro data by calculating the correlation
@@ -167,12 +168,12 @@ cor_all <-
 
 cor_mods <-
   list(
-    posterior_samples(cor_all, pars = ""),
-    posterior_samples(cor_all, pars = ""),
-    posterior_samples(cor_all, pars = ""),
-    posterior_samples(cor_con, pars = ""),
-    posterior_samples(cor_lab, pars = ""),
-    posterior_samples(cor_lib, pars = "")
+    "lib_con" = posterior_samples(cor_all, pars = "rescor__libest__conest")[[1]],
+    "lib_lab" = posterior_samples(cor_all, pars = "rescor__libest__labest")[[1]],
+    "con_lab" = posterior_samples(cor_all, pars = "rescor__conest__labest")[[1]],
+    "tl_con" = posterior_samples(cor_con, pars = "rescor__vote__conest")[[1]],
+    "tl_lab" = posterior_samples(cor_lab, pars = "rescor__vote__labest")[[1]],
+    "tl_lib" = posterior_samples(cor_lib, pars = "rescor__vote__libest")[[1]]
   )
 
 
@@ -197,6 +198,6 @@ devtools::install(upgrade = "never")
 # Save system data to the "sessions" folder for the sake of transparency and
 # future replication.
 
-save_info(path = here("sessions", "004_validation.txt"))
+britpol:::save_info(path = here("sessions", "005_validation.txt"))
 
 

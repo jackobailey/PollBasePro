@@ -20,6 +20,8 @@ add_elections(
 \item{last_name}{What to call the new column of last election dates. Defaults to "last_elec".}
 
 \item{next_name}{What to call the new column of next election dates. Defaults to "next_elec".}
+
+\item{which}{Which elections to return: "last", "next", or "both". Defaults to "both".}
 }
 \value{
 A tibble of data.
@@ -28,6 +30,5 @@ A tibble of data.
 It's often useful to know when elections occurred relative to the cases in your data. This function takes a dataset that includes a dated variable and adds to it the date of the last election, next election, or both.
 }
 \examples{
-dta <- data.frame(date = seq.Date(as.Date("2000-01-01"), as.Date("2020-01-01"), by = "year"))
-add_elections(data = dta, date = "date", name = "pm_party", which = "both")
+add_elections(data = pollbasepro, date = "date", which = "both")
 }

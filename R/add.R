@@ -47,11 +47,6 @@ add_pm <- function(data = NULL, date = "date", name = "prime_minister"){
   }
 
 
-  # Call default data in case the user has editted them
-
-  data("prime_ministers")
-
-
   # If everything's ok, return the relevant PM for each date
 
   data <-
@@ -127,11 +122,6 @@ add_pm_party <- function(data = NULL, date = "date", name = "pm_party"){
   }
 
 
-  # Call default data in case the user has editted them
-
-  data("prime_ministers")
-
-
   # If everything's ok, return the data for each date
 
   data <-
@@ -167,10 +157,10 @@ add_pm_party <- function(data = NULL, date = "date", name = "pm_party"){
 #' @param date The name of your date variable in your data.
 #' @param last_name What to call the new column of last election dates. Defaults to "last_elec".
 #' @param next_name What to call the new column of next election dates. Defaults to "next_elec".
+#' @param which Which elections to return: "last", "next", or "both". Defaults to "both".
 #' @return A tibble of data.
 #' @examples
-#' dta <- data.frame(date = seq.Date(as.Date("2000-01-01"), as.Date("2020-01-01"), by = "year"))
-#' add_elections(data = dta, date = "date", name = "pm_party", which = "both")
+#' add_elections(data = pollbasepro, date = "date", which = "both")
 #' @export
 
 add_elections <- function(data = NULL, date = "date", last_name = "last_elec", next_name = "next_elec", which = "both"){
@@ -209,11 +199,6 @@ add_elections <- function(data = NULL, date = "date", last_name = "last_elec", n
   } else if(is.character(next_name) == F){
     stop("The next_name needs to be a character vector! I.e. it should be in quotation marks!")
   }
-
-
-  # Revert to default election dates in case user has editted them
-
-  data("election_dates")
 
 
   # Create dataset of election pairs
@@ -311,11 +296,10 @@ add_elections <- function(data = NULL, date = "date", last_name = "last_elec", n
 #' @param lookup_date A column of dated data.
 #' @param interval_data A dataset including columns called "start" and "end".
 #' @param variable The variable to select values from in the interval_data.
-#' @return A vector of data.
-#' @examples
-#' lookup_interval(lookup_date = pollbasepro$date, interval_data = prime_ministers, variable = "prime_minister")
+#' @return A tibble of data.
 
 lookup_interval <- function(lookup_date, interval_data, variable){
+
 
   # Convert data to data.tables
 
@@ -325,11 +309,20 @@ lookup_interval <- function(lookup_date, interval_data, variable){
 
   # Join data
 
-  dta <-
-    interval_data[lookup_date, on = .(end > date, start <= date), ..variable] %>%
-    tibble::tibble()
+  # dta <-
+  #   data.table:::`[.data.table`(
+  #     x = interval_data,
+  #     i = lookup_date,
+  #     on = list(end > date, start <= date),
+  #     j = ..variable
+  #   )
 
-  interval_data[lookup_date, on = .(end > date, start <= date), ..variable]
+  dta <- interval_data[lookup_date, ..variable, on = list(end > date, start <= date)]
+
+  # Convert to tibble
+
+  dta <- tibble::tibble(dta)
+
 
   # Return to user
 

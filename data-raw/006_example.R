@@ -32,14 +32,6 @@ pollbasepro <-
   )
 
 
-# Load internal functions
-
-for(i in dir(here("R_int"))){
-  source(here("R_int", i))
-  rm(i)
-}
-
-
 
 # 2. Transform data -------------------------------------------------------
 
@@ -124,7 +116,8 @@ death_mod <-
     threads = threading(3),
     file =
       here(
-        "models",
+        "documentation",
+        "_assets",
         paste0("death_mod_", packageVersion("britpol"))
       )
   )
@@ -136,6 +129,6 @@ death_mod <-
 # Save system data to the "sessions" folder for the sake of transparency and
 # future replication.
 
-save_info(path = here("sessions", "005_example.txt"))
+britpol:::save_info(path = here("sessions", "006_example.txt"))
 
 

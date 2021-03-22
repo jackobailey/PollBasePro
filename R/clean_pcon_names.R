@@ -33,7 +33,7 @@ clean_pcon_names <- function(x){
   # Simplify reference names and remove remove punctuation, etc.
 
   ref <-
-    constituencies$name %>%
+    britpoll::constituencies$name %>%
     tolower() %>%
     stringr::str_replace("&", "and") %>%
     stringr::str_remove_all("[[:punct:]]") %>%
@@ -53,7 +53,7 @@ clean_pcon_names <- function(x){
   # (let me know if you know how to speed this up)
 
   for(i in 1:length(ref)){
-    x[x == ref[i]] <- constituencies$name[i]
+    x[x == ref[i]] <- britpoll::constituencies$name[i]
   }
 
 

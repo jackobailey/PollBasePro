@@ -14,7 +14,7 @@ is_red_wall <- function(x = NULL){
 
   # Check if x is in list of redwall seats
 
-  rw <- x %in% c(red_wall$constituency_name, red_wall$constituency_code)
+  rw <- x %in% c(red_wall$name, red_wall$gss_code)
 
   # Return the data to the user
 

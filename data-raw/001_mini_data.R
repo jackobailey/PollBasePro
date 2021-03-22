@@ -5,6 +5,7 @@
 
 # Load packages
 
+library(britpol)
 library(tidyverse)
 library(lubridate)
 library(labelled)
@@ -52,7 +53,8 @@ election_dates <-
   na.omit() %>%
   filter(date > "1928-01-01") %>%
   arrange(date) %>%
-  tibble()
+  tibble() %>%
+  distinct()
 
 
 # Next, we'll give the data some variable labels
@@ -353,117 +355,7 @@ usethis::use_data(
 
 
 
-# 5. Create list of red wall constituencies -------------------------------
-
-red_wall <-
-  tibble(
-    constituency_name =
-      c(
-        "Bury South",
-        "Bolton North East",
-        "Oldham East and Saddleworth",
-        "Heywood and Middleton",
-        "Chorley",
-        "Hyndburn",
-        "Burnley",
-        "Blackpool South",
-        "Wirral South",
-        "Scunthorpe",
-        "Great Grimsby",
-        "Penistone and Stocksbridge",
-        "Rother Valley",
-        "Don Valley",
-        "Halifax",
-        "Batley and Spen",
-        "Wakefield",
-        "Bradford South",
-        "Hemsworth",
-        "North West Durham",
-        "Darlington",
-        "Sedgefield",
-        "Bishop Auckland",
-        "Tynemouth",
-        "Newcastle upon Tyne North",
-        "Newcastle-under-Lyme",
-        "Stoke-on-Trent Central",
-        "Stoke-on-Trent North",
-        "Coventry South",
-        "Coventry North West",
-        "Birmingham, Northfield",
-        "Wolverhampton North East",
-        "West Bromwich West",
-        "Dudley North",
-        "Chesterfield",
-        "Bolsover",
-        "Gedling",
-        "Bassetlaw",
-        "Ashfield"
-      ),
-    constituency_code =
-      c(
-        "E14000535",
-        "E14000546",
-        "E14000548",
-        "E14000565",
-        "E14000569",
-        "E14000573",
-        "E14000577",
-        "E14000578",
-        "E14000588",
-        "E14000609",
-        "E14000612",
-        "E14000632",
-        "E14000637",
-        "E14000650",
-        "E14000651",
-        "E14000658",
-        "E14000667",
-        "E14000671",
-        "E14000856",
-        "E14000710",
-        "E14000716",
-        "E14000723",
-        "E14000740",
-        "E14000747",
-        "E14000758",
-        "E14000834",
-        "E14000833",
-        "E14000870",
-        "E14000876",
-        "E14000903",
-        "E14000914",
-        "E14000915",
-        "E14000972",
-        "E14000973",
-        "E14001006",
-        "E14001009",
-        "E14001030",
-        "E14001043",
-        "E14001049"
-      )
-  )
-
-
-# Next, we'll give the data some variable labels
-
-var_label(red_wall) <-
-  list(
-    constituency_name = "Name of parliamentary constituency",
-    constituency_code = "Parliamentary constituency code"
-  )
-
-
-# Finally, we'll save the data to use later
-
-usethis::use_data(
-  red_wall,
-  internal = FALSE,
-  overwrite = TRUE
-)
-
-
-
-# 6. Get historic constituency results ------------------------------------
+# 5. Get historic constituency results ------------------------------------
 
 # First, let's download the historic election results
 
@@ -512,11 +404,20 @@ election_results <-
 election_results <-
   election_dates %>%
   mutate(
-    year = year(date),
+    year = ifelse(month(date) == 10 & year(date) == 1974, 1974.5, year(date)),
     month = month(date)
   ) %>%
   right_join(
-    election_results,
+    election_results %>%
+      mutate(
+        election =
+          case_when(
+            election == "1974F" ~ "1974",
+            election == "1974O" ~ "1974.5",
+            TRUE ~ election
+          ) %>%
+          as.numeric()
+      ),
     by = c("year" = "election")
   ) %>%
   select(-year, -month)
@@ -549,7 +450,7 @@ usethis::use_data(
 
 
 
-# 7. Get historic constituency results ------------------------------------
+# 6. Get historic constituencies ------------------------------------------
 
 # First, let's download the constituency data using the hansard package
 
@@ -614,6 +515,129 @@ var_label(constituencies) <-
 
 usethis::use_data(
   constituencies,
+  internal = FALSE,
+  overwrite = TRUE
+)
+
+
+
+# 7. Create list of red wall constituencies -------------------------------
+
+# Create tibble
+
+red_wall <-
+  tibble(
+    name =
+      c(
+        "Bury South",
+        "Bolton North East",
+        "Oldham East and Saddleworth",
+        "Heywood and Middleton",
+        "Chorley",
+        "Hyndburn",
+        "Burnley",
+        "Blackpool South",
+        "Wirral South",
+        "Scunthorpe",
+        "Great Grimsby",
+        "Penistone and Stocksbridge",
+        "Rother Valley",
+        "Don Valley",
+        "Halifax",
+        "Batley and Spen",
+        "Wakefield",
+        "Bradford South",
+        "Hemsworth",
+        "North West Durham",
+        "Darlington",
+        "Sedgefield",
+        "Bishop Auckland",
+        "Tynemouth",
+        "Newcastle upon Tyne North",
+        "Newcastle-under-Lyme",
+        "Stoke-on-Trent Central",
+        "Stoke-on-Trent North",
+        "Coventry South",
+        "Coventry North West",
+        "Birmingham, Northfield",
+        "Wolverhampton North East",
+        "West Bromwich West",
+        "Dudley North",
+        "Chesterfield",
+        "Bolsover",
+        "Gedling",
+        "Bassetlaw",
+        "Ashfield"
+      ),
+    gss_code =
+      c(
+        "E14000535",
+        "E14000546",
+        "E14000548",
+        "E14000565",
+        "E14000569",
+        "E14000573",
+        "E14000577",
+        "E14000578",
+        "E14000588",
+        "E14000609",
+        "E14000612",
+        "E14000632",
+        "E14000637",
+        "E14000650",
+        "E14000651",
+        "E14000658",
+        "E14000667",
+        "E14000671",
+        "E14000856",
+        "E14000710",
+        "E14000716",
+        "E14000723",
+        "E14000740",
+        "E14000747",
+        "E14000758",
+        "E14000834",
+        "E14000833",
+        "E14000870",
+        "E14000876",
+        "E14000903",
+        "E14000914",
+        "E14000915",
+        "E14000972",
+        "E14000973",
+        "E14001006",
+        "E14001009",
+        "E14001030",
+        "E14001043",
+        "E14001049"
+      )
+  )
+
+
+# Clean constituency names
+
+red_wall <-
+  red_wall %>%
+  mutate(
+    name =
+      name %>%
+      clean_pcon_names()
+  )
+
+
+# Next, we'll give the data some variable labels
+
+var_label(red_wall) <-
+  list(
+    name = "Name of parliamentary constituency",
+    gss_code = "Government Statistical Service code"
+  )
+
+
+# Finally, we'll save the data to use later
+
+usethis::use_data(
+  red_wall,
   internal = FALSE,
   overwrite = TRUE
 )

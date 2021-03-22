@@ -13,7 +13,7 @@ party_colours(x)
 A vector of corresponding hex codes
 }
 \description{
-British parliamentary constituencies are not often coded in a consistent manner. Fixing this can also be very time-consuming. This function uses the constituencies dataset in the package to standardise a vector of constituencies names.
+This function takes a vector of party names and returns the parties' corresponding colours as hex values. It includes a few under-the-hood tricks to match on all manner of different names.
 }
 \examples{
 party_colours(c("Lab", "lab", "LD", "Tories", "ScotNat", "SNP", "grn"))

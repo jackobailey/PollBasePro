@@ -6,74 +6,19 @@
 #' @return A boolean vector.
 #' @examples
 #' \dontrun{
-#' is_redwall(x = profile$pconW1)
+#' is_redwall(x = "Bury South")
 #' }
 #' @export
 
-is_redwall <- function(x = NULL){
+is_red_wall <- function(x = NULL){
 
-  # Convert the variable to a character variable
+  # Check if x is in list of redwall seats
 
-  if(haven::is.labelled(x) == T){
-    x <- haven::as_factor(x)
-  }
-
-  x <- as.character(x)
-
-
-  # Detect Red Wall seats
-
-  x <-
-    dplyr::case_when(
-      x %in% c(
-        "Bury South",
-        "Bolton North East",
-        "Oldham East and Saddleworth",
-        "Heywood and Middleton",
-        "Chorley",
-        "Hyndburn",
-        "Burnley",
-        "Blackpool South",
-        "Wirral South",
-        "Scunthorpe",
-        "Great Grimsby",
-        "Penistone and Stocksbridge",
-        "Rother Valley",
-        "Don Valley",
-        "Halifax",
-        "Batley and Spen",
-        "Wakefield",
-        "Bradford South",
-        "Hemsworth",
-        "North West Durham",
-        "Darlington",
-        "Sedgefield",
-        "Bishop Auckland",
-        "Tynemouth",
-        "Newcastle upon Tyne North",
-        "Newcastle-under-Lyme",
-        "Stoke-on-Trent Central",
-        "Stoke-on-Trent North",
-        "Coventry South",
-        "Coventry North West",
-        "Birmingham, Northfield",
-        "Wolverhampton North East",
-        "West Bromwich West",
-        "Dudley North",
-        "Chesterfield",
-        "Bolsover",
-        "Gedling",
-        "Bassetlaw",
-        "Ashfield"
-      ) ~ TRUE,
-      is.na(x) ~ NA,
-      TRUE ~ FALSE
-    )
-
+  rw <- x %in% c(red_wall$constituency_name, red_wall$constituency_code)
 
   # Return the data to the user
 
-  return(x)
+  return(rw)
 
 }
 

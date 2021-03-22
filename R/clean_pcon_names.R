@@ -18,7 +18,9 @@ clean_pcon_names <- function(x){
     stringr::str_remove_all("[[:punct:]]") %>%
     stringr::str_replace_all("  ", " ") %>%
     stringr::str_replace_all(" ", "") %>%
-    iconv(from = "UTF-8", to = "ASCII//TRANSLIT")
+    iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
+    stringr::str_split("")
+
 
 
   # Simplify reference names and
@@ -28,37 +30,22 @@ clean_pcon_names <- function(x){
     tolower() %>%
     stringr::str_remove_all("[[:punct:]]") %>%
     stringr::str_replace_all("  ", " ") %>%
+    stringr::str_replace_all(" ", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
-    stringr::str_replace_all(" ", ")(?=.*") %>%
-    stringr::str_replace_all("^", "^(?=.*") %>%
-    stringr::str_replace_all("$", ").+$")
-
-
-  # Reformat where the number of words == 1
-
-  ref <-
-    ifelse(
-      stringr::str_count(ref, "\\*") == 1,
-      paste0(
-        "^",
-        lapply(
-          stringr::str_extract_all(
-            ref,
-            "[[:alpha:]]"),
-          paste0,
-          collapse = ""
-        ),
-        "$"
-      ),
-      ref
-    )
+    stringr::str_split("")
 
 
   # Simplify names (let me know if you know how to speed this up)
 
   for(i in 1:length(ref)){
-    x[stringr::str_detect(x, ref[i])] <- constituencies$name[which(ref == ref[i])[1]]
+    for(j in 1:length(x)){
+      x[j][setequal(x[[j]], ref[[i]])] <- constituencies$name[i][[1]]
+    }
   }
+
+  # Unlist x
+
+  x <- unlist(x)
 
 
   # Remove any unmatched names

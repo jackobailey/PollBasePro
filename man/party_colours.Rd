@@ -16,5 +16,5 @@ A vector of corresponding hex codes
 British parliamentary constituencies are not often coded in a consistent manner. Fixing this can also be very time-consuming. This function uses the constituencies dataset in the package to standardise a vector of constituencies names.
 }
 \examples{
-party_colours(c("Ynys Môn", "Derby North", "North, Derby"))
+party_colours(c("Lab", "lab", "LD", "Tories", "ScotNat", "SNP", "grn"))
 }

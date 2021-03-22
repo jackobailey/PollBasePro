@@ -22,8 +22,6 @@ clean_pcon_names <- function(x){
     stringr::str_replace_all("[[:space:]]", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
     stringr::str_remove("kingstonupon") %>%
-    stringr::str_replace("yorkshire", "york") %>%
-    stringr::str_replace("yorks", "york") %>%
     stringr::str_remove("upontyne") %>%
     stringr::str_split("") %>%
     lapply(sort) %>%
@@ -44,8 +42,6 @@ clean_pcon_names <- function(x){
     stringr::str_replace_all("[[:space:]]", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
     stringr::str_remove("kingstonupon") %>%
-    stringr::str_replace("yorkshire", "york") %>%
-    stringr::str_replace("yorks", "york") %>%
     stringr::str_remove("upontyne") %>%
     stringr::str_split("") %>%
     lapply(sort) %>%

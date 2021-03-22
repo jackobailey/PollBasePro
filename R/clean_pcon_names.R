@@ -17,11 +17,10 @@ clean_pcon_names <- function(x){
     tolower() %>%
     stringr::str_remove_all("[[:punct:]]") %>%
     stringr::str_replace_all("  ", " ") %>%
-    stringr::str_remove_all(" ") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT")
 
 
-  # Simplify reference names and split by " "
+  # Simplify reference names and
 
   ref <-
     constituencies$name %>%
@@ -30,8 +29,17 @@ clean_pcon_names <- function(x){
     stringr::str_replace_all("  ", " ") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
     stringr::str_replace_all(" ", ")(?=.*") %>%
-    stringr::str_replace_all("^", "(?=.*") %>%
-    stringr::str_replace_all("$", ")")
+    stringr::str_replace_all("^", "^(?=.*") %>%
+    stringr::str_replace_all("$", ").+$")
+
+
+  # Reformat where the number of words == 1
+
+  ref <-
+    ifelse(
+      stringr::str_count(ref, "\\*") == 1,
+      paste0("^", paste0(str_extract_all(ref, "[[:alpha:]]")[[1]], collapse = ""), "$"),
+      ref)
 
 
   # Simplify names (let me know if you know how to speed this up)

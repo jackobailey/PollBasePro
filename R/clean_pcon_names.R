@@ -18,6 +18,7 @@ clean_pcon_names <- function(x){
     stringr::str_remove_all("[[:punct:]]") %>%
     stringr::str_replace_all("[[:space:]]", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
+    stringr::str_remove("kingstonupon") %>%
     stringr::str_split("") %>%
     lapply(sort) %>%
     lapply(paste0, collapse = "") %>%
@@ -33,6 +34,7 @@ clean_pcon_names <- function(x){
     stringr::str_remove_all("[[:punct:]]") %>%
     stringr::str_replace_all("[[:space:]]", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
+    stringr::str_remove("kingstonupon") %>%
     stringr::str_split("") %>%
     lapply(sort) %>%
     lapply(paste0, collapse = "") %>%
@@ -50,6 +52,22 @@ clean_pcon_names <- function(x){
   # Remove any unmatched names
 
   x[x == tolower(x)] <- NA
+
+
+  # Print number of unmatched cases if > 0
+
+  if(sum(is.na(x)) > 0){
+    warning(
+      paste0(
+        "There ",
+        ifelse(sum(is.na(x)) == 1, "was ", "were "),
+        sum(is.na(x)), " unmatched ",
+        ifelse(sum(is.na(x)) == 1, "case. ", "cases. "),
+        ifelse(sum(is.na(x)) == 1, "It is ", "They are "),
+        "now coded as NA."
+      )
+    )
+  }
 
 
   # Return the simplified data to the user

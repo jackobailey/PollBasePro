@@ -11,7 +11,7 @@
 #' simplify_party_names(c("Labour", "Lab", "Lib", "Conservatives", "Tories"))
 #' @export
 
-simplify_party_names <- function(x, party_names = list("^con|^tor|^thecon|^thetor" = "Conservatives", "^lab|^thelab" = "Labour", "^lib|^thelib" = "Liberals etc.", "^snp|^thesnp|^scotnat|^thescottishnat|^scottishnat" = "SNP", "^pc|^plaid" = "Plaid Cymru"), nat = TRUE, drop_dk = TRUE){
+simplify_party_names <- function(x, party_names = list("^con|^tor|^thecon|^thetor" = "Conservatives", "^lab|^thelab" = "Labour", "^lib|^thelib|^ld" = "Liberals etc.", "^snp|^thesnp|^scotnat|^thescottishnat|^scottishnat" = "SNP", "^pc|^plaid" = "Plaid Cymru"), nat = TRUE, drop_dk = TRUE){
 
 
   # Convert names vector to lower case and remove punctuation and spaces
@@ -63,7 +63,7 @@ simplify_party_names <- function(x, party_names = list("^con|^tor|^thecon|^theto
 
   } else {
 
-    x[stringr::str_detect(x, "dk|dontknow|refused|skip|prefernot|miss")] <- "Other"
+    x[stringr::str_detect(x, "dk|dontknow|refused|skip|prefernot|miss|__na__")] <- "Other"
 
   }
 

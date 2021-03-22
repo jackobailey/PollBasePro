@@ -16,10 +16,12 @@ clean_pcon_names <- function(x){
     x %>%
     tolower() %>%
     stringr::str_remove_all("[[:punct:]]") %>%
-    stringr::str_replace_all("  ", " ") %>%
-    stringr::str_replace_all(" ", "") %>%
+    stringr::str_replace_all("[[:space:]]", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
-    stringr::str_split("")
+    stringr::str_split("") %>%
+    lapply(sort) %>%
+    lapply(paste0, collapse = "") %>%
+    unlist()
 
 
 
@@ -29,23 +31,19 @@ clean_pcon_names <- function(x){
     constituencies$name %>%
     tolower() %>%
     stringr::str_remove_all("[[:punct:]]") %>%
-    stringr::str_replace_all("  ", " ") %>%
-    stringr::str_replace_all(" ", "") %>%
+    stringr::str_replace_all("[[:space:]]", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
-    stringr::str_split("")
+    stringr::str_split("") %>%
+    lapply(sort) %>%
+    lapply(paste0, collapse = "") %>%
+    unlist()
 
 
   # Simplify names (let me know if you know how to speed this up)
 
   for(i in 1:length(ref)){
-    for(j in 1:length(x)){
-      x[j][setequal(x[[j]], ref[[i]])] <- constituencies$name[i][[1]]
-    }
+    x[x == ref[i]] <- constituencies$name[i]
   }
-
-  # Unlist x
-
-  x <- unlist(x)
 
 
   # Remove any unmatched names

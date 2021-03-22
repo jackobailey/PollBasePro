@@ -25,7 +25,7 @@ clean_pcon_names <- function(x){
 
 
 
-  # Simplify reference names and
+  # Simplify reference names and remove remove punctuation, etc.
 
   ref <-
     constituencies$name %>%
@@ -39,7 +39,8 @@ clean_pcon_names <- function(x){
     unlist()
 
 
-  # Simplify names (let me know if you know how to speed this up)
+  # Convert to names in constituencies dataset
+  # (let me know if you know how to speed this up)
 
   for(i in 1:length(ref)){
     x[x == ref[i]] <- constituencies$name[i]

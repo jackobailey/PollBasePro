@@ -6,10 +6,8 @@
 \usage{
 simplify_party_names(
   x,
-  party_names = list(`^con|^tor|^thecon|^thetor` = "Conservatives", `^lab|^thelab` =
-    "Labour", `^lib|^thelib` = "Liberals etc.",
-    `^snp|^thesnp|^scotnat|^thescottishnat|^scottishnat` = "SNP", `^pc|^plaid` =
-    "Plaid Cymru"),
+  party_names = list(`^con|^tor` = "Conservatives", `^lab` = "Labour", `^lib|^ld` =
+    "Liberals etc.", `^snp|^scotnat|^scottishnat` = "SNP", `^pc|^plaid` = "Plaid Cymru"),
   nat = TRUE,
   drop_dk = TRUE
 )

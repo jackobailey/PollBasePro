@@ -11,7 +11,7 @@
 #' simplify_party_names(c("Labour", "Lab", "Lib", "Conservatives", "Tories"))
 #' @export
 
-simplify_party_names <- function(x, party_names = list("^con|^tor|^thecon|^thetor" = "Conservatives", "^lab|^thelab" = "Labour", "^lib|^thelib|^ld" = "Liberals etc.", "^snp|^thesnp|^scotnat|^thescottishnat|^scottishnat" = "SNP", "^pc|^plaid" = "Plaid Cymru"), nat = TRUE, drop_dk = TRUE){
+simplify_party_names <- function(x, party_names = list("^con|^tor" = "Conservatives", "^lab" = "Labour", "^lib|^ld" = "Liberals etc.", "^snp|^scotnat|^scottishnat" = "SNP", "^pc|^plaid" = "Plaid Cymru"), nat = TRUE, drop_dk = TRUE){
 
 
   # Convert names vector to lower case and remove punctuation and spaces
@@ -20,7 +20,9 @@ simplify_party_names <- function(x, party_names = list("^con|^tor|^thecon|^theto
     x %>%
     tolower() %>%
     stringr::str_remove_all("[[:punct:]]") %>%
-    stringr::str_remove_all(" ")
+    stringr::str_replace_all("[[:space:]]", "") %>%
+    iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
+    str_remove("the")
 
 
   # Get regular expressions
@@ -37,7 +39,7 @@ simplify_party_names <- function(x, party_names = list("^con|^tor|^thecon|^theto
     nats <-
       expr %>%
       stringr::str_detect(
-        "snp|thesnp|scotnat|thescottishnat|scottishnat|pc|plaid|thenat|nat"
+        "snp|scotnat|scottishnat|pc|plaid|nat"
       ) %>%
       which()
 
@@ -56,14 +58,14 @@ simplify_party_names <- function(x, party_names = list("^con|^tor|^thecon|^theto
 
     x <-
       ifelse(
-        stringr::str_detect(x, "dk|dontknow|refused|skip|prefernot|miss"),
+        stringr::str_detect(x, "dk|dontknow|refused|skip|prefernot|miss|na"),
         NA,
         x
       )
 
   } else {
 
-    x[stringr::str_detect(x, "dk|dontknow|refused|skip|prefernot|miss|__na__")] <- "Other"
+    x[stringr::str_detect(x, "dk|dontknow|refused|skip|prefernot|miss|na")] <- "Other"
 
   }
 

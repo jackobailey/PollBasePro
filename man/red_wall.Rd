@@ -7,8 +7,8 @@
 \format{
 A data frame:
 \describe{
-\item{constituency_name}{Red wall constituency name}
-\item{constituency_code}{Red wall constituency code}
+\item{name}{Red wall constituency name}
+\item{gss_code}{Government Statistical Service code}
 }
 }
 \usage{

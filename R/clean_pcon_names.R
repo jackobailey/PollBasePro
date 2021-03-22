@@ -15,13 +15,15 @@ clean_pcon_names <- function(x){
   x <-
     x %>%
     tolower() %>%
+    stringr::str_replace("&", "and") %>%
     stringr::str_remove_all("[[:punct:]]") %>%
     stringr::str_remove_all("\\bthe\\b") %>%
     stringr::str_replace("\\bsiar\\b", "an iar") %>%
     stringr::str_replace_all("[[:space:]]", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
-    stringr::str_replace("&", "and") %>%
     stringr::str_remove("kingstonupon") %>%
+    stringr::str_replace("yorkshire", "york") %>%
+    stringr::str_replace("yorks", "york") %>%
     stringr::str_remove("upontyne") %>%
     stringr::str_split("") %>%
     lapply(sort) %>%
@@ -35,15 +37,16 @@ clean_pcon_names <- function(x){
   ref <-
     constituencies$name %>%
     tolower() %>%
+    stringr::str_replace("&", "and") %>%
     stringr::str_remove_all("[[:punct:]]") %>%
     stringr::str_remove_all("\\bthe\\b") %>%
+    stringr::str_replace("\\bsiar\\b", "an iar") %>%
     stringr::str_replace_all("[[:space:]]", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
-    stringr::str_replace("&", "and") %>%
-    # Exceptions
     stringr::str_remove("kingstonupon") %>%
+    stringr::str_replace("yorkshire", "york") %>%
+    stringr::str_replace("yorks", "york") %>%
     stringr::str_remove("upontyne") %>%
-    stringr::str_replace("siar$", "aniar$") %>%
     stringr::str_split("") %>%
     lapply(sort) %>%
     lapply(paste0, collapse = "") %>%

@@ -22,7 +22,7 @@ clean_party_names <- function(x, party_names = list("^con|^tor" = "Conservatives
     stringr::str_remove_all("[[:punct:]]") %>%
     stringr::str_replace_all("[[:space:]]", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
-    str_remove("the")
+    stringr::str_remove("the")
 
 
   # Get regular expressions

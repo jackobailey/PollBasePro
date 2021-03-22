@@ -1,4 +1,4 @@
-#' Simplify British Political Party Names
+#' Clean British Political Party Names
 #'
 #' For a majoritarian democracy, Britain has quite a few parties. Further, some of the main parties come in more than one variant (e.g. Labour & Co-op). This function takes a vector of party names, simplifies them, and then returns them to the user. It also includes some useful options to customise the output.
 #'
@@ -8,10 +8,10 @@
 #' @param drop_dk Mark "Don't know", "Refused", etc. as missing? Defaults to TRUE.
 #' @return A vector of party names.
 #' @examples
-#' simplify_party_names(c("Labour", "Lab", "Lib", "Conservatives", "Tories"))
+#' clean_party_names(c("Labour", "Lab", "Lib", "Conservatives", "Tories"))
 #' @export
 
-simplify_party_names <- function(x, party_names = list("^con|^tor" = "Conservatives", "^lab" = "Labour", "^lib|^ld" = "Liberals etc.", "^snp|^scotnat|^scottishnat" = "SNP", "^pc|^plaid" = "Plaid Cymru"), nat = TRUE, drop_dk = TRUE){
+clean_party_names <- function(x, party_names = list("^con|^tor" = "Conservatives", "^lab" = "Labour", "^lib|^ld" = "Liberals etc.", "^snp|^scotnat|^scottishnat" = "SNP", "^pc|^plaid" = "Plaid Cymru"), nat = TRUE, drop_dk = TRUE){
 
 
   # Convert names vector to lower case and remove punctuation and spaces

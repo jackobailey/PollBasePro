@@ -427,10 +427,10 @@ election_results <-
 
 var_label(election_results) <-
   list(
+    date = "Date of election",
     constituency = "Name of parliamentary constituency",
     seats = "Number of seats the constituency contains",
     region = "Region or country",
-    election = "Date of election",
     electorate = "Size of electorate",
     con_votes = "Number of Conservative votes",
     lab_votes = "Number of Labour votes",
@@ -477,6 +477,7 @@ constituencies <-
   constituencies %>%
   arrange(start, name) %>%
   mutate(
+    name = name %>% str_replace("&", "and"),
     gss_code = ifelse(gss_code == "", NA, gss_code),
     start = as_date(start),
     end = as_date(end)

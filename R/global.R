@@ -42,6 +42,7 @@ utils::globalVariables(
     "prime_ministers",
     "pollbase",
     "election",
-    "get_last_election"
+    "get_last_election",
+    "constituencies"
     )
 )

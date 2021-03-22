@@ -16,5 +16,5 @@ A vector of cleaned constituency names.
 British parliamentary constituencies are not often coded in a consistent manner. Fixing this can also be very time-consuming. This function uses the constituencies dataset in the package to standardise a vector of constituencies names.
 }
 \examples{
-clean_pcon_names("Ynys Môn")
+clean_pcon_names(c("Ynys Môn", "Derby North", "North, Derby"))
 }

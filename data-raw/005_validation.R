@@ -192,12 +192,6 @@ usethis::use_data(
 )
 
 
-# Finally, we'll install and restart the package so that subsequent scripts
-# call the most recent data.
-
-devtools::install(upgrade = "never")
-
-
 
 # 4. Produce replication data ---------------------------------------------
 

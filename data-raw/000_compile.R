@@ -5,7 +5,6 @@
 
 # Load packages
 
-library(britpol)
 library(rmarkdown)
 library(here)
 
@@ -15,32 +14,32 @@ library(here)
 
 # Create mini datasets
 
-source(here("data-raw", "006_mini_data.R"))
+source(here("data-raw", "001_mini_data.R"))
 
 
 # Fit sample size imputation model
 
-source(here("data-raw", "001_samplesizes.R"))
+source(here("data-raw", "002_samplesizes.R"))
 
 
 # Format raw pollbase data
 
-source(here("data-raw", "002_pollbase.R"))
+source(here("data-raw", "003_pollbase.R"))
 
 
 # Derive daily pollbasepro estimates
 
-source(here("data-raw", "003_pollbasepro.R"))
+source(here("data-raw", "004_pollbasepro.R"))
 
 
 # Validate the resulting estimates
 
-source(here("data-raw", "004_validation.R"))
+source(here("data-raw", "005_validation.R"))
 
 
 # Use data to fit applied example model for the paper
 
-source(here("data-raw", "005_example.R"))
+source(here("data-raw", "006_example.R"))
 
 
 

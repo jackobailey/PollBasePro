@@ -69,9 +69,14 @@ fit_model <- function(data, init, final, party, alpha_init, alpha_final, refresh
   print(paste0("Fitting model: ", party, " ", init))
 
 
+  # Add elections to data
+
+  data <- britpol::add_elections(data, which = "last")
+
+
   # Subset data
 
-  data <- data[data$election == init, ]
+  data <- data[data$last_elec == init, ]
 
 
   # Run model
@@ -1145,6 +1150,30 @@ save_info <- function(path = "session_info.txt"){
 
 update_pollbasepro <- function(){
 
+  # Get election results
+
+  election_results <-
+    britpol::election_results %>%
+    dplyr::filter(
+      !region %in% c("University", "Northern Ireland"),
+      sum(c(con_votes, lab_votes, lib_votes, nat_votes, oth_votes), na.rm = T) >0
+    ) %>%
+    dplyr::group_by(date) %>%
+    dplyr::summarise(
+      total = sum(c(con_votes, lab_votes, lib_votes, nat_votes, oth_votes), na.rm = T),
+      con = sum(con_votes, na.rm = T)/total,
+      lab = sum(lab_votes, na.rm = T)/total,
+      lib = sum(lib_votes, na.rm = T)/total
+    ) %>%
+    tidyr::pivot_longer(
+      cols = c(con, lab, lib),
+      names_to = "party",
+      values_to = "results"
+    ) %>%
+    dplyr::filter(date == max(date))
+
+
+
   # Make list object
 
   dta <-
@@ -1161,7 +1190,7 @@ update_pollbasepro <- function(){
       values_to = "estimates"
     ) %>%
     dplyr::mutate(
-      alpha_init = britpol::get_result(election = init, party = party),
+      alpha_init = election_results$results[election_results$party == party],
       alpha_final = NA,
       estimates = as.list(rep(NA, dplyr::n()))
     )
@@ -1179,12 +1208,12 @@ update_pollbasepro <- function(){
           seq(
             as.numeric(
               stringr::str_remove(
-                pollbase$id[pollbase$end > "2019-12-12"][1], ".*-"
+                britpol::pollbase$id[britpol::pollbase$end > "2019-12-12"][1], ".*-"
               )
             ),
             as.numeric(
               stringr::str_remove(
-                pollbase$id[pollbase$end > "2019-12-12"][1], ".*-"
+                britpol::pollbase$id[britpol::pollbase$end > "2019-12-12"][1], ".*-"
               )
             ) + nrow(.) - 1,
             by = 1

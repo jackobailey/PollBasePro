@@ -207,7 +207,13 @@ add_elections <- function(data = NULL, date = "date", last_name = "last_elec", n
     election_dates %>%
     dplyr::rename(start = date) %>%
     dplyr::mutate(
-      end = dplyr::lead(start, 1),
+      end =
+        ifelse(
+          is.na(dplyr::lead(start, 1)) == T,
+          Sys.Date(),
+          dplyr::lead(start, 1)
+        ) %>%
+        lubridate::as_date(),
       start_id = start,
       end_id = end
     )

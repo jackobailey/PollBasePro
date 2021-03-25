@@ -125,7 +125,7 @@ samplesizes <-
     sample_mod,
     newdata =
       tibble(
-        date = seq.Date(as_date("1955-01-01"), as_date("2013-01-01"), "day"),
+        date = seq.Date(as_date("1955-01-01"), Sys.Date(), "day"),
         time = interval(as_date("1955-01-01"), date)/years(10),
         country = "United Kingdom"
       ),
@@ -133,7 +133,7 @@ samplesizes <-
   ) %>%
   data.frame() %>%
   tibble() %>%
-  mutate(date = seq.Date(as_date("1955-01-01"), as_date("2013-01-01"), "day")) %>%
+  mutate(date = seq.Date(as_date("1955-01-01"), Sys.Date(), "day")) %>%
   select(
     date,
     n_est = Estimate
@@ -152,12 +152,6 @@ usethis::use_data(
   internal = TRUE,
   overwrite = TRUE
 )
-
-
-# Finally, we'll install and restart the package so that subsequent scripts
-# call the most recent data.
-
-devtools::install(upgrade = "never")
 
 
 

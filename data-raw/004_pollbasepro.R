@@ -98,7 +98,30 @@ pollbase <-
 # We're going to fit the model separately for each election and each party.
 # As such, we'll create an empty tibble that we can use map() to populate.
 # We'll provide estimates from the 1955 election onwards, as the elections
-# before do not have enough polls at their beginnings.
+# before do not have enough polls at their beginnings. First, let's use the
+# election_results data set to compute them
+
+election_results <-
+  election_results %>%
+  filter(
+    !region %in% c("University", "Northern Ireland"),
+    sum(c(con_votes, lab_votes, lib_votes, nat_votes, oth_votes), na.rm = T) >0
+  ) %>%
+  group_by(date) %>%
+  summarise(
+    total = sum(c(con_votes, lab_votes, lib_votes, nat_votes, oth_votes), na.rm = T),
+    con = sum(con_votes, na.rm = T)/total,
+    lab = sum(lab_votes, na.rm = T)/total,
+    lib = sum(lib_votes, na.rm = T)/total
+  ) %>%
+  pivot_longer(
+    cols = c(con, lab, lib),
+    names_to = "party",
+    values_to = "results"
+  )
+
+
+# Now let's create our data set
 
 pollbasepro <-
   tibble(
@@ -123,8 +146,8 @@ pollbasepro <-
 pollbasepro <-
   pollbasepro %>%
   mutate(
-    alpha_init = get_result(election = init, party = party),
-    alpha_final = get_result(election = final, party = party)
+    alpha_init = election_results$results[election_results$date > "1955-01-01"],
+    alpha_final = lead(election_results$results[election_results$date > "1955-01-01"], 3)
   )
 
 
@@ -137,7 +160,7 @@ pollbasepro <-
       map(
         .x = row_number(),
         .f = function(x){
-          fit_model(
+          britpol:::fit_model(
             data = pollbase,
             init = pollbasepro$init[x],
             final = pollbasepro$final[x],
@@ -195,12 +218,6 @@ usethis::use_data(
   internal = FALSE,
   overwrite = TRUE
 )
-
-
-# Finally, we'll install and restart the package so that subsequent scripts
-# call the most recent data.
-
-devtools::install(upgrade = "never")
 
 
 

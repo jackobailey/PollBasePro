@@ -5,7 +5,6 @@
 
 # Load packages
 
-library(britpol)
 library(tidyverse)
 library(lubridate)
 library(labelled)
@@ -622,7 +621,7 @@ red_wall <-
   mutate(
     name =
       name %>%
-      clean_pcon_names()
+      britpol::clean_pcon_names()
   )
 
 
@@ -646,12 +645,6 @@ usethis::use_data(
 
 
 # 8. Create replication info ----------------------------------------------
-
-# We'll install and restart the package so that subsequent scripts call the
-# most recent data.
-
-devtools::install(upgrade = "never")
-
 
 # Now that we've saved all of our data, we can save the session information
 # so that we can recall it later if needed.

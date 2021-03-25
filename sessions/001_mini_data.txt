@@ -1,4 +1,4 @@
-Analysis completed: 2021-03-22 21:41:46
+Analysis completed: 2021-03-24 09:13:28
 
 R version 4.0.4 (2021-02-15)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -18,25 +18,26 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] britpol_0.1.0    here_1.0.1       haven_2.3.1      htmltab_0.8.1    hansard_0.8.0   
- [6] labelled_2.8.0   lubridate_1.7.10 forcats_0.5.1    stringr_1.4.0    dplyr_1.0.5     
-[11] purrr_0.3.4      readr_1.4.0      tidyr_1.1.3      tibble_3.1.0     ggplot2_3.3.3   
-[16] tidyverse_1.3.0 
+ [1] haven_2.3.1      htmltab_0.8.1    hansard_0.8.0    labelled_2.8.0   lubridate_1.7.10 forcats_0.5.1   
+ [7] stringr_1.4.0    dplyr_1.0.5      purrr_0.3.4      readr_1.4.0      tidyr_1.1.3      tibble_3.1.0    
+[13] ggplot2_3.3.3    tidyverse_1.3.0  here_1.0.1       rmarkdown_2.7   
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.6        prettyunits_1.1.1 ps_1.6.0          assertthat_0.2.1 
- [5] rprojroot_2.0.2   utf8_1.2.1        R6_2.5.0          cellranger_1.1.0 
- [9] backports_1.2.1   reprex_1.0.0      httr_1.4.2        pillar_1.5.1     
-[13] rlang_0.4.10      curl_4.3          readxl_1.3.1      rstudioapi_0.13  
-[17] data.table_1.14.0 callr_3.5.1       desc_1.3.0        devtools_2.3.2   
-[21] munsell_0.5.0     broom_0.7.5       compiler_4.0.4    modelr_0.1.8     
-[25] pkgconfig_2.0.3   pkgbuild_1.2.0    tidyselect_1.1.0  XML_3.99-0.6     
-[29] fansi_0.4.2       crayon_1.4.1      dbplyr_2.1.0      withr_2.4.1      
-[33] grid_4.0.4        jsonlite_1.7.2    gtable_0.3.0      lifecycle_1.0.0  
-[37] DBI_1.1.1         magrittr_2.0.1    scales_1.1.1      cli_2.3.1        
-[41] stringi_1.5.3     cachem_1.0.4      remotes_2.2.0     fs_1.5.0         
-[45] testthat_3.0.2    snakecase_0.11.0  xml2_1.3.2        ellipsis_0.3.1   
-[49] generics_0.1.0    vctrs_0.3.6       tools_4.0.4       glue_1.4.2       
-[53] hms_1.0.0         pkgload_1.2.0     processx_3.4.5    fastmap_1.1.0    
-[57] colorspace_2.0-0  sessioninfo_1.1.1 rvest_1.0.0       memoise_2.0.0    
-[61] usethis_2.0.1    
+ [1] httr_1.4.2           jsonlite_1.7.2       modelr_0.1.8         RcppParallel_5.0.3  
+ [5] StanHeaders_2.21.0-7 assertthat_0.2.1     stats4_4.0.4         cellranger_1.1.0    
+ [9] pillar_1.5.1         backports_1.2.1      glue_1.4.2           digest_0.6.27       
+[13] rvest_1.0.0          snakecase_0.11.0     colorspace_2.0-0     htmltools_0.5.1.1   
+[17] XML_3.99-0.6         pkgconfig_2.0.3      rstan_2.21.3         broom_0.7.5         
+[21] scales_1.1.1         processx_3.4.5       generics_0.1.0       usethis_2.0.1       
+[25] ellipsis_0.3.1       withr_2.4.1          cli_2.3.1            magrittr_2.0.1      
+[29] crayon_1.4.1         readxl_1.3.1         evaluate_0.14        ps_1.6.0            
+[33] fs_1.5.0             fansi_0.4.2          xml2_1.3.2           pkgbuild_1.2.0      
+[37] data.table_1.14.0    tools_4.0.4          loo_2.4.1            prettyunits_1.1.1   
+[41] hms_1.0.0            lifecycle_1.0.0      matrixStats_0.58.0   britpol_0.1.0       
+[45] V8_3.4.0             munsell_0.5.0        reprex_1.0.0         callr_3.5.1         
+[49] compiler_4.0.4       rlang_0.4.10         grid_4.0.4           rstudioapi_0.13     
+[53] gtable_0.3.0         codetools_0.2-18     inline_0.3.17        DBI_1.1.1           
+[57] curl_4.3             R6_2.5.0             gridExtra_2.3        knitr_1.31          
+[61] utf8_1.2.1           rprojroot_2.0.2      desc_1.3.0           stringi_1.5.3       
+[65] parallel_4.0.4       Rcpp_1.0.6           vctrs_0.3.6          dbplyr_2.1.0        
+[69] tidyselect_1.1.0     xfun_0.22           

@@ -37,7 +37,7 @@ party_colours <- function(x){
     )
 
 
-  # Return the simplified data to the user
+  # Return the colours to the user
 
   return(colours)
 

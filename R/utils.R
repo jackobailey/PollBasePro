@@ -1029,24 +1029,6 @@ load_timeline <- function(){
 }
 
 
-#' Load historic election results from the House of Commons library
-#'
-#' This function downloads and loads historic elections data.
-
-load_results <- function(){
-
-  # Download csv
-
-  data <- utils::read.csv("https://researchbriefings.files.parliament.uk/documents/CBP-8647/1918_2019election_results.csv")
-
-
-  # Return data to user
-
-  return(data)
-
-}
-
-
 #' Mean Absolute Error
 #'
 #' This function provides a simple way to compute MAE.

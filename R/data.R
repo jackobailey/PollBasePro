@@ -103,29 +103,20 @@
 #' @format A data frame:
 #' \describe{
 #'   \item{date}{Election date}
-#'   \item{constituency}{Name of constituency}
 #'   \item{seats}{Number of seats in constituency}
+#'   \item{constituency}{Name of constituency}
+#'   \item{pano}{Press Association code}
+#'   \item{nomis}{NOMIS code}
+#'   \item{pca}{PCA code}
+#'   \item{ons}{ONS GSS code}
+#'   \item{county}{County}
 #'   \item{region}{Region or country}
 #'   \item{electorate}{Size of constituency electorate}
-#'   \item{con_votes}{Number of Conservative votes}
-#'   \item{lab_votes}{Number of Labour votes}
-#'   \item{lib_votes}{Number of Liberal votes}
-#'   \item{nat_votes}{Number of Nationalist votes in Scotland and Wales}
-#'   \item{oth_votes}{Number of votes for any other party}
+#'   \item{con}{Number of Conservative votes}
+#'   \item{lab}{Number of Labour votes}
+#'   \item{lib}{Number of Liberal votes}
+#'   \item{nat}{Number of Nationalist votes in Scotland and Wales}
+#'   \item{oth}{Number of votes for any other party}
 #' }
-"election_results"
-
-
-#' Historic Parliamentary Constituencies
-#'
-#' A dataset containing the names and GSS codes of all historic constituencies since 1918.
-#'
-#' @format A data frame:
-#' \describe{
-#'   \item{name}{Name of parliamentary constituency}
-#'   \item{gss_code}{Government Statistical Service code}
-#'   \item{start}{Date constituency was introduced}
-#'   \item{end}{Date constituency was retired}
-#' }
-"constituencies"
+"constituency_results"
 

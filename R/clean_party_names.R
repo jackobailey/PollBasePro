@@ -22,7 +22,7 @@ clean_party_names <- function(x, party_names = list("^con|^tor" = "Conservatives
     stringr::str_remove_all("[[:punct:]]") %>%
     stringr::str_replace_all("[[:space:]]", "") %>%
     iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
-    stringr::str_remove("the")
+    stringr::str_remove("^the")
 
 
   # Get regular expressions
@@ -58,14 +58,14 @@ clean_party_names <- function(x, party_names = list("^con|^tor" = "Conservatives
 
     x <-
       ifelse(
-        stringr::str_detect(x, "dk|dontknow|refused|skip|prefernot|miss|na"),
+        stringr::str_detect(x, "^dk|^dontknow|^refused|^skip|^prefernot|^miss|^na"),
         NA,
         x
       )
 
   } else {
 
-    x[stringr::str_detect(x, "dk|dontknow|refused|skip|prefernot|miss|na")] <- "Other"
+    x[stringr::str_detect(x, "^dk|^dontknow|^refused|^skip|^prefernot|^miss|^na")] <- "Other"
 
   }
 

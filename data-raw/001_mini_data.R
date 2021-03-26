@@ -8,8 +8,10 @@
 library(tidyverse)
 library(lubridate)
 library(labelled)
+library(janitor)
 library(hansard)
 library(htmltab)
+library(readxl)
 library(haven)
 library(here)
 
@@ -356,172 +358,218 @@ usethis::use_data(
 
 # 5. Get historic constituency results ------------------------------------
 
-# First, let's download the historic election results
+# Get index of first sheet post-1928
 
-election_results <- britpol:::load_results()
-
-
-# Next, we'll filter out any pre-1928 cases
-
-election_results <-
-  election_results %>%
-  filter(election >= 1928)
+start <-
+  here("inst", "extdata", "1918-2019election_results_by_pcon.xlsx") %>%
+  excel_sheets() %>%
+  str_detect("1929") %>%
+  which()
 
 
-# And then we'll select the variables we need and convert to a tibble
+# Get number of sheets
 
-election_results <-
-  election_results %>%
-  select(
-    constituency,
-    seats,
-    region = country.region,
-    election,
-    electorate,
-    con_votes,
-    lab_votes,
-    lib_votes,
-    nat_votes = natSW_votes,
-    oth_votes
+sheets <-
+  here("inst", "extdata", "1918-2019election_results_by_pcon.xlsx") %>%
+  excel_sheets() %>%
+  length()
+
+
+# Load raw data from Mark Pack's website
+
+constituency_results <-
+  tibble(
+    date = election_dates$date,
+    n = start:sheets
   ) %>%
-  tibble()
-
-
-# Now, we'll convert the constituency names to title case
-
-election_results <-
-  election_results %>%
   mutate(
-    constituency =
-      constituency %>%
-      snakecase::to_title_case()
+    data =
+      map2(
+        .x = n,
+        .y = date,
+        .f = function(x, y){
+
+          # Read data
+
+          dta <-
+            read_xlsx(
+              here("inst", "extdata", "1918-2019election_results_by_pcon.xlsx"),
+              sheet = x,
+              col_types = "text",
+              .name_repair = "minimal",
+              skip = 2
+            )
+
+
+          # Rename headers and drop first row
+
+          names(dta) <-
+            paste0(dta[1, ], names(dta)) %>%
+            str_remove("^Votes") %>%
+            tolower() %>%
+            str_remove("^na") %>%
+            str_remove("^ons ")
+          dta <- dta[-1, ]
+
+
+          # Clean data set
+
+          dta <-
+            dta %>%
+            drop_na(id) %>%
+            remove_constant() %>%
+            select(
+              -any_of(""),
+              -matches("vote share"),
+              -`total votes`,
+              -turnout
+            ) %>%
+            rename(
+              region = `country/region`
+            ) %>%
+            mutate(
+              constituency =
+                constituency %>%
+                stringr::str_replace("&", "and") %>%
+                tolower %>%
+                iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
+                tools::toTitleCase()
+            )
+
+
+          # Create seats variable if none exists
+
+          if(sum(str_detect("seats", names(dta))) == 0){
+            dta <-
+              dta %>%
+              mutate(seats = 1) %>%
+              relocate(seats, .after = "id")
+          }
+
+
+          # Pivot to long format
+
+          dta <-
+            dta %>%
+            pivot_longer(
+              cols = c(-id, -seats, -constituency, -county, -region, -electorate),
+              names_to = "party",
+              values_to = "votes"
+            )
+
+
+          # Add date
+
+          dta <-
+            dta %>%
+            mutate(date = y) %>%
+            relocate(date, .before = "id")
+
+
+          # Return to user
+
+          return(dta)
+
+        }
+      )
   )
 
 
-# And we'll replace the election year with the actual election date
+# Convert to tibble and recode
 
-election_results <-
-  election_dates %>%
+constituency_results <-
+  do.call("rbind.data.frame", constituency_results$data) %>%
   mutate(
-    year = ifelse(month(date) == 10 & year(date) == 1974, 1974.5, year(date)),
-    month = month(date)
+    party =
+      party %>%
+      britpol::clean_party_names(
+        party_names =
+          list(
+            `^con|^tor` = "con",
+            `^lab` = "lab",
+            `^lib|^ld|^alliance$` = "lib",
+            `^snp|^scotnat|^scottishnat|^pc|^plaid|wales` = "nat"
+          )
+      ) %>%
+      str_replace("Other", "oth"),
+    votes = as.numeric(votes)
   ) %>%
-  right_join(
-    election_results %>%
-      mutate(
-        election =
-          case_when(
-            election == "1974F" ~ "1974",
-            election == "1974O" ~ "1974.5",
-            TRUE ~ election
-          ) %>%
-          as.numeric()
+  group_by(date, id, seats, constituency, county, region, electorate, party) %>%
+  summarise(
+    votes = sum(votes, na.rm = T),
+    .groups = "drop")
+
+
+# Now we'll pivot the data to wide format
+
+constituency_results <-
+  constituency_results %>%
+  mutate(votes = ifelse(votes == 0, NA, votes)) %>%
+  pivot_wider(
+    names_from = "party",
+    values_from = "votes"
+  )
+
+
+# Sort out id number
+
+constituency_results <-
+  constituency_results %>%
+  mutate(
+    scheme =
+      case_when(
+        year(date) < 1955 ~ NA_character_,
+        year(date) > 1955 & year(date) <= 1979 ~ "pano",
+        year(date) > 1979 & year(date) <= 1992 ~ "nomis",
+        year(date) > 1992 & year(date) <= 2001 ~ "pca",
+        year(date) > 2001 & year(date) <= 2010 & region != "Scotland" ~ "pca",
+        year(date) > 2001 & year(date) <= 2010 & region == "Scotland" ~ "ons",
+        year(date) > 2010 ~ "ons"
       ),
-    by = c("year" = "election")
+    id = ifelse(is.na(scheme) == T, NA, id)
   ) %>%
-  select(-year, -month)
+  pivot_wider(
+    names_from = "scheme",
+    values_from = "id"
+  ) %>%
+  remove_constant() %>%
+  relocate(c(pano, nomis, pca, ons), .before = "county")
+
 
 
 # Next, we'll give the data some variable labels
 
-var_label(election_results) <-
+var_label(constituency_results) <-
   list(
     date = "Date of election",
-    constituency = "Name of parliamentary constituency",
     seats = "Number of seats the constituency contains",
+    constituency = "Name of parliamentary constituency",
+    pano = "Press Association code",
+    nomis = "NOMIS code",
+    pca = "PCA code",
+    ons = "ONS GSS code",
+    county = "County",
     region = "Region or country",
     electorate = "Size of electorate",
-    con_votes = "Number of Conservative votes",
-    lab_votes = "Number of Labour votes",
-    lib_votes = "Number of Liberal votes",
-    nat_votes = "Number of Nationalist votes (Scotland and Wales only)",
-    oth_votes = "Number of other votes"
+    con = "Number of Conservative votes",
+    lab = "Number of Labour votes",
+    lib = "Number of Liberal votes",
+    nat = "Number of Nationalist votes (Scotland and Wales only)",
+    oth = "Number of other votes"
   )
 
 
 # Finally, we'll save the data to the package
 
 usethis::use_data(
-  election_results,
+  constituency_results,
   internal = FALSE,
   overwrite = TRUE
 )
 
 
 
-# 6. Get historic constituencies ------------------------------------------
-
-# First, let's download the constituency data using the hansard package
-
-constituencies <- constituencies()
-
-
-# Now, we'll select and rename the variables
-
-constituencies <-
-  constituencies %>%
-  select(
-    name = label_value,
-    gss_code,
-    start = started_date_value,
-    end = ended_date_value
-  )
-
-
-# Next, we'll organise them by start date and name, convert the
-# start and end dates from POSIXct to date format, and mark any
-# empty gss_codes as NA.
-
-constituencies <-
-  constituencies %>%
-  arrange(start, name) %>%
-  mutate(
-    name = name %>% str_replace("&", "and"),
-    gss_code = ifelse(gss_code == "", NA, gss_code),
-    start = as_date(start),
-    end = as_date(end)
-  )
-
-
-# The data contain a dummy constituency for some reason, so let's
-# remove it
-
-constituencies <-
-  constituencies %>%
-  filter(name != "Dummy constituency")
-
-
-# Let's also remove any diacritics from the constituency names too
-
-constituencies <-
-  constituencies %>%
-  mutate(
-    name = iconv(name, from = "UTF-8", to = "ASCII//TRANSLIT")
-  )
-
-
-# Next, we'll give the data some variable labels
-
-var_label(constituencies) <-
-  list(
-    name = "Name of parliamentary constituency",
-    gss_code = "Government Statistical Service code",
-    start = "Date constituency was introduced",
-    end = "Date constituency was retired"
-  )
-
-
-# Finally, we'll save the data to the package
-
-usethis::use_data(
-  constituencies,
-  internal = FALSE,
-  overwrite = TRUE
-)
-
-
-
-# 7. Create list of red wall constituencies -------------------------------
+# 6. Create list of red wall constituencies -------------------------------
 
 # Create tibble
 
@@ -644,7 +692,7 @@ usethis::use_data(
 
 
 
-# 8. Create replication info ----------------------------------------------
+# 7. Create replication info ----------------------------------------------
 
 # Now that we've saved all of our data, we can save the session information
 # so that we can recall it later if needed.

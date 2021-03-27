@@ -424,16 +424,18 @@ constituency_results <-
               -`total votes`,
               -turnout
             ) %>%
-            rename(
-              region = `country/region`
-            ) %>%
+            rename(region = `country/region`) %>%
             mutate(
               constituency =
                 constituency %>%
+                stringr::str_replace(",", ", ") %>%
+                stringr::str_replace("\\)", "\\) ") %>%
                 stringr::str_replace("&", "and") %>%
                 tolower %>%
+                stringr::str_replace("st\\.", "st\\ ") %>%
                 iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%
-                tools::toTitleCase()
+                tools::toTitleCase() %>%
+                stringr::str_replace("  ", " ")
             )
 
 
@@ -522,9 +524,9 @@ constituency_results <-
         year(date) > 1955 & year(date) <= 1979 ~ "pano",
         year(date) > 1979 & year(date) <= 1992 ~ "nomis",
         year(date) > 1992 & year(date) <= 2001 ~ "pca",
-        year(date) > 2001 & year(date) <= 2010 & region != "Scotland" ~ "pca",
-        year(date) > 2001 & year(date) <= 2010 & region == "Scotland" ~ "ons",
-        year(date) > 2010 ~ "ons"
+        year(date) > 2001 & year(date) < 2010 & region != "Scotland" ~ "pca",
+        year(date) > 2001 & year(date) < 2010 & region == "Scotland" ~ "ons",
+        year(date) >= 2010 ~ "ons"
       ),
     id = ifelse(is.na(scheme) == T, NA, id)
   ) %>%
@@ -534,6 +536,49 @@ constituency_results <-
   ) %>%
   remove_constant() %>%
   relocate(c(pano, nomis, pca, ons), .before = "county")
+
+
+# Convert vote and seat counts to numeric
+
+constituency_results <-
+  constituency_results %>%
+  mutate(
+    seats = as.numeric(seats),
+    electorate = as.numeric(electorate),
+    con = as.numeric(con),
+    lab = as.numeric(lab),
+    lib = as.numeric(lib),
+    oth = as.numeric(oth),
+    nat = as.numeric(nat)
+  ) %>%
+  relocate("nat", .before = "oth")
+
+
+# Merge in post-2010 PANO data thanks to Chris Hanretty
+
+load(here("inst", "extdata", "pano_data.rda"))
+
+constituency_results <-
+  left_join(
+    constituency_results,
+    pano_data,
+    by = c("ons" = "ons_id")
+  ) %>%
+  mutate(
+    pa_id = as.character(pa_id),
+    pano =
+      case_when(
+        year(date) >= 2010 ~ pa_id,
+        TRUE ~ pano
+      )
+  ) %>%
+  select(
+    -parlparse_id,
+    -hansard_id,
+    -name,
+    -pa_id,
+    -regex
+  )
 
 
 

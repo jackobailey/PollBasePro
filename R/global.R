@@ -43,6 +43,10 @@ utils::globalVariables(
     "pollbase",
     "election",
     "get_last_election",
-    "constituencies"
+    "constituencies",
+    "nat",
+    "oth",
+    "region",
+    "total"
     )
 )

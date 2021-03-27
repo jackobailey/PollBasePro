@@ -1135,17 +1135,17 @@ update_pollbasepro <- function(){
   # Get election results
 
   election_results <-
-    britpol::election_results %>%
+    britpol::constituency_results %>%
     dplyr::filter(
       !region %in% c("University", "Northern Ireland"),
-      sum(c(con_votes, lab_votes, lib_votes, nat_votes, oth_votes), na.rm = T) >0
+      sum(c(con, lab, lib, nat, oth), na.rm = T) >0
     ) %>%
     dplyr::group_by(date) %>%
     dplyr::summarise(
-      total = sum(c(con_votes, lab_votes, lib_votes, nat_votes, oth_votes), na.rm = T),
-      con = sum(con_votes, na.rm = T)/total,
-      lab = sum(lab_votes, na.rm = T)/total,
-      lib = sum(lib_votes, na.rm = T)/total
+      total = sum(c(con, lab, lib, nat, oth), na.rm = T),
+      con = sum(con, na.rm = T)/total,
+      lab = sum(lab, na.rm = T)/total,
+      lib = sum(lib, na.rm = T)/total
     ) %>%
     tidyr::pivot_longer(
       cols = c(con, lab, lib),

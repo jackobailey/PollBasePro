@@ -57,6 +57,11 @@ clean_pcon_names <- function(x){
   }
 
 
+  # Count non-perfect matches
+
+  non_perf <- length(x[x == tolower(x)])
+
+
   # Make best guess of missing strings based on length of data
 
   if(length(x[x == tolower(x)]) > 0){
@@ -66,22 +71,15 @@ clean_pcon_names <- function(x){
   }
 
 
-  # Remove any unmatched names
+  # Print number of non-perfect matches
 
-  x[x == tolower(x)] <- NA
-
-
-  # Print number of unmatched cases if > 0
-
-  if(sum(is.na(x)) > 0){
+  if(non_perf > 0){
     warning(
       paste0(
         "There ",
-        ifelse(sum(is.na(x)) == 1, "was ", "were "),
-        sum(is.na(x)), " unmatched ",
-        ifelse(sum(is.na(x)) == 1, "case. ", "cases. "),
-        ifelse(sum(is.na(x)) == 1, "It is ", "They are "),
-        "now coded as NA."
+        ifelse(non_perf == 1, "was ", "were "),
+        non_perf, " non-perfect ",
+        ifelse(non_perf == 1, "match. ", "matches.")
       )
     )
   }

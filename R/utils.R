@@ -1459,4 +1459,3 @@ create_twitter_content <- function(data = britpol::pollbasepro, path = NULL){
   sink()
 
 }
-

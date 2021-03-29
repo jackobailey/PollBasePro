@@ -1,6 +1,6 @@
 #' Clean British Parliamentary Constituency Names
 #'
-#' British parliamentary constituencies are not often coded in a consistent manner. Fixing this can also be very time-consuming. This function uses the constituencies dataset in the package to standardise a vector of constituencies names.
+#' British parliamentary constituencies are not often coded in a consistent manner. Fixing this can also be very time-consuming. This function uses the constituencies dataset in the package to standardise a vector of constituencies names. Note that where strings are uncertain this function can take a while to run.
 #'
 #' @param x A vector of constituency names.
 #' @return A vector of cleaned constituency names.
@@ -53,7 +53,16 @@ clean_pcon_names <- function(x){
   # (let me know if you know how to speed this up)
 
   for(i in 1:length(ref)){
-    x[agrep(ref[i], x, max.distance = 0.2)] <- britpol::constituency_results$constituency[i]
+    x[x == ref[i]] <- britpol::constituency_results$constituency[i]
+  }
+
+
+  # Make best guess of missing strings based on length of data
+
+  if(length(x[x == tolower(x)]) > 0){
+    for(i in which(x == tolower(x))){
+      x[i] <- britpol::constituency_results$constituency[which.max(RecordLinkage::jarowinkler(ref, x[i]))]
+    }
   }
 
 

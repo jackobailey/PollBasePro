@@ -40,4 +40,5 @@ Imports:
     dplyr,
     lubridate,
     data.table,
-    magrittr
+    magrittr,
+    RecordLinkage

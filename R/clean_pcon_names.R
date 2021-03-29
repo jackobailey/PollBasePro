@@ -61,7 +61,7 @@ clean_pcon_names <- function(x){
 
   if(length(x[x == tolower(x)]) > 0){
     for(i in which(x == tolower(x))){
-      x[i] <- britpol::constituency_results$constituency[which.max(RecordLinkage::jarowinkler(ref, x[i]))]
+      x[i] <- britpol::constituency_results$constituency[which.max(comparator::JaroWinkler()(ref, x[i]))]
     }
   }
 

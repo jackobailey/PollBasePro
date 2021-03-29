@@ -41,4 +41,4 @@ Imports:
     lubridate,
     data.table,
     magrittr,
-    RecordLinkage
+    comparator

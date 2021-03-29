@@ -53,7 +53,7 @@ clean_pcon_names <- function(x){
   # (let me know if you know how to speed this up)
 
   for(i in 1:length(ref)){
-    x[x == ref[i]] <- britpol::constituency_results$constituency[i]
+    x[agrep(ref[i], x, max.distance = 0.2)] <- britpol::constituency_results$constituency[i]
   }
 
 

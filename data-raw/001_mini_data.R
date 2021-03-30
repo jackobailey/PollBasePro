@@ -581,6 +581,35 @@ constituency_results <-
   )
 
 
+# Merge in 92-05 PANO data thanks to Justin Fisher
+
+pano_92_05 <-
+  read_csv(here("inst", "extdata", "pano92_05.csv")) %>%
+  mutate(
+    name =
+      name %>%
+      britpol::clean_pcon_names()
+  ) %>%
+  rename(pano92 = pano)
+
+constituency_results <-
+  constituency_results %>%
+  mutate(year = year(date)) %>%
+  left_join(
+    pano_92_05,
+    by = c("constituency" = "name", "year")
+  ) %>%
+  mutate(
+    pano = ifelse(is.na(pano) == T, pano92, pano)
+  ) %>%
+  select(
+    -year,
+    -pano92
+  )
+
+
+# Add missing counties
+
 
 # Next, we'll give the data some variable labels
 

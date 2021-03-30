@@ -1,4 +1,4 @@
-Analysis completed: 2021-03-27 10:33:46
+Analysis completed: 2021-03-30 15:48:38
 
 R version 4.0.4 (2021-02-15)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -22,11 +22,12 @@ other attached packages:
 [13] readr_1.4.0      tidyr_1.1.3      tibble_3.1.0     ggplot2_3.3.3    tidyverse_1.3.0 
 
 loaded via a namespace (and not attached):
- [1] tidyselect_1.1.0  snakecase_0.11.0  colorspace_2.0-0  vctrs_0.3.6       generics_0.1.0    usethis_2.0.1    
- [7] XML_3.99-0.6      utf8_1.2.1        rlang_0.4.10      pillar_1.5.1      glue_1.4.2        withr_2.4.1      
-[13] DBI_1.1.1         dbplyr_2.1.0      modelr_0.1.8      lifecycle_1.0.0   munsell_0.5.0     gtable_0.3.0     
-[19] cellranger_1.1.0  rvest_1.0.0       curl_4.3          fansi_0.4.2       broom_0.7.5       Rcpp_1.0.6       
-[25] scales_1.1.1      backports_1.2.1   desc_1.3.0        jsonlite_1.7.2    fs_1.5.0          britpol_0.1.0    
-[31] hms_1.0.0         stringi_1.5.3     rprojroot_2.0.2   grid_4.0.4        cli_2.3.1         tools_4.0.4      
-[37] magrittr_2.0.1    crayon_1.4.1      pkgconfig_2.0.3   ellipsis_0.3.1    data.table_1.14.0 xml2_1.3.2       
-[43] reprex_1.0.0      assertthat_0.2.1  httr_1.4.2        rstudioapi_0.13   R6_2.5.0          compiler_4.0.4   
+ [1] Rcpp_1.0.6        assertthat_0.2.1  rprojroot_2.0.2   utf8_1.2.1        R6_2.5.0          comparator_0.1.1 
+ [7] cellranger_1.1.0  backports_1.2.1   reprex_1.0.0      httr_1.4.2        pillar_1.5.1      rlang_0.4.10     
+[13] curl_4.3          rstudioapi_0.13   data.table_1.14.0 desc_1.3.0        munsell_0.5.0     proxy_0.4-25     
+[19] broom_0.7.5       compiler_4.0.4    modelr_0.1.8      pkgconfig_2.0.3   tidyselect_1.1.0  XML_3.99-0.6     
+[25] fansi_0.4.2       crayon_1.4.1      dbplyr_2.1.0      withr_2.4.1       grid_4.0.4        jsonlite_1.7.2   
+[31] gtable_0.3.0      lifecycle_1.0.0   DBI_1.1.1         magrittr_2.0.1    scales_1.1.1      cli_2.3.1        
+[37] stringi_1.5.3     fs_1.5.0          snakecase_0.11.0  xml2_1.3.2        ellipsis_0.3.1    generics_0.1.0   
+[43] vctrs_0.3.6       tools_4.0.4       britpol_0.1.0     glue_1.4.2        hms_1.0.0         clue_0.3-58      
+[49] colorspace_2.0-0  cluster_2.1.1     rvest_1.0.0       usethis_2.0.1    

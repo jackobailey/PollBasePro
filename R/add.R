@@ -204,7 +204,7 @@ add_elections <- function(data = NULL, date = "date", last_name = "last_elec", n
   # Create dataset of election pairs
 
   election_dates <-
-    election_dates %>%
+    britpol::election_dates %>%
     dplyr::rename(start = date) %>%
     dplyr::mutate(
       end =

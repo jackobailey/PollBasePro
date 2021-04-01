@@ -68,12 +68,10 @@ polling_multiverse <- function(start = NULL, end = NULL){
 
   pollbasepro <-
     dplyr::left_join(
-      britpol::pollbasepro,
       pollbase,
+      britpol::pollbasepro,
       "date"
-    ) %>%
-    dplyr::filter(con_err != 0) %>%
-    na.omit()
+    )
 
 
   # Sample each row once from a binomial distribution
@@ -87,30 +85,18 @@ polling_multiverse <- function(start = NULL, end = NULL){
       lib = rbinom(1, size = n, prob = rnorm(1e3, lib_est, lib_err))/n
     ) %>%
     dplyr::select(
+      id,
       date,
       con,
       lab,
       lib
-    )
-
-
-  # Arrange data by date
-
-  pollbase <- dplyr::arrange(pollbase, date)
-  pollbasepro <-
-    pollbasepro %>%
-    dplyr::arrange(date) %>%
-    dplyr::select(-date)
-
-
-  # Join data objects
-
- pollbase <- cbind(pollbase, pollbasepro)
+    ) %>%
+    dplyr::ungroup()
 
 
 
   # Return new polling universe to user
 
-  return(pollbase)
+  return(pollbasepro)
 
 }

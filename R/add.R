@@ -58,7 +58,7 @@ add_pm <- function(data = NULL, date = "date", name = "prime_minister"){
         variable = "prime_minister"
       )
     ) %>%
-    tibble::tibble()
+    dplyr::tibble()
 
 
   # Rename the column
@@ -133,7 +133,7 @@ add_pm_party <- function(data = NULL, date = "date", name = "pm_party"){
         variable = "pm_party"
       )
     ) %>%
-    tibble::tibble()
+    dplyr::tibble()
 
 
   # Rename the column
@@ -234,7 +234,7 @@ add_elections <- function(data = NULL, date = "date", last_name = "last_elec", n
           variable = "start_id"
         )
       ) %>%
-      tibble::tibble()
+      dplyr::tibble()
 
     # Rename the column
 
@@ -254,7 +254,7 @@ add_elections <- function(data = NULL, date = "date", last_name = "last_elec", n
           variable = "end_id"
         )
       ) %>%
-      tibble::tibble()
+      dplyr::tibble()
 
     # Rename the column
 
@@ -278,7 +278,7 @@ add_elections <- function(data = NULL, date = "date", last_name = "last_elec", n
           variable = "end_id"
         )
       ) %>%
-      tibble::tibble()
+      dplyr::tibble()
 
     # Rename the column
 
@@ -327,7 +327,7 @@ lookup_interval <- function(lookup_date, interval_data, variable){
 
   # Convert to tibble
 
-  dta <- tibble::tibble(dta)
+  dta <- dplyr::tibble(dta)
 
 
   # Return to user
@@ -384,7 +384,7 @@ add_lead <- function(data = NULL, party1 = "con", party2 = "lab", name = "lead")
 
   # Append to data
 
-  data <- tibble::tibble(cbind(data, lead))
+  data <- dplyr::tibble(cbind(data, lead))
 
 
   # Return data to user

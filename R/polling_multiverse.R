@@ -79,21 +79,9 @@ polling_multiverse <- function(start = NULL, end = NULL){
     pollbasepro %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
-      con =
-        dplyr::case_when(
-          con_err == 0 ~ con_est,
-          TRUE ~ rbinom(1, size = n, prob = con_est)/n
-        ),
-      lab =
-        dplyr::case_when(
-          lab_err == 0 ~ lab_est,
-          TRUE ~ rbinom(1, size = n, prob = lab_est)/n
-        ),
-      lib =
-        dplyr::case_when(
-          lib_err == 0 ~ lib_est,
-          TRUE ~ rbinom(1, size = n, prob = lib_est)/n
-        )
+      con = rbinom(1, size = n, prob = con_est)/n,
+      lab = rbinom(1, size = n, prob = lab_est)/n,
+      lib = rbinom(1, size = n, prob = lib_est)/n
     ) %>%
     dplyr::select(
       date,

@@ -35,7 +35,9 @@ polling_multiverse <- function(start = NULL, end = NULL){
       pollbase %>%
       dplyr::filter(end >= {{start}})
 
-  } else if(is.null(end) == F){
+  }
+
+  if(is.null(end) == F){
 
     pollbase <-
       pollbase %>%
@@ -70,6 +72,7 @@ polling_multiverse <- function(start = NULL, end = NULL){
       pollbase,
       "date"
     ) %>%
+    dplyr::filter(con_err != 0) %>%
     na.omit()
 
 

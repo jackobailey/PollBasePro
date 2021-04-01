@@ -53,7 +53,7 @@ polling_multiverse <- function(start = NULL, end = NULL){
       by = c("end" = "date")
     ) %>%
     dplyr::mutate(
-      n = ifelse(is.na(n) == T, n_est, n)
+      n = ifelse(is.na(n) == T, round(n_est, 0), n)
     ) %>%
     dplyr::select(
       "id",

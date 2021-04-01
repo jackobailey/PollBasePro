@@ -49,7 +49,7 @@ polling_multiverse <- function(start = NULL, end = NULL){
   pollbase <-
     dplyr::left_join(
       pollbase,
-      samplesizes,
+      britpol::samplesizes,
       by = c("end" = "date")
     ) %>%
     dplyr::mutate(
@@ -91,14 +91,18 @@ polling_multiverse <- function(start = NULL, end = NULL){
     )
 
 
+  # Arrange data by date
+
+  pollbase <- dplyr::arrange(pollbase, date)
+  pollbasepro <-
+    pollbasepro %>%
+    dplyr::arrange(date) %>%
+    dplyr::select(-date)
+
+
   # Join data objects
 
-  pollbase <-
-    dplyr::left_join(
-      pollbase,
-      pollbasepro,
-      "date"
-    )
+ pollbase <- cbind(pollbase, pollbasepro)
 
 
 

@@ -2,12 +2,12 @@
 
 export("%>%")
 export(add_elections)
+export(add_lead)
 export(add_pm)
 export(add_pm_party)
 export(barnett)
 export(clean_party_names)
 export(clean_pcon_names)
-export(compute_lead)
 export(is_red_wall)
 export(party_colours)
 export(subset_date)

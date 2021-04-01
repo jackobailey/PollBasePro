@@ -371,7 +371,7 @@ add_lead <- function(data = NULL, party1 = "con", party2 = "lab", name = "lead")
   # Compute lead
 
   lead <-
-    tibble(
+    dplyr::tibble(
       lead_est = data[[paste0(party1, "_est")]] - data[[paste0(party2, "_est")]],
       lead_err = sqrt(data[[paste0(party1, "_err")]]^2 + data[[paste0(party2, "_err")]]^2)
     )

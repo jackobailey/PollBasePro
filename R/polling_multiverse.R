@@ -71,7 +71,8 @@ polling_multiverse <- function(start = NULL, end = NULL){
       pollbase,
       britpol::pollbasepro,
       "date"
-    )
+    ) %>%
+    na.omit()
 
 
   # Sample each row once from a binomial distribution

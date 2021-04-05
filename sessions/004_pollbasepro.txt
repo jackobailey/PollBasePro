@@ -1,4 +1,4 @@
-Analysis completed: 2021-03-31 20:09:36
+Analysis completed: 2021-04-05 08:48:50
 
 R version 4.0.4 (2021-02-15)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -19,7 +19,7 @@ attached base packages:
 loaded via a namespace (and not attached):
  [1] httr_1.4.2          pkgload_1.2.0       tidyr_1.1.3         jsonlite_1.7.2      viridisLite_0.3.0  
  [6] here_1.0.1          assertthat_0.2.1    posterior_0.1.3     remotes_2.2.0       sessioninfo_1.1.1  
-[11] backports_1.2.1     pillar_1.5.1        glue_1.4.2          digest_0.6.27       checkmate_2.0.0    
+[11] pillar_1.5.1        backports_1.2.1     glue_1.4.2          digest_0.6.27       checkmate_2.0.0    
 [16] rvest_1.0.0         colorspace_2.0-0    htmltools_0.5.1.1   XML_3.99-0.6        pkgconfig_2.0.3    
 [21] devtools_2.3.2      labelled_2.8.0      haven_2.3.1         purrr_0.3.4         scales_1.1.1       
 [26] webshot_0.5.2       processx_3.4.5      svglite_2.0.0       cmdstanr_0.3.0.9000 tibble_3.1.0       

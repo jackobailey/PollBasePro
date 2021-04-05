@@ -10,8 +10,8 @@ simple. It contains two pre-formatted datasets, plus a host of useful
 functions. The first dataset, `pollbase`, is a long-format version of
 Mark Pack’s dataset of historic British public opinion polls combined
 with more recent data from Wikipedia. The second, `pollbasepro`,
-provides 24,052 daily estimates of voting intention figures for each of
-Britain’s three largest parties from 26 May 1955 to 31 March 2021.
+provides 24,057 daily estimates of voting intention figures for each of
+Britain’s three largest parties from 26 May 1955 to 5 April 2021.
 
 To install the latest version of `{britpol}`, run the following code in
 `R`:
@@ -24,14 +24,14 @@ devtools::install_github("jackobailey/britpol")
 
 <img src="https://raw.githubusercontent.com/jackobailey/britpol/master/documentation/_assets/timeplot_gh.png" alt="Recent polling figures" align="right" width="400" style="padding: 0 15px; float: right;"/>
 
-**British Poll of Polls, 31 March 2021:**
+**British Poll of Polls, 5 April 2021:**
 
--   **Conservative Party:** 41% (39% to 44%)
--   **Labour Party:** 37% (34% to 39%)
+-   **Conservative Party:** 41% (38% to 44%)
+-   **Labour Party:** 37% (34% to 40%)
 -   **Liberal Democrats:** 9% (8% to 10%)
 
 `pollbasepro` suggests that the Conservative Party is the largest party
-in Britain. They hold a lead over the Labour Party of around 4% (1% to
+in Britain. They hold a lead over the Labour Party of around 4% (0% to
 8%). This puts the Labour Party in second and the Liberal Democrats in
 third.
 
@@ -63,7 +63,7 @@ are as follows:
 
 -   **Data:** Bailey, J., M. Pack, and L. Mansillo (2021) PollBasePro:
     Daily Estimates of Aggregate Voting Intention in Great Britain from
-    1955 to 2021 v.0.1.0 \[computer file\], March 2021. Retrieved from
+    1955 to 2021 v.0.1.0 \[computer file\], April 2021. Retrieved from
     <https://doi.org/10.7910/DVN/3POIQW>.
 
 -   **Paper:** Bailey, J., M. Pack, and L. Mansillo (2021) PollBasePro:

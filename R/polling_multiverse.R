@@ -35,6 +35,13 @@ polling_multiverse <- function(start = NULL, end = NULL){
     stop("Please provide a valid date range of the form YYYY-MM-DD using the start and end arguments.")
   }
 
+  # Warning if dates seem implausible or suggest YMD mixed up
+  if(as.Date(start) < as.Date("0032-01-01") ||
+     as.Date(end) < as.Date("0032-01-01")){
+    warning("Make sure you specified your start and end dates in YYYY-MM-DD format.")
+  }
+
+
   # Error if date range rules out finding any polls
   if(as.Date(end) < min(britpol::pollbasepro$date) ||
      as.Date(start) > max(britpol::pollbasepro$date)){
@@ -46,10 +53,6 @@ polling_multiverse <- function(start = NULL, end = NULL){
     stop("The end date of your search must be later than the start date.")
   }
 
-  # Warning if dates seem implausible or suggest YMD mixed up
-  if(as.Date(start) < as.Date("1900-01-01")){
-    warning("Make sure you specified your start and end dates in YYYY-MM-DD format.")
-  }
 
   # Convert start and end to dates
 

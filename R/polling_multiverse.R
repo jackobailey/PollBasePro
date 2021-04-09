@@ -29,7 +29,6 @@
 polling_multiverse <- function(start = NULL, end = NULL){
 
   # Error if dates not specified
-
   if(is.null(start) == T || is.null(end) == T ||
      is.na(as.Date(start)) || is.na(as.Date(end))){
     stop("Please provide a valid date range of the form YYYY-MM-DD using the start and end arguments.")
@@ -41,6 +40,11 @@ polling_multiverse <- function(start = NULL, end = NULL){
     warning("Make sure you specified your start and end dates in YYYY-MM-DD format.")
   }
 
+  # Error if end date before start date
+  if(as.Date(end) < as.Date(start)){
+    stop("The end date of your search must be later than the start date.")
+  }
+
 
   # Error if date range rules out finding any polls
   if(as.Date(end) < min(britpol::pollbasepro$date) ||
@@ -48,10 +52,7 @@ polling_multiverse <- function(start = NULL, end = NULL){
     stop("The date range you have specified is outside of the range covered by available polling data.")
   }
 
-  # Error if end date before start date
-  if(as.Date(end) < as.Date(start)){
-    stop("The end date of your search must be later than the start date.")
-  }
+
 
 
   # Convert start and end to dates

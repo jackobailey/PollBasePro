@@ -1,12 +1,12 @@
 ---
 title: |
-  | PollBasePro: Daily Estimates of Aggregate Voting Intention in Britain from `r format(min(britpol::pollbasepro$date), "%Y")` to the Present Day\thanks{This article benefitted from much useful feedback. We owe particular thanks 6, who inspired this project and provided much useful feedback. We would also like to thank Hannah Willis, Chris Wlezien, and Z for offering their time to review our manuscript. Finally, we would like to extend a special thanks to all of the volunteers who work to maintain such a comprehensive list of British opinion polling data on Wikipedia.}
+  | PollBasePro: Daily Estimates of Aggregate Voting Intention in Britain from `r format(min(britpol::pollbasepro$date), "%Y")` to the Present Day\thanks{This article benefitted from much useful feedback. We owe particular thanks Chris Hanretty, who inspired this project and provided much useful feedback. We would also like to thank Hannah Willis, Chris Wlezien, and Patrick English for offering their time to review our manuscript. Finally, we would like to extend a special thanks to all of the volunteers who work to maintain such a comprehensive list of British opinion polling data on Wikipedia.}
 author: |
   | Jack Bailey\thanks{Research Associate, Department of Politics, University of Manchester, UK. If you have any comments or questions, feel free to contact me either by email (\href{mailto:jack.bailey@manchester.ac.uk}{jack.bailey@manchester.ac.uk}) or on Twitter (\href{https://www.twitter.com/PoliSciJack}{@PoliSciJack}).}, Mark Pack\thanks{President, The Liberal Democrats, UK}, & Luke Mansillo\thanks{PhD Candidate, Department of Government \& International Relations, University of Sydney, Australia}
 date: |
   | \small This version compiled `r stringr::str_remove(format(Sys.time(), '%d %B %Y'), "^0")` using PollBasePro `r paste0("v", packageVersion("britpol"))`
 abstract: |
-  | Political scientists often use public opinion polls to test their theories. Yet these data present some difficulties. First, they are noisy. Second, they occur at irregular intervals. Third, they measure both public preferences and pollsters' survey design choices. We introduce a new dataset, PollBasePro, that accounts for these issues. It includes voting intention estimates for each of Britain's three largest parties on each day between the 1955 general election and the present. Given that the dataset covers `r format(nrow(britpol::pollbasepro), big.mark = ",")` days in total, it is more comprehensive than any existing time series of public opinion in Britain. As a result, we expect PollBasePro to be an important resource for students of British politics in the years to come.
+  | Political scientists often use public opinion polls to test their theories. Yet these data present some difficulties. First, they are noisy. Second, they occur at irregular intervals. Third, they measure both public preferences and pollsters' survey design choices. We introduce a new dataset, PollBasePro, that accounts for these issues. It includes voting intention estimates for each of Britain's three largest parties on each day between the 1955 general election and the present. As the dataset covers `r format(nrow(britpol::pollbasepro), big.mark = ",")` days in total, it is perhaps more comprehensive than any other existing time series of British political opinion. We then use our estimates to test a question of pressing importance: how daily deaths attributable to COVID-19 have influenced support for the governing Conservative Party.
   |
   | \textbf{\textsf{Keywords:}} Opinion polls; public opinion; British politics; Bayesian methods.
 indent: yes
@@ -189,24 +189,24 @@ knitr::opts_chunk$set(dev = "cairo_pdf")
 
 # Introduction
 
-Beleaguered politicians often remark that the "only poll that matters is the election itself". Like much that politicians say, this is not true. Though elections decide who governs, public opinion polls are important too: they let us track how popular parties are in the time between elections. Polling is especially important in Britain. Unlike in many countries, British governments have some control over scheduling elections. As a result, the governing party's standing is often one of the only factors that decides when it will hold an election [@smith2003].
+Beleaguered politicians often remark that the "only poll that matters is the election itself". Like much that politicians say, this is not true. Though elections decide who governs, public opinion polls are important too: they tell us how popular parties are in the time between elections. Polling is especially important in Britain. Unlike in some countries, British governments can control the election schedule. As a result, the governing party's standing is often one of the only factors that decides when an election will occur [@smith2003].
 
 Since the advent of universal suffrage in 1928, Britain has held only 24 general elections. This is not a large sample. Political scientists have, thus, turned to public opinion polls to test their theories. Still, these data present some difficulties. Three issues are most serious. First, that polling data are noisy and may be prone to bias. Second, that they occur at irregular time intervals. And, third, that they measure both real changes in the electorate's preferences *and* the design choices of the companies that run them.
 
-In this paper, we introduce a new dataset---*PollBasePro*---that overcomes these issues. It includes `r format(nrow(pollbasepro), big.mark = ",")` daily estimates of aggregate voting intention for each of Britain's three largest parties on each day between `r format(min(pollbasepro$date), "%d %B %Y")` and `r format(max(pollbasepro$date), "%d %B %Y")`. Covering `r format(nrow(pollbasepro), big.mark = ",")` days in total, PollBasePro permits a degree of specificity and flexibility beyond that of any existing time series data. In the sections that follow, we elaborate on the dataset. First, we describe the methods and the data that we use to derive our estimates. Next, we consider what PollBasePro reveals about British politics since 1955 and show how to use it to test hypotheses. We then provide some initial conclusions and remark on how we might develop PollBasePro in the future.
+We introduce a new dataset---*PollBasePro*---that overcomes these issues. It includes daily estimates of aggregate voting intention for each of Britain's three largest parties on each day between `r format(min(pollbasepro$date), "%d %B %Y")` and `r format(max(pollbasepro$date), "%d %B %Y")`. Covering `r format(nrow(pollbasepro), big.mark = ",")` days in total, PollBasePro permits a degree of specificity and flexibility beyond that of any existing time series. In the sections that follow, we elaborate on the dataset. First, we describe the methods and the data that we use to derive our estimates. Next, we consider what PollBasePro reveals about British politics since 1955 and show how to use it to test answer a question of pressing concern: how do deaths related to COVID-19 affect public support for the governing Conservative Party? We show that COVID-related deaths have led to a "rally 'round the flag" effect that has boosted Conservative support, though that this relationship has weakened, then reversed, as the pandemic has progressed. Finally, we provide some initial conclusions and then remark on how we might develop PollBasePro over the coming years.
 
 
 # Data, Estimation, and Validation
 
-Polling data have long informed political science research. For example, @goodhart1970 used Gallup and NOP polls to show that changes in the economy affect support for the incumbent party, thereby launching economic voting research. Though plentiful, these data come with some problems. As we mention above, three are most important.
+Polls have long informed political science. @goodhart1970, for instance, used Gallup and NOP polls to show that economic change affects incumbent party support, launching the economic vote. Yet though plentiful, these data have three important problems.
 
-First, polling data are noisy. This is an unavoidable consequence of sampling methodologies. As we cannot poll every person in a country, polls cannot provide exact estimates of public opinion. Rather, they represent draws from a distribution of *possible* estimates of public opinion. This noise is a type of measurement error, and failing to account for it can have important consequences. Where we use polls as an outcome, it reduces our statistical power. Where we use them as a predictor, it pulls real and existing effects towards zero.
+First, polling data are noisy. This is an unavoidable consequence of sampling methodologies. As we cannot poll every person in a country, polls cannot provide exact estimates of public opinion. Rather, they represent draws from a distribution of *possible* estimates of public opinion. Once introduced into formal statistical models, this sampling error becomes a form of measurement error. And failing to account for it can have serious consequences. Where we use polls as an outcome, it reduces our statistical power. Where we use them as a predictor, it pulls real and existing effects towards zero.
 
-Second, polling data occur at irregular intervals. What's more, they can cover any period of time from a single day to several weeks. Political scientists often assume that these figures measure public opinion on the poll's last day in the field. Of course, this is almost never true. It can also be a problem when major events occur partway through the data collection process. This is a major practical problem: polls can be difficult to match to other time series.
+Second, polling data occur at irregular intervals, covering any period of time from a single day to several weeks. Political scientists often assume that these figures measure public opinion on the poll's last day in the field. Of course, that is almost never true. It can also be a problem when major events occur partway through the data collection process. This is a major practical problem: polls can be difficult to match to other time series.
 
-Third, polls do not only measure changes in aggregate preferences. They also include systematic biases due to the design choices of the companies that run them. In the past, these biases have been so large that they have cast doubt on the efficacy of the polling industry. At the 2015 UK general election, most polls suggested that Labour had a good chance of becoming the largest party. But, on the night, the Conservatives won a small majority instead [@sturgis2018; @prosser2018c; @mellon2017a]. These biases were even more serious at the 2019 Australian Federal Election. As in the British case, Labor had a healthy lead in the polls. Yet, again, the Coalition beat them by around 8 percentage points [@mansillo2020].
+Third, polls do not only measure changes in aggregate political preferences. They also measure systematic biases that arise due to the design choices of the companies that run them. In the past, these biases have been so large that they have cast doubt on the efficacy of the polling industry. At the 2015 UK general election, most polls suggested that Labour had a good chance of becoming the largest party. But, on the night, the Conservatives won a small majority instead [@sturgis2018; @prosser2018b; @mellon2017]. These biases were even more serious at the 2019 Australian Federal Election. As in the British case, Labor had a healthy lead in the polls. Yet, again, the conservative Coalition beat them by around 8 percentage points [@mansillo2020].
 
-Our intention is simple: to produce voting intention estimates that account for these issues. To do so, we adapt the method in @jackman2005. Jackman's model has estimates for a given party start and end at known results from any given pair of elections. It then treats the party's level of support as a random walk between these two points. On any given day, the party's support depends on its support the day before, pollster-specific "house" effects, and random shocks. Jackman and Mansillo [-@mansillo2020; -@jackman2016] have used the model to track voting intention in Australia and @louwerse2016 have used it to estimate aggregate voting intention in Ireland. The full model specification is as follows^[Note that we provide a more in-depth explanation of how the model works and the steps that we have taken to produce our estimates in the user guide that accompanies the data.]:
+Our intention is simple: to produce voting intention estimates that account for these issues. To do so, we adapt the method in @jackman2005. Jackman's model has estimates for a given party start and end at known results from any given pair of elections. It then treats the party's level of support as a random walk between these two points. On any given day, the party's support depends on its support the day before, pollster-specific "house" effects, and random shocks. Jackman and Mansillo [-@mansillo2020; -@jackman2016] have used the model to track voting intention in Australia and @louwerse2016 have used it to estimate aggregate voting intention in Ireland. The full model specification is as follows, though note that we also provide a more complete explanation of how the model works and the steps that we have taken to produce our estimates in the accompanying appendix:
 
 \begin{align*}
 Poll_{i} &\sim \mathrm{Normal}(\mu_{i}, \sqrt{\sigma^2 + S_{i}^2}) \srlab{Likelihood function} \\
@@ -220,8 +220,6 @@ Poll_{i} &\sim \mathrm{Normal}(\mu_{i}, \sqrt{\sigma^2 + S_{i}^2}) \srlab{Likeli
 \end{align*}
 
 Two data sources inform our estimates. The first is the PollBase dataset of historic British voting intention polls [@pack2021]. The second is data compiled by volunteers on Wikipedia [for an example of this data, see @wikipedia2021]. Both are comprehensive, high-quality, and track British public opinion over the past several decades.
-
-The PollBase data come from a range of sources. This includes books published after each general election, polling almanacs, data shared amongst academics and pollsters, contemporary media reports, and figures from polling company websites. The data since the 1983 general election are complete, baring any individual errors. Likewise, data are complete for every general election campaign before 1979. The coverage between elections is more comprehensive for some pollsters than others^[We encourage any readers who might know of polls missing from the PollBase dataset to contact its author via his website (https://www.markpack.org.uk)]. Gallup and NOP data, in particular, are well-covered as the two companies have collated and published their results. The PollBase data start on `r format(min(pollbase$start), "%d %B %Y")`. Yet, consistent polling began only after the 1955 general election. Thus, we take it as our starting point.
 
 ```{r val-plot, fig.cap = "In all cases, estimates from PollBasePro appear well-validated when compared to raw polling data from Jennings and Wlezien's 'Timeline of Elections' dataset (2016).", fig.width = 6, fig.height = 2.5, fig.align = "centre", echo = F}
 
@@ -279,7 +277,7 @@ ggplot() +
     data = con %>% mutate(facet = "Conservative"),
     mapping = aes(x = vote, y = con_est),
     colour = pty_cols[1],
-    alpha = .4
+    alpha = .7
   ) +
   stat_smooth(
     data = con %>% mutate(facet = "Conservative"),
@@ -388,20 +386,74 @@ ggplot() +
   theme_bailey()
 ```
 
-We use the Wikipedia data to cover the period from 2010 onwards. This is a pragmatic choice. Volunteers update the data in real time and include sample sizes that are missing from PollBase. This is important as our model assumes that we know the sampling error present in each estimate. For the PollBase data, we impute likely sample sizes to allow us to estimate these errors^[Again, see the user guide that accompanies the data for more information on this process.]. But as the Wikipedia data include sample sizes, imputation is not necessary. While some might doubt Wikipedia's reliability, we do not think that it is an issue. Polling figures are verifiable and likely of interest only to a very small group of people. Wikipedia's coverage of public opinion polling since 2010 is also of a very high quality, and almost all figures on the website including links to external data sources that corroborate them.
+The PollBase data come from a range of sources. This includes books published after each general election, polling almanacs, data shared amongst academics and pollsters, contemporary media reports, and figures from polling company websites. The data since the 1983 general election are complete, baring any individual errors. Likewise, data are complete for every general election campaign before 1979. The coverage between elections is more comprehensive for some pollsters than others^[We encourage any readers who might know of polls missing from the PollBase dataset to contact its author via his website (https://www.markpack.org.uk)]. Gallup and NOP data, in particular, are well-covered as the two companies have collated and published their results. The PollBase data start on `r format(min(pollbase$start), "%d %B %Y")`. Yet, consistent polling began only after the 1955 general election. Thus, we take it as our starting point.
 
-We validate them against Jennings and Wlezien's "Timeline of Elections" dataset [-@jennings2016a]. These data contain `r format(nrow(timeline[timeline$party == 1, ]), big.mark = ",")` polls from Britain from `r str_remove(format(min(as_date(timeline$date)), "%d %B %Y"), "^0")` to `r str_remove(format(max(as_date(timeline$date)), "%d %B %Y"), "^0")`. Given that our data are so comprehensive, it is likely that most polls appear in both datasets. Still, the Timeline data provide a good test as Jennings and Wlezien compiled them independently. As figure \@ref(fig:val-plot) shows, our estimates are well validated. Correlations between the two series are strong and positive. Their mean absolute error (MAE) and root-mean-square error (RMSE) are also low in all cases. The Conservatives showed a correlation of `r britpol:::in_text(cor_mods$tl_con*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(cor_mods$mae_con, 2), " percentage points")`, and an RMSE of `r round(cor_mods$rmse_con, 2)`; Labour, a correlation of `r britpol:::in_text(cor_mods$tl_lab*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(cor_mods$mae_lab, 2), " points")`, and an RMSE of `r round(cor_mods$rmse_lab, 2)`; and the Liberals, a correlation of `r britpol:::in_text(cor_mods$tl_lib*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(cor_mods$mae_lib, 2), " points")`, and an RMSE of `r round(cor_mods$rmse_lib, 2)`.
+We use the Wikipedia data to cover the period from 2010 onwards. This is a pragmatic choice. Volunteers update the data in real time and include sample sizes that are missing from PollBase. This is important as our model assumes that we know the sampling error present in each estimate. For the PollBase data, we impute likely sample sizes to allow us to estimate these errors^[Again, see the appendix for more information on this process.]. But as the Wikipedia data include sample sizes, imputation is not necessary. While some might doubt Wikipedia's reliability, we do not think that it is an issue. Polling figures are verifiable and likely of interest only to a very small group of people. Wikipedia's coverage of public opinion polling since 2010 is also of a very high quality, and almost all figures on the website including links to external data sources that corroborate them.
+
+We validate them against Jennings and Wlezien's "Timeline of Elections" dataset [-@jennings2016a]. These data contain `r format(nrow(timeline[timeline$party == 1, ]), big.mark = ",")` polls from Britain from `r str_remove(format(min(as_date(timeline$date)), "%d %B %Y"), "^0")` to `r str_remove(format(max(as_date(timeline$date)), "%d %B %Y"), "^0")`. Given that our data are so comprehensive, it is likely that most polls appear in both datasets. Even so, the Timeline data provide a good test as Jennings and Wlezien compiled them independently. As figure \@ref(fig:val-plot) shows, our estimates are well validated. Correlations between the two series are strong and positive. Their mean absolute error (MAE) and root-mean-square error (RMSE) are also low in all cases. The Conservatives showed a correlation of `r britpol:::in_text(cor_mods$tl_con*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(cor_mods$mae_con, 2), " percentage points")`, and an RMSE of `r round(cor_mods$rmse_con, 2)`; Labour, a correlation of `r britpol:::in_text(cor_mods$tl_lab*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(cor_mods$mae_lab, 2), " points")`, and an RMSE of `r round(cor_mods$rmse_lab, 2)`; and the Liberals, a correlation of `r britpol:::in_text(cor_mods$tl_lib*100, suffix = "%", inside = F)`, an MAE of `r paste0(round(cor_mods$mae_lib, 2), " points")`, and an RMSE of `r round(cor_mods$rmse_lib, 2)`.
 
 
 # PollBasePro and British Politics Since 1955
 
-Figure \@ref(fig:time-plot) shows that our estimates track British political history very well. Between 1955 and 1980, we observe the heyday of the two-party system. Here, around `r scales::percent(median(pollbasepro$lab_est[pollbasepro$date %in% seq.Date(as_date("1955-01-01"), as_date("1980-01-01"), "days")]), accuracy = .1)` of the electorate supported Labour and another `r scales::percent(median(pollbasepro$con_est[pollbasepro$date %in% seq.Date(as_date("1955-01-01"), as_date("1980-01-01"), "days")]), accuracy = .1)` the Conservatives. In the 1980s, we see the rise and fall of the SDP-Liberal alliance. Labour’s slow rise to power in 1997 soon follows, as does their loss of support over the next decade and a half. More recently, the data show a brief “blip” in Liberal support to coincide with “Cleggmania” in 2010, Labour’s surprise surge in 2017, and the Conservative's landslide support in 2019.
+Figure \@ref(fig:time-plot) shows that our estimates track British political history well. From 1955 to 1980, we see the heyday of the two-party system. Here, around `r scales::percent(median(pollbasepro$lab_est[pollbasepro$date %in% seq.Date(as_date("1955-01-01"), as_date("1980-01-01"), "days")]), accuracy = 1)` of the electorate supported Labour and another `r scales::percent(median(pollbasepro$con_est[pollbasepro$date %in% seq.Date(as_date("1955-01-01"), as_date("1980-01-01"), "days")]), accuracy = 1)` the Conservatives. In the 1980s, we see the rise and fall of the SDP-Liberal alliance. Labour’s slow rise to power in 1997 soon follows, as does their loss of support over the next decade and a half. More recently, the data show a “blip” in Liberal support that coincides with “Cleggmania” in 2010, Labour’s surge in 2017, and the Conservative landslide in 2019.
 
 Table \@ref(tab:vitals-tab) summarises our estimates. One fact jumps out: that Labour and the Conservatives were almost perfectly matched. Each averaged support from around `r scales::percent(round(mean(c(pollbasepro$lab_est, pollbasepro$con_est)), 1))` of voters, this support varied by around `r scales::percent(round(mean(sd(pollbasepro$lab_est), sd(pollbasepro$con_est)), 2), suffix = " percentage points")`, and each took the lead around `r scales::percent(round(mean(as.numeric(str_remove(lead$Leader[1:2], "\\\\% of days"))), 0), scale = 1)` of the time. The Liberals---Britain's third most popular party for much of the period---were not so fortunate. Their support averaged around `r scales::percent(mean(pollbasepro$lib_est))`, though this figure varied between a low of `r scales::percent(min(pollbasepro$lib_est))` and a high of `r scales::percent(max(pollbasepro$lib_est))`, with the party taking the lead only around `r scales::percent(round(as.numeric(str_remove(lead$Leader[3], "\\\\% of days")), 0), scale = 1)` of the time.
 
 As well as summarising facts about the parties, our estimates also allow us to make general claims about the relationships that exist *between* the parties. As figure \@ref(fig:cor-plot) shows, these are all negative. Consider the effect of rising Liberal support on the Conservatives and Labour. The correlation between the Liberals and the Conservatives is `r britpol:::in_text(cor_mods$lib_con*100, suffix = "%", inside = F)` and between the Liberals and Labour `r britpol:::in_text(cor_mods$lib_lab*100, suffix = "%", inside = F)`. Contrary to popular arguments that the Liberals serve to split the centre-left vote [e.g. @jenkins2019], our figures suggest that rising Liberal support has tended to hurt the Conservatives more than Labour. Interestingly, the correlation between Labour and the Conservatives is also the smallest, at `r britpol:::in_text(cor_mods$con_lab*100, suffix = "%", inside = F)`. This is perhaps unsurprising, given that the two parties represent different sides of the left-right spectrum. Even so, that both parties have tended to target the other's vote still makes strategic sense: each party's pool of potential voters is almost always larger than the pool of potential Liberal voters.
 
-\newpage
+```{r vitals-table, echo = F}
+
+# Compute vital statistics
+
+vitals <- 
+  pbp_long %>% 
+  mutate(party = str_remove(party, " .*|s .*")) %>% 
+  group_by(party) %>% 
+  summarise(
+    Median = paste0(format(round(median(est)*100, 1), nsmall = 1), "\\%"),
+    Mean = paste0(format(round(mean(est)*100, 1), nsmall = 1), "\\%"),
+    Error = paste0(format(round(sd(est)*100, 1), nsmall = 1), "\\%"),
+    Lowest = paste0(format(round(min(est)*100, 1), nsmall = 1), "\\%"),
+    Highest = paste0(format(round(max(est)*100, 1), nsmall = 1), "\\%"),
+    .groups = "drop"
+  ) %>% 
+  rename(Party = party)
+
+
+# Merge vital and lead statistics
+
+vitals <- 
+  left_join(
+    vitals,
+    lead,
+    by = "Party"
+  )
+
+
+# Add latex code to header names
+
+names(vitals) <- paste0("\\textsf{\\textbf{" ,names(vitals), "}}")
+
+
+# Output table
+
+kable(
+  vitals,
+  align = "lrrrrrr",
+  format = "latex",
+  label = "vitals-tab",
+  booktabs = TRUE,
+  escape = FALSE,
+  caption = paste0("Overall summary of daily voting intention estimates, ", format(min(pollbasepro$date), "%Y"), " to ", format(max(pollbasepro$date), "%Y"))
+  ) %>% 
+  kable_styling(position = "center")
+
+```
+
+We can also use our estimates to make specific claims about British politics. For example, we can assert with a reasonable degree of certainty that the `r pbp_long$party[which.max(pbp_long$est)]` received the largest degree of support of any party in Britain between `r format(min(pollbasepro$date), "%Y")` and `r format(max(pollbasepro$date), "%Y")` on `r str_remove(format(pbp_long$date[which.max(pbp_long$est)], "%d %B %Y"), "^0")` when our estimates show that `r scales::percent(pbp_long$est[which.max(pbp_long$est)], accuracy = 0.1)` (95% CI: `r paste(scales::percent(pbp_long$est[which.max(pbp_long$est)] - qnorm(0.975)*pbp_long$err[which.max(pbp_long$est)], accuracy = 0.1), "to", scales::percent(pbp_long$est[which.max(pbp_long$est)] + qnorm(0.975)*pbp_long$err[which.max(pbp_long$est)], accuracy = 0.1))`) of the electorate would vote for them at the next election. Similarly, we can assert that the Conservative's peak in the polls came on `r str_remove(format(pollbasepro$date[which.max(pollbasepro$con_est)], "%d %B %Y"), "^0")` when `r scales::percent(max(pollbasepro$con_est), accuracy = .1)` (95% CI: `r paste(scales::percent(max(pollbasepro$con_est) - qnorm(0.975)*pollbasepro$con_err[which.max(pollbasepro$con_est)], accuracy = 0.1), "to", scales::percent(max(pollbasepro$con_est) + qnorm(0.975)*pollbasepro$con_err[which.max(pollbasepro$con_est)], accuracy = 0.1))`) of the electorate intended to back them.
+
+These data and their summaries raise an interesting question: if Labour and the Conservatives have tended to be so well-matched in the polls, why have the Conservatives done so much better at election time? Despite leading in the polls `r str_remove(lead$Leader[2], " of days")` of the time, Labour has gained the highest share of the vote in only `r pbp_long %>% filter(err == 0) %>% add_elections() %>% group_by(last_elec) %>% summarise(winner = party[which.max(est)], .groups = "drop") %>% summarise(lab = length(winner[winner == "Labour Party"]), .groups = "drop") %>% pluck(1)` of the period's `r pbp_long %>% filter(err == 0) %>% add_elections() %>%  group_by(last_elec) %>% summarise(winner = party[which.max(est)], .groups = "drop") %>% nrow()` general elections (`r scales::percent((pbp_long %>% filter(err == 0) %>% add_elections() %>% group_by(last_elec) %>% summarise(winner = party[which.max(est)], .groups = "drop") %>% summarise(lab = length(winner[winner == "Labour Party"]), .groups = "drop") %>% pluck(1))/(pbp_long %>% filter(err == 0) %>% add_elections() %>% group_by(last_elec) %>% summarise(winner = party[which.max(est)], .groups = "drop") %>% nrow()))`). This phenomenon is not entirely unprecedented. @jackman1994 shows that the Australian Labor Party has suffered at elections due to pervasive electoral bias. Though this might also be the case in Britain, our figures reflect *vote* shares, not *seat* shares. As such, electoral bias should be a concern only insofar as it affects the parties' overall popularity. Other factors likely explain Labour's poor performance: Britain's press leans right and tends to support the Conservatives; successive Conservative governments could have scheduled elections to maximise their chances; partisan non-response could have led Conservative voters to drop out of polls in the period between elections; or, most simply, the Conservatives might just be better at campaigning.
+
 \begin{landscape}
 ```{r time-plot, fig.cap = paste("PollBasePro includes", format(nrow(pollbasepro), big.mark = ","), "daily estimates of aggregate voting intention for each of Britain's largest parties: the Conservatives, Labour, and the Liberals in their various forms."), fig.width = 10, fig.height = 6, fig.align = "centre", echo = F}
 
@@ -478,59 +530,6 @@ timeplot
 
 ```
 \end{landscape}
-
-```{r vitals-table, echo = F}
-
-# Compute vital statistics
-
-vitals <- 
-  pbp_long %>% 
-  mutate(party = str_remove(party, " .*|s .*")) %>% 
-  group_by(party) %>% 
-  summarise(
-    Median = paste0(format(round(median(est)*100, 1), nsmall = 1), "\\%"),
-    Mean = paste0(format(round(mean(est)*100, 1), nsmall = 1), "\\%"),
-    Error = paste0(format(round(sd(est)*100, 1), nsmall = 1), "\\%"),
-    Lowest = paste0(format(round(min(est)*100, 1), nsmall = 1), "\\%"),
-    Highest = paste0(format(round(max(est)*100, 1), nsmall = 1), "\\%"),
-    .groups = "drop"
-  ) %>% 
-  rename(Party = party)
-
-
-# Merge vital and lead statistics
-
-vitals <- 
-  left_join(
-    vitals,
-    lead,
-    by = "Party"
-  )
-
-
-# Add latex code to header names
-
-names(vitals) <- paste0("\\textsf{\\textbf{" ,names(vitals), "}}")
-
-
-# Output table
-
-kable(
-  vitals,
-  align = "lrrrrrr",
-  format = "latex",
-  label = "vitals-tab",
-  booktabs = TRUE,
-  escape = FALSE,
-  caption = paste0("Overall summary of voting intention estimates, ", format(min(pollbasepro$date), "%Y"), " to ", format(max(pollbasepro$date), "%Y"))
-  ) %>% 
-  kable_styling(position = "center")
-
-```
-
-We can also use our estimates to make specific claims about British politics. For example, we can assert with a reasonable degree of certainty that the `r pbp_long$party[which.max(pbp_long$est)]` received the largest degree of support of any party in Britain between `r format(min(pollbasepro$date), "%Y")` and `r format(max(pollbasepro$date), "%Y")` on `r str_remove(format(pbp_long$date[which.max(pbp_long$est)], "%d %B %Y"), "^0")` when our estimates show that `r scales::percent(pbp_long$est[which.max(pbp_long$est)], accuracy = 0.1)` (95% CI: `r paste(scales::percent(pbp_long$est[which.max(pbp_long$est)] - qnorm(0.975)*pbp_long$err[which.max(pbp_long$est)], accuracy = 0.1), "to", scales::percent(pbp_long$est[which.max(pbp_long$est)] + qnorm(0.975)*pbp_long$err[which.max(pbp_long$est)], accuracy = 0.1))`) of the electorate would vote for them at the next election. Similarly, we can assert that the Conservative's peak in the polls came on `r str_remove(format(pollbasepro$date[which.max(pollbasepro$con_est)], "%d %B %Y"), "^0")` when `r scales::percent(max(pollbasepro$con_est), accuracy = .1)` (95% CI: `r paste(scales::percent(max(pollbasepro$con_est) - qnorm(0.975)*pollbasepro$con_err[which.max(pollbasepro$con_est)], accuracy = 0.1), "to", scales::percent(max(pollbasepro$con_est) + qnorm(0.975)*pollbasepro$con_err[which.max(pollbasepro$con_est)], accuracy = 0.1))`) of the electorate intended to back them.
-
-These data and their summaries raise an interesting question: if Labour and the Conservatives have tended to be so well-matched in the polls, why have the Conservatives done so much better at election time? Despite leading in the polls `r str_remove(lead$Leader[2], " of days")` of the time, Labour has gained the highest share of the vote in only `r pbp_long %>% filter(err == 0) %>% add_elections() %>% group_by(last_elec) %>% summarise(winner = party[which.max(est)], .groups = "drop") %>% summarise(lab = length(winner[winner == "Labour Party"]), .groups = "drop") %>% pluck(1)` of the period's `r pbp_long %>% filter(err == 0) %>% add_elections() %>%  group_by(last_elec) %>% summarise(winner = party[which.max(est)], .groups = "drop") %>% nrow()` general elections (`r scales::percent((pbp_long %>% filter(err == 0) %>% add_elections() %>% group_by(last_elec) %>% summarise(winner = party[which.max(est)], .groups = "drop") %>% summarise(lab = length(winner[winner == "Labour Party"]), .groups = "drop") %>% pluck(1))/(pbp_long %>% filter(err == 0) %>% add_elections() %>% group_by(last_elec) %>% summarise(winner = party[which.max(est)], .groups = "drop") %>% nrow()))`). This phenomenon is not entirely unprecedented. @jackman1994 shows that the Australian Labor Party has suffered at elections due to pervasive electoral bias. Though this might also be the case in Britain, our figures reflect *vote* shares, not *seat* shares. As such, electoral bias should be a concern only insofar as it affects the parties' overall popularity. Other factors likely explain Labour's poor performance: Britain's press leans right and tends to support the Conservatives; successive Conservative governments could have scheduled elections to maximise their chances; partisan non-response could have led Conservative voters to drop out of polls in the period between elections; or, most simply, the Conservatives might just be better at campaigning.
 
 ```{r cor-plot, fig.cap = paste0("Historic correlations between each of Britain's three largest parties, ", format(min(pollbasepro$date), "%Y"), " to ", format(max(pollbasepro$date), "%Y")), fig.width = 6, fig.height = 2.5, fig.align = "centre", echo = F}
 
@@ -691,7 +690,45 @@ To demonstrate their usefulness, we use our data to answer a question of timely 
 
 This is a simple linear model, where change in Conservative support at time $t$, $\Delta C_{t}$, is a function of the passage of time, $T_{t}$, and change in the number of COVID-related deaths, $\Delta D_{t}$. We also interact the two variables so that the effect of these deaths can change over time. As the intervals in figure \@ref(fig:time-plot) make clear, our data are *probabilistic*. Thus, it is important that we propagate this uncertainty forward so as to maximise our statistical power. This is what differentiates our error-in-variables model from a standard linear model: rather than include only the residual error, $\sigma$, we also include any known uncertainty in our estimates at time $t$, $S_{t}$.
 
-According to the literature, there are good reasons why the relationship between the two variables might be positive and good reasons why it might be negative. The literature on "rally 'round the flag" effects would favour a *positive* relationship. Here, voters rush to support the governing party in times of crisis, such as wars [@kuijpers2019; @mueller1970]. The literature on retrospective voting [@healy2013; @fiorina1981], instead, would favour a *negative* relationship. It holds that voters reward governments for positive policy outcomes and punish them for negative ones.
+It is possible to propagate this error forward because PollBasePro includes *two* estimates for each party for each day that the data covers: estimates of public support for each party *and* an estimate of the standard error of this estimate. Table \@ref(tab:head-tab) shows the first 5 rows of the PollBasePro dataset. Variables ending "_est" show estimated voting intention and those ending "_err" their associated error. Notice that the error on the first date is zero. This is because this is the date of the 1955 general election, so we have absolute certainty what the result really was. As the days pass, this error gradually increases, reflecting our own epistemic uncertainty. These errors provide useful information in their own right, so it is prudent to also include them in our analysis.
+
+```{r head-table, echo = F}
+
+# Get table head
+
+pbp_head <- 
+  head(
+    pollbasepro,
+    n = 5
+    ) %>% 
+  mutate_if(
+    is.numeric,
+    function(x) round(x, 3)
+  )
+
+
+# Add latex code to variable names
+
+names(pbp_head) <- paste0("\\textsf{\\textbf{" ,names(pbp_head), "}}")
+names(pbp_head) <- str_replace(names(pbp_head), "_", "\\\\_")
+
+
+# Output table
+
+kable(
+  pbp_head,
+  align = "ccccccc",
+  format = "latex",
+  label = "head-tab",
+  booktabs = TRUE,
+  escape = FALSE,
+  caption = paste0("The first 5 rows of the PollBasePro dataset")
+  ) %>% 
+  kable_styling(position = "center")
+
+```
+
+According to the literature, there are good reasons why the relationship between the two variables might be positive and good reasons why it might be negative. The literature on "rally 'round the flag" effects would favour a *positive* relationship. Here, voters rush to support the governing party in times of crisis, such as wars [@kuijpers2019; @mueller1970]. The literature on retrospective voting [@healy2013; @fiorina1981], instead, would favour a *negative* relationship. It holds that voters reward governments for positive policy outcomes and punish them for negative ones (i.e. for avoidable deaths).
 
 Figure \@ref(fig:death-plot) shows that the effect is more "rally 'round the flag" than "reward and punishment". That said, our model suggests at least some preliminary evidence of a transition from one mechanism to the other. In March 2020, when the pandemic started to gain pace in Britain, there was a strong positive relationship between change in the number of deaths attributable to COVID-19 and change in support for the governing Conservative Party. For every 100 extra COVID-related deaths over the past 4 weeks, Conservative support over the same period increased on average by `r britpol:::in_text((pluck(posterior_samples(death_mod, "b_deaths"), 1) + pluck(posterior_samples(death_mod, "b_time:deaths"), 1)*2)*100, inside = F, text = " points")`. Six months later, in September 2020, this relationship had weakened markedly. Though still positive, it had fallen to only `r britpol:::in_text((pluck(posterior_samples(death_mod, "b_deaths"), 1) + pluck(posterior_samples(death_mod, "b_time:deaths"), 1)*8)*100, inside = F, text = " points")`. A year after the pandemic began, the relationship had reversed. In March 2021, every 100 additional COVID-related deaths over the past 4 weeks led Conservative support to fall on average by `r britpol:::in_text((pluck(posterior_samples(death_mod, "b_deaths"), 1) + pluck(posterior_samples(death_mod, "b_time:deaths"), 1)*14)*100, inside = F, text = " points")`.
 
@@ -752,16 +789,18 @@ cond_fx %>%
   theme_bailey()
 ```
 
-It is clear then that PollBasePro has allowed us to reveal an important---if surprising---answer to the question that we posed above: despite Britain having one of the world's highest levels of COVID-related deaths per capita [@ritchie2021], these untimely deaths appear to have *benefited* the fortunes of the governing Conservative Party. Still, the relationship has changed over time and, a year into the pandemic, has reversed direction. We might, thus, expect any further deaths attributable to COVID-19 to erode the Conservative's ample base of support. Yet given the pace of Britain's vaccination programme [@ukgovernment2021a], it is possible that the Conservatives have reaped the rewards without facing any punishment.
+It is clear then that PollBasePro has allowed us to reveal an important---if surprising---answer to the question that we posed above: despite Britain having one of the world's highest levels of COVID-related deaths per capita [@ritchie2021], these untimely deaths appear to have *benefited* the fortunes of the governing Conservative Party. Yet this relationship has changed over time and, a year into the pandemic, has reversed direction. We might, thus, expect any further deaths attributable to COVID-19 to erode the Conservative's ample base of support. Yet given the pace of Britain's vaccination programme [@ukgovernment2021a], it is possible that the Conservatives have reaped the electoral rewards of the crisis without risk of punishment.
 
 
 # Conclusions
 
-In this paper, we introduce PollBasePro: the most comprehensive time series of British voting intention data assembled to date. The dataset contains `r format(nrow(britpol::pollbasepro), big.mark = ",")` daily voting intention estimates for each of Britain's three largest parties, beginning at the 1955 General Election on `r format(min(pollbasepro$date), "%d %B %Y")` and ending on `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. Furthermore, our data are well validated and follow the course of British political history. We therefore expect PollBasePro to become a valuable resource for students of British politics in the years to come.
+In this paper, we introduce PollBasePro: the most comprehensive time series of British voting intention data assembled to date. The dataset contains `r format(nrow(britpol::pollbasepro), big.mark = ",")` daily voting intention estimates for each of Britain's three largest parties, beginning at the 1955 General Election on `r format(min(pollbasepro$date), "%d %B %Y")` and ending on `r str_remove(format(max(pollbasepro$date), "%d %B %Y"), "^0")`. Furthermore, our data are well validated and follow the course of British political history.
 
 It is important to stress that PollBasePro is a *living dataset*. As a result, we expect to incorporate new estimates into the data as time goes by. Users should, therefore, endeavour to use the most recent data in any of their analyses. It is also important to stress that---like any project of this nature---our data pipeline might contain minor errors or inefficiencies. To guard against this, we have hosted all of our materials online for others to inspect. If our users find any errors in our code or wish to make recommendations for future updates, we invite them to raise an issue on the project's [GitHub repository](https://github.com/jackobailey/britpol/issues) or to [contact the authors directly](mailto:jack.bailey@manchester.ac.uk).
 
 Though we believe that our data can help to answer all manner of questions, PollBasePro still has room to grow. Three new features would be most useful. First, to estimate aggregate support for the UK leaving the European Union and for Scotland leaving the UK. Both time series would be long-ranging and benefit from having known outcomes to which we could anchor our estimates. Second, to expand the data beyond the three main parties. This would be particularly useful for those who study, for example, the rise of the SNP in Scotland or the influence of UKIP. Third, to collect and incorporate known sample sizes into all of our polling data. At the moment, we use the Timeline of Elections dataset [@jennings2016a] to impute sample sizes for all polls that occurred before the 2010 general election. This is a pragmatic but reasonable decision given that these data do not include sample sizes. Still, were we to have the necessary resources, it would be good to collect the sample sizes associated with these polls to ensure that our estimates are as precise as possible.
+
+No matter how PollBasePro develops in the future, we are clear that it provides many opportunities in the present. We have discussed many of the academic opportunities that the data provide above. But our estimates might stand to improve the quality of polling reporting too. The stories that we tell ourselves to explain the polls often come to shape our politics [@barnfield2020]. And many of these stories emerge from the simple averages that many commentators use to make sense of the polls. As we mention above, our estimates account for shortcomings that these simple rolling averages do not. PollBasePro might, therefore, stand to benefit not only academic researchers, but also the quality of political debate in Britain too. As such, we expect PollBasePro to become a valuable resource for students of British politics in the years to come.
 
 \pagebreak
 
@@ -779,3 +818,120 @@ britpol:::save_info(path = here("sessions", "007_paper.txt"))
 
 ```
 
+\pagebreak
+
+# Appendix: Estimating Daily Voting Intention
+
+We adapt Jackman's [-@jackman2005] method to derive our daily estimates. Still, there are issues specific to our case that we must first overcome. We elaborate on our choices below.
+
+## Imputating Missing Sample Sizes
+
+Our data do not include sample sizes before the 2010 general election. This is a problem, as our model requires that we know this information. To solve this problem, we use data from Jennings and Wlezien's [-@jennings2016a] "Timeline of Elections" dataset. Though less comprehensive than PollBase, these data do include information on sample sizes. What's more, they also include data from countries other than Britain. This lets us pool all available information to improve our estimates.
+
+Sample sizes are count data. As such, we use the following multilevel Poisson regression model to impute likely sample sizes for all of our pre-2010 polling data:
+
+\begin{align*}
+n_{i} &\sim \mathrm{Poisson}(\lambda_{i}) \srlab{Likelihood function} \\
+log(\lambda_{i}) &= \alpha_{Country[i]} + \beta_{Country[i]} T_{i} \srlab{Linear model on $\lambda$} \\
+\begin{bmatrix} \alpha_{Country} \\ \beta_{Country} \end{bmatrix} &\sim \mathrm{MVNormal}(\begin{bmatrix} \alpha \\ \beta \end{bmatrix}, \textbf{S}) \srlab{Multivariate prior on varying effects} \\
+\textbf{S} &= \begin{pmatrix} \sigma_{\alpha} & 0 \\ 0 & \sigma_{\beta} \end{pmatrix} \textbf{R} \begin{pmatrix} \sigma_{\alpha} & 0 \\ 0 & \sigma_{\beta} \end{pmatrix} \srlab{Covariance matrix on varying effects} \\
+\alpha &\sim \mathrm{Normal}(7, 0.5) \srlab{Prior on average intercept, $\alpha$} \\
+\beta &\sim \mathrm{Normal}(0, 0.1) \srlab{Prior on average slope, $\beta$} \\
+\sigma_{\alpha} &\sim \mathrm{Exponential}(10) \srlab{Prior on uncertainty in the intercepts, $\sigma_{\alpha}$} \\
+\sigma_{\beta} &\sim \mathrm{Exponential}(10) \srlab{Prior on uncertainty in the slopes, $\sigma_{\beta}$} \\
+\textbf{R} &\sim \mathrm{LKJ}(2) \srlab{Prior on correlation matrix, $\textbf{\textrm{R}}$} \\
+\end{align*}
+
+```{r n-plot, fig.cap = paste0("Imputed sample sizes in Britain between ", format(min(samplesizes$date), "%Y"), " and ", format(max(samplesizes$date), "%Y"), ", estimated using sample size data from Jennings and Wlezien's \"Timeline of Elections\" dataset (2016)."), fig.width = 6, fig.height = 3, fig.align = "centre", echo = F}
+
+# Create sample size plot
+
+samplesizes %>%
+  ggplot(
+    aes(
+      x = date,
+      y = n_est,
+      ymin = qpois(0.025, n_est),
+      ymax = qpois(0.975, n_est)
+    )
+  ) +
+  geom_ribbon(alpha = .3, colour = NA) +
+  geom_line() +
+  scale_y_continuous(breaks = seq(0, 2500, by = 500)) +
+  scale_x_date(
+    breaks = seq.Date(as.Date("1945-01-01"), as.Date("2020-01-01"), by = "5 years"),
+    labels = year(seq.Date(as.Date("1945-01-01"), as.Date("2020-01-01"), by = "5 years"))
+    ) +
+  coord_cartesian(ylim = c(0, 2600)) +
+  theme_minimal() +
+    theme(legend.title = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   text = element_text(family = "Cabin", color = "black", size = 8),
+                   plot.title = element_text(family = "Cabin", face = "bold", size = rel(1.4), hjust = 0),
+                   plot.subtitle = element_text(family = "Cabin", size = rel(1), hjust = 0, margin = margin(b = 10)),
+                   axis.line = element_line(lineend = "round"),
+                   axis.title.x = element_blank(),
+                   axis.text.x = element_text(color = "black", size = rel(1)),
+                   axis.ticks.x = element_line(lineend = "round"),
+                   axis.title.y = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   axis.text.y = element_text(color = "black", size = rel(1)),
+                   strip.text = element_text(family = "Cabin", face = "bold", size = rel(1)),
+                   panel.spacing = unit(.3, "cm"),
+                   panel.grid.major.y = element_line(size = .5, lineend = "round"),
+                   panel.grid.minor.y = element_blank(),
+                   panel.grid.major.x = element_blank(),
+                   panel.grid.minor.x = element_blank()
+    ) +
+  labs(
+    y = "Imputed Sample Size"
+  )
+
+```
+
+We assume that the sample size associated with poll $i$ in the Timeline data, $n_{i}$, is distributed as Poisson according to some rate parameter, $\lambda_{i}$. We then model the logarithm of this parameter using a simple linear function that includes an intercept, $\alpha_{Country}$, and a slope on the effect of time, $\beta_{Country}$, which we allow to vary over countries. We then relate these two parameters to one another by modelling them as though they come from a multivariate normal distribution. In effect, this allows the parameters to be correlated and, thus, to share information.
+
+While our data concern Britain alone, we use all available data in the Timeline dataset. This is for good reason. The dataset does not contain reliable sample size values for British polls conducted before the early 1960s. But it does contain reliable values for other countries as early as the mid-1940s. Pooling all available information for all countries across the entire time series, thus, allows us to impute reliable estimates of likely sample sizes in Britain across the full range of dates by drawing on persistent differences between British polls and those from other countries.
+
+Figure \@ref(fig:n-plot) shows the model's best estimate of the likely sample size of the average British voting intention poll between `r year(min(samplesizes$date))` and `r year(max(samplesizes$date))`. These imputed values seem sensible and conform to our expection that sample sizes should increase over time. The model estimates that the average British voting intention poll included around `r format(round(samplesizes$n_est[samplesizes$date == min(samplesizes$date)], 0), big.mark = ",")` respondents in `r year(min(samplesizes$date))`. By `r year(max(samplesizes$date))`, the model suggests that this value had increased by `r format(round(samplesizes$n_est[samplesizes$date == max(samplesizes$date)] - samplesizes$n_est[samplesizes$date == min(samplesizes$date)], 0), big.mark = ",")` to `r format(round(samplesizes$n_est[samplesizes$date == max(samplesizes$date)], 0), big.mark = ",")` respondents per poll on average.
+
+We use the model to produce a time series of estimates sample sizes between `r year(min(samplesizes$date))` and `r year(max(samplesizes$date))`. This includes all dates for which we intend to produce a voting intention estimate. Where our polling data come from before the 2010 general election, or are otherwise missing, will fill in the gaps with these imputed values. To do so we match our polling data to the imputed values from the model based on their respective dates.
+
+
+## Estimating Daily Voting Intention Figures
+
+As we mention above and in the accompanying paper, we adapt the model in @jackman2005 to compute our daily British voting intention estimates. The model is complex and has many moving parts, so we will build it up step by step.
+
+We assume that each poll in our underlying data, $Poll_{i}$, is generated from some normal distribution. This distribution has two parameters. The first is some mean, $\mu_{i}$. The second is some error that leads the estimates to be higher or lower than the expected value, $\mu_{i}$. In many models with a normal likelihood function, this error parameter would measure only random residual error and be represented by the Greek letter $\sigma$. But, in our case, we have additional information that we can use. We know that each poll is a proportion and represents a draw from some random distribution. Thus, we can use the equation for the standard error of a proportion to calculate the uncertainty in each estimate, where $S_{i} = \sqrt{\frac{Poll_{i} (1 - Poll_{i})}{\nu_{i}}}$. Note that $\nu_{i}$ is the sample size of $Poll_{i}$, $n_{i}$, divided by the number of days the poll spent in the field, $k_{i}$. In effect, this implies that we assume an equal number of people were polled on each day that the model was in the field. We can then include both in our model to account for any known error, $S_{i}$, and any random residual error, $\sigma$. So far, our model is as follows:
+
+\begin{align*}
+Poll_{i} &\sim \mathrm{Normal}(\mu_{i}, \sqrt{\sigma^2 + S_{i}^2}) \srlab{Likelihood function} \\
+\end{align*}
+
+The next step is to fit a model to $\mu_{i}$. This will be a measurement model, as it will allow us to produce an estimate of the electorate's *latent* voting intention on each day. We assume that $\mu_{i}$ is a linear function of two variables: $\alpha_{Day[i]}$, the electorate's latent voting intention for $Poll_{i}$ on the day that it was fielded, and $\delta_{Pollster[i]}$, the persistent "house effects" that arise due to the methodological and design choices that inform how the company that ran the poll collected its data. If we update our model specification to include these assumptions, we get the following:
+
+\begin{align*}
+Poll_{i} &\sim \mathrm{Normal}(\mu_{i}, \sqrt{\sigma^2 + S_{i}^2}) \srlab{Likelihood function} \\
+\mu_{i} &= \alpha_{Day[i]} + \delta_{Pollster[i]} \srlab{Measurement model on $\mu$} \\
+\end{align*}
+
+At present, all values of $\alpha_{Day}$ are independent. This is a problem. First, we want estimates closer together to be more similar. Second, some days have no polling data to inform them. To address this problem, we constrain $\alpha_{1}$ to be equal to the vote share that a given party received at a given election. We also constrain $\alpha_{T}$ to be equal to the vote share that the same party received at the following election. Next, we fit a dynamic model to $\alpha_{t}$ for all days in our time series except for the first and last. This acts as a sort of "chain" that links together all values of $\alpha$. Because these values are now linked, they can then share information amongst themselves. This means that when the value of one estimate changes during the model estimation process, so too do the values of all others. The model assumes that $\alpha_{t}$ is equal to $\alpha_{t-1}$, plus any random shocks that take place between the two days, $\omega_{t-1}$. These random shock parameters are themselves scaled according to $\tau$, the scale of innovations parameter. Updating our model specification again, we get:
+
+\begin{align*}
+Poll_{i} &\sim \mathrm{Normal}(\mu_{i}, \sqrt{\sigma^2 + S_{i}^2}) \srlab{Likelihood function} \\
+\mu_{i} &= \alpha_{Day[i]} + \delta_{Pollster[i]} \srlab{Measurement model on $\mu$} \\
+\alpha_{t} &= \alpha_{t-1} + \tau \omega_{t-1} \text{ for } t \text{ in } 2, ..., T-1 \srlab{Dynamic model on $\alpha_{t}$} \\
+\end{align*}
+
+As we rely on Bayesian methods, our final step in building the model is to provide a set of conservative and weakly-informative prior distributions^[In this case our priors serve only to regularise our parameter estimates. For example, our prior on the pollster house effects allows for a large---indeed, improbable---10 point house effect. They are unlikely, therefore, to constrain our estimates in such a way as to affect our inferences.].
+
+\begin{align*}
+Poll_{i} &\sim \mathrm{Normal}(\mu_{i}, \sqrt{\sigma^2 + S_{i}^2}) \srlab{Likelihood function} \\
+\mu_{i} &= \alpha_{Day[i]} + \delta_{Pollster[i]} \srlab{Measurement model on $\mu$} \\
+\alpha_{t} &= \alpha_{t-1} + \tau \omega_{t-1} \text{ for } t \text{ in } 2, ..., T-1 \srlab{Dynamic model on $\alpha_{t}$} \\
+\alpha_{T} &\sim \mathrm{Normal}(\alpha_{T-1}, \tau) \srlab{Adaptive prior on $\alpha_{T}$} \\
+\delta_{j} &\sim \mathrm{Normal}(0, 0.05) \text{ for } j \text{ in } 1, ..., J \srlab{Prior on house effects, $\delta$} \\
+\omega_{t} &\sim \mathrm{Normal}(0, 0.025) \text{ for } t \text{ in } 1, ..., T-1 \srlab{Prior on random shocks, $\omega$} \\
+\tau &\sim \mathrm{Normal}(0, 0.05)^{+} \srlab{Positive prior on scale of innovations, $\tau$} \\
+\sigma &\sim \mathrm{Exponential}(20) \srlab{Prior on residual error, $\sigma$} \\
+\end{align*}
+
+After specifying our model, we loop over our data and fit the model to each election pair for each party. As we know with almost absolute certainty what the electorate's voting intention was on election days, we use this to our advantage and constrain $\alpha_{1}$ to equal a given party's vote share at the first election and $\alpha_{T}$ to equal the same party's vote share at the following election. We do this for every election pair between 1955 and the present for each party. Note that the most recent election by definition has no subsequent election. In this case, we leave $\alpha_{T}$ unconstrained and estimate its value from the data.

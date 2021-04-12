@@ -1,4 +1,4 @@
-// PollBasePro Stan Model
+// PollBasePro: Two Known Elections
 data {
   // Data counts
   int N; // Number of polls

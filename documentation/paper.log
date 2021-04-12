@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.5.12)  5 APR 2021 08:54
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.5.12)  12 APR 2021 00:04
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1713,24 +1713,33 @@ LaTeX Font Info:    Font shape `TU/Cabin(0)/bx/n' will be
 (Font)              scaled to size 12.51297pt on input line 195.
 LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/it' will be
 (Font)              scaled to size 12.0pt on input line 199.
+
+Underfull \hbox (badness 1087) in paragraph at lines 201--202
+\TU/EBGaramond(0)/m/n/12 support, though that this relationship has weakened, t
+hen reversed, as the pandemic has
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 206--207
+\TU/EBGaramond(0)/m/n/12 Gallup and NOP polls to show that economic change affe
+cts incumbent party support,
+ []
+
 [1
 
-]
+] [2]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.80954pt on input line 214.
+(Font)              scaled to size 7.80954pt on input line 216.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.54695pt on input line 214.
+(Font)              scaled to size 5.54695pt on input line 216.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.41495pt on input line 214.
+(Font)              scaled to size 8.41495pt on input line 216.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.97696pt on input line 214.
+(Font)              scaled to size 5.97696pt on input line 216.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.41469pt on input line 214.
+(Font)              scaled to size 8.41469pt on input line 216.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.97679pt on input line 214.
-LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/n' will be
-(Font)              scaled to size 8.41483pt on input line 214.
-[2]
+(Font)              scaled to size 5.97679pt on input line 216.
 LaTeX Font Info:    Font shape `TU/EBGaramond(1)/m/n' will be
 (Font)              scaled to size 12.0pt on input line 225.
 LaTeX Font Info:    Font shape `TU/EBGaramond(1)/m/n' will be
@@ -1766,83 +1775,98 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 5.99991pt on input line 225.
 LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/n' will be
+(Font)              scaled to size 8.41483pt on input line 225.
+LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/n' will be
 (Font)              scaled to size 5.97688pt on input line 225.
-LaTeX Font Info:    Font shape `TU/EBGaramond(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 229.
-LaTeX Font Info:    Font shape `TU/EBGaramond(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 229.
-LaTeX Font Info:    Font shape `TU/EBGaramond(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 229.
 File: /home/jack/Documents/britpol/documentation/paper_files/figure-latex/val-p
 lot-1.pdf Graphic file (type pdf)
 <use /home/jack/Documents/britpol/documentation/paper_files/figure-latex/val-pl
 ot-1.pdf>
-[3] [4] [5] [6]
+LaTeX Font Info:    Font shape `TU/EBGaramond(1)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 233.
+LaTeX Font Info:    Font shape `TU/EBGaramond(1)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 233.
+LaTeX Font Info:    Font shape `TU/EBGaramond(1)/m/n' will be
+(Font)              scaled to size 5.0pt on input line 233.
+[3] [4] [5]
+Underfull \hbox (badness 3907) in paragraph at lines 265--266
+[]\TU/EBGaramond(0)/m/n/12 These data and their summaries raise an interesting 
+question: if Labour and the
+ []
+
+[6]
 File: /home/jack/Documents/britpol/documentation/paper_files/figure-latex/time-
 plot-1.pdf Graphic file (type pdf)
 <use /home/jack/Documents/britpol/documentation/paper_files/figure-latex/time-p
 lot-1.pdf>
 
-LaTeX Warning: Float too large for page by 15.0107pt on input line 252.
+LaTeX Warning: Float too large for page by 15.0107pt on input line 270.
 
 [7]
-Underfull \hbox (badness 3907) in paragraph at lines 272--273
-[]\TU/EBGaramond(0)/m/n/12 These data and their summaries raise an interesting 
-question: if Labour and the
- []
-
 File: /home/jack/Documents/britpol/documentation/paper_files/figure-latex/cor-p
 lot-1.pdf Graphic file (type pdf)
 <use /home/jack/Documents/britpol/documentation/paper_files/figure-latex/cor-pl
 ot-1.pdf>
-[8
 
-
-]
-Underfull \hbox (badness 2653) in paragraph at lines 283--284
+Underfull \hbox (badness 2653) in paragraph at lines 282--283
 \TU/EBGaramond(0)/m/n/12 how are deaths attributable to COVID-19 related to pub
 lic support for the governing
  []
 
 
-Underfull \hbox (badness 1571) in paragraph at lines 283--284
+Underfull \hbox (badness 1571) in paragraph at lines 282--283
 \TU/EBGaramond(0)/m/n/12 support and daily changes in COVID-related deaths acro
 ss a four week window, before
  []
 
-[9]
+[8
+
+
+] [9]
 File: /home/jack/Documents/britpol/documentation/paper_files/figure-latex/death
 -plot-1.pdf Graphic file (type pdf)
 <use /home/jack/Documents/britpol/documentation/paper_files/figure-latex/death-
 plot-1.pdf>
 [10] [11] [12]
-Overfull \hbox (0.75085pt too wide) in paragraph at lines 339--341
+Overfull \hbox (0.75085pt too wide) in paragraph at lines 362--364
 \TU/EBGaramond(0)/m/n/12 Disband.” \TU/EBGaramond(0)/m/it/12 The Guardian\TU/EB
 Garamond(0)/m/n/12 . https://www.theguardian.com/commentisfree/2019/dec/16/lib-
 
  []
 
 [13]
-Underfull \hbox (badness 1939) in paragraph at lines 381--383
+Underfull \hbox (badness 1939) in paragraph at lines 404--406
 [][]\TU/EBGaramond(0)/m/n/12 Wikipedia. 2021. “Opinion Polling for the 2019 Uni
 ted Kingdom General Election.”
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 386.
-[14]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 386.
+[14] [15]
+LaTeX Font Info:    Font shape `TU/Cabin(0)/bx/it' will be
+(Font)              scaled to size 10.40643pt on input line 417.
+LaTeX Font Info:    Font shape `TU/Cabin(0)/m/n' will be
+(Font)              scaled to size 7.03674pt on input line 433.
+LaTeX Font Info:    Font shape `TU/Cabin(0)/m/n' will be
+(Font)              scaled to size 5.27756pt on input line 433.
+File: /home/jack/Documents/britpol/documentation/paper_files/figure-latex/n-plo
+t-1.pdf Graphic file (type pdf)
+<use /home/jack/Documents/britpol/documentation/paper_files/figure-latex/n-plot
+-1.pdf>
+[16] [17] [18] [19]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 488.
+[20]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 488.
 (./paper.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 386.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 386.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 386.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 488.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 488.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 488.
  ) 
 Here is how much of TeX's memory you used:
- 28806 strings out of 494988
- 521363 string characters out of 6178638
- 764100 words of memory out of 5000000
- 32295 multiletter control sequences out of 15000+600000
- 537221 words of font info for 112 fonts, out of 8000000 for 9000
+ 28850 strings out of 494988
+ 522935 string characters out of 6178638
+ 764606 words of memory out of 5000000
+ 32329 multiletter control sequences out of 15000+600000
+ 537293 words of font info for 121 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 62i,10n,117p,10443b,607s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,15n,117p,10443b,607s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.pdf (15 pages).
+Output written on paper.pdf (21 pages).

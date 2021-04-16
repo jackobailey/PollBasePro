@@ -81,12 +81,14 @@ cor_con <-
       bf(vote ~ 1) +
       bf(con_est | se(con_err, sigma = TRUE) ~ 1) +
       set_rescor(rescor = TRUE),
+    family = student(),
     prior =
       prior(normal(0.4, 0.07), class = "Intercept", resp = "vote") +
       prior(exponential(5), class = "sigma", resp = "vote") +
       prior(normal(0.4, 0.07), class = "Intercept", resp = "conest") +
       prior(exponential(5), class = "sigma", resp = "conest") +
-      prior(lkj(2), class = "rescor"),
+      prior(lkj(2), class = "rescor") +
+      prior(gamma(2, .1), class = "nu"),
     data = con,
     backend = "cmdstanr",
     seed = 666,
@@ -101,12 +103,14 @@ cor_lab <-
       bf(vote ~ 1) +
       bf(lab_est | se(lab_err, sigma = TRUE) ~ 1) +
       set_rescor(rescor = TRUE),
+    family = student(),
     prior =
       prior(normal(0.4, 0.07), class = "Intercept", resp = "vote") +
       prior(exponential(5), class = "sigma", resp = "vote") +
       prior(normal(0.4, 0.07), class = "Intercept", resp = "labest") +
       prior(exponential(5), class = "sigma", resp = "labest") +
-      prior(lkj(2), class = "rescor"),
+      prior(lkj(2), class = "rescor") +
+      prior(gamma(2, .1), class = "nu"),
     data = lab,
     backend = "cmdstanr",
     seed = 666,
@@ -121,12 +125,14 @@ cor_lib <-
       bf(vote ~ 1) +
       bf(lib_est | se(lib_err, sigma = TRUE) ~ 1) +
       set_rescor(rescor = TRUE),
+    family = student(),
     prior =
       prior(normal(0.15, 0.06), class = "Intercept", resp = "vote") +
       prior(exponential(5), class = "sigma", resp = "vote") +
       prior(normal(0.15, 0.06), class = "Intercept", resp = "libest") +
       prior(exponential(5), class = "sigma", resp = "libest") +
-      prior(lkj(2), class = "rescor"),
+      prior(lkj(2), class = "rescor") +
+      prior(gamma(2, .1), class = "nu"),
     data = lib,
     backend = "cmdstanr",
     seed = 666,
@@ -147,6 +153,7 @@ cor_all <-
       bf(con_est | se(con_err, sigma = TRUE) ~ 1) +
       bf(lab_est | se(lab_err, sigma = TRUE) ~ 1) +
       set_rescor(rescor = TRUE),
+    family = student(),
     prior =
       prior(normal(0.15, 0.06), class = "Intercept", resp = "libest") +
       prior(exponential(5), class = "sigma", resp = "libest") +
@@ -154,7 +161,8 @@ cor_all <-
       prior(exponential(5), class = "sigma", resp = "conest") +
       prior(normal(0.4, 0.07), class = "Intercept", resp = "labest") +
       prior(exponential(5), class = "sigma", resp = "labest") +
-      prior(lkj(2), class = "rescor"),
+      prior(lkj(2), class = "rescor") +
+      prior(gamma(2, .1), class = "nu"),
     data = pollbasepro,
     backend = "cmdstanr",
     seed = 666,

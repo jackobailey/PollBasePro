@@ -7,9 +7,9 @@
 polling_multiverse(start = NULL, end = NULL)
 }
 \arguments{
-\item{start}{The date on which to start your new polling universe.}
+\item{start}{The date on which to start your new polling universe, in ymd (YYYY-MM-DD) format.}
 
-\item{end}{The date on which to end your new polling universe.}
+\item{end}{The date on which to end your new polling universe, in ymd (YYYY-MM-DD) format.}
 }
 \value{
 A tibble of polling data.
@@ -18,5 +18,5 @@ A tibble of polling data.
 Polls contain all sorts of uncertainty. But people still read them as if every little shift has some important cause, rather than simply resulting from random chance. This function uses \code{pollbasepro} to generate a new synthetic dataset of plausible polling results. These new "polls" line up with the days and sample sizes in the \code{pollbase} data. Note: the function doesn't currently account for house effects.
 }
 \examples{
-polling_multiverse(start = "2017-06-18", end = "2019-12-12")
+pollingverse <- polling_multiverse(start = "2017-06-18", end = "2019-12-12")
 }

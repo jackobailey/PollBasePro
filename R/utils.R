@@ -1233,7 +1233,7 @@ update_pollbasepro <- function(){
 
   # Use hotdeck imputation to fill in missing sample sizes
 
-  wiki$n[is.na(wiki$n) == T] <- round(median(wiki$n, na.rm = T), 0)
+  wiki$n[is.na(wiki$n) == T] <- round(stats::median(wiki$n, na.rm = T), 0)
 
 
   # Fit model

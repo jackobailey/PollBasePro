@@ -7,23 +7,6 @@
 #' @return A tibble of polling data.
 #' @examples
 #' pollingverse <- polling_multiverse(start = "2017-06-18", end = "2019-12-12")
-#' # Plot the result
-#' pollingverse_long <- pivot_longer(pollingverse,
-#'                                  cols = c(con, lab, lib),
-#'                                  names_to = "party",
-#'                                  values_to = "share")
-#' ggplot2::ggplot(data = pollingverse_long, mapping = aes(x = date, y = share, colour = party)) +
-#'   geom_point() +
-#'   geom_smooth() +
-#'   scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-#'   # override party colours
-#'   scale_colour_manual(values = c("con" = britpol::party_colours("con"),
-#'                                  "lab" = britpol::party_colours("lab"),
-#'                                  "lib" = britpol::party_colours("lib"))) +
-#'   # cosmetic changes
-#'   theme(legend.position = "none") +
-#'   labs(x = "",
-#'        y = "")
 #' @export
 
 polling_multiverse <- function(start = NULL, end = NULL){
@@ -34,11 +17,13 @@ polling_multiverse <- function(start = NULL, end = NULL){
     stop("Please provide a valid date range of the form YYYY-MM-DD using the start and end arguments.")
   }
 
+
   # Warning if dates seem implausible or suggest YMD mixed up
   if(as.Date(start) < as.Date("0032-01-01") ||
      as.Date(end) < as.Date("0032-01-01")){
     warning("Make sure you specified your start and end dates in YYYY-MM-DD format.")
   }
+
 
   # Error if end date before start date
   if(as.Date(end) < as.Date(start)){
@@ -51,8 +36,6 @@ polling_multiverse <- function(start = NULL, end = NULL){
      as.Date(start) > max(britpol::pollbasepro$date)){
     stop("The date range you have specified is outside of the range covered by available polling data.")
   }
-
-
 
 
   # Convert start and end to dates
@@ -116,7 +99,7 @@ polling_multiverse <- function(start = NULL, end = NULL){
       britpol::pollbasepro,
       "date"
     ) %>%
-    na.omit()
+    stats::na.omit()
 
 
   # Sample each row once from a binomial distribution
@@ -125,9 +108,9 @@ polling_multiverse <- function(start = NULL, end = NULL){
     pollbasepro %>%
     dplyr::rowwise() %>%
     dplyr::mutate(
-      con = rbinom(1, size = n, prob = rnorm(1e3, con_est, con_err))/n,
-      lab = rbinom(1, size = n, prob = rnorm(1e3, lab_est, lab_err))/n,
-      lib = rbinom(1, size = n, prob = rnorm(1e3, lib_est, lib_err))/n
+      con = stats::rbinom(1, size = n, prob = stats::rnorm(1e3, con_est, con_err))/n,
+      lab = stats::rbinom(1, size = n, prob = stats::rnorm(1e3, lab_est, lab_err))/n,
+      lib = stats::rbinom(1, size = n, prob = stats::rnorm(1e3, lib_est, lib_err))/n
     ) %>%
     dplyr::select(
       id,
@@ -137,6 +120,7 @@ polling_multiverse <- function(start = NULL, end = NULL){
       lib
     ) %>%
     dplyr::ungroup()
+
 
   # Warn if date range includes no polls
 

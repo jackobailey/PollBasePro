@@ -47,6 +47,9 @@ utils::globalVariables(
     "nat",
     "oth",
     "region",
-    "total"
+    "total",
+    "lib_err",
+    "lib_est",
+    "n_est"
     )
 )

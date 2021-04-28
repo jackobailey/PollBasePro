@@ -102,17 +102,17 @@ pollbase <-
 # election_results data set to compute them
 
 election_results <-
-  election_results %>%
+  constituency_results %>%
   filter(
     !region %in% c("University", "Northern Ireland"),
-    sum(c(con_votes, lab_votes, lib_votes, nat_votes, oth_votes), na.rm = T) >0
+    sum(c(con, lab, lib, nat, oth), na.rm = T) > 0
   ) %>%
   group_by(date) %>%
   summarise(
-    total = sum(c(con_votes, lab_votes, lib_votes, nat_votes, oth_votes), na.rm = T),
-    con = sum(con_votes, na.rm = T)/total,
-    lab = sum(lab_votes, na.rm = T)/total,
-    lib = sum(lib_votes, na.rm = T)/total
+    total = sum(c(con, lab, lib, nat, oth), na.rm = T),
+    con = sum(con, na.rm = T)/total,
+    lab = sum(lab, na.rm = T)/total,
+    lib = sum(lib, na.rm = T)/total
   ) %>%
   pivot_longer(
     cols = c(con, lab, lib),

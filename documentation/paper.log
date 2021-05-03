@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2020.5.12)  28 APR 2021 15:24
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.4.29)  3 MAY 2021 12:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/jack/Documents/britpol/documentation/paper.tex
-(/home/jack/Documents/britpol/documentation/paper.tex
+**paper.tex
+(./paper.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 3 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -1778,10 +1778,8 @@ LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/n' will be
 (Font)              scaled to size 8.41483pt on input line 225.
 LaTeX Font Info:    Font shape `TU/EBGaramond(0)/m/n' will be
 (Font)              scaled to size 5.97688pt on input line 225.
-File: /home/jack/Documents/britpol/documentation/paper_files/figure-latex/val-p
-lot-1.pdf Graphic file (type pdf)
-<use /home/jack/Documents/britpol/documentation/paper_files/figure-latex/val-pl
-ot-1.pdf>
+File: paper_files/figure-latex/val-plot-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/val-plot-1.pdf>
 LaTeX Font Info:    Font shape `TU/EBGaramond(1)/m/n' will be
 (Font)              scaled to size 10.0pt on input line 233.
 LaTeX Font Info:    Font shape `TU/EBGaramond(1)/m/n' will be
@@ -1795,18 +1793,14 @@ question: if Labour and the
  []
 
 [6]
-File: /home/jack/Documents/britpol/documentation/paper_files/figure-latex/time-
-plot-1.pdf Graphic file (type pdf)
-<use /home/jack/Documents/britpol/documentation/paper_files/figure-latex/time-p
-lot-1.pdf>
+File: paper_files/figure-latex/time-plot-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/time-plot-1.pdf>
 
-LaTeX Warning: Float too large for page by 15.0107pt on input line 270.
+LaTeX Warning: Float too large for page by 4.19588pt on input line 270.
 
 [7]
-File: /home/jack/Documents/britpol/documentation/paper_files/figure-latex/cor-p
-lot-1.pdf Graphic file (type pdf)
-<use /home/jack/Documents/britpol/documentation/paper_files/figure-latex/cor-pl
-ot-1.pdf>
+File: paper_files/figure-latex/cor-plot-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/cor-plot-1.pdf>
 
 Underfull \hbox (badness 2653) in paragraph at lines 282--283
 \TU/EBGaramond(0)/m/n/12 how are deaths attributable to COVID-19 related to pub
@@ -1817,10 +1811,8 @@ lic support for the governing
 
 
 ] [9]
-File: /home/jack/Documents/britpol/documentation/paper_files/figure-latex/death
--plot-1.pdf Graphic file (type pdf)
-<use /home/jack/Documents/britpol/documentation/paper_files/figure-latex/death-
-plot-1.pdf>
+File: paper_files/figure-latex/death-plot-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/death-plot-1.pdf>
 [10] [11] [12]
 Overfull \hbox (0.75085pt too wide) in paragraph at lines 362--364
 \TU/EBGaramond(0)/m/n/12 Disband.” \TU/EBGaramond(0)/m/it/12 The Guardian\TU/EB
@@ -1841,10 +1833,8 @@ LaTeX Font Info:    Font shape `TU/Cabin(0)/m/n' will be
 (Font)              scaled to size 7.03674pt on input line 433.
 LaTeX Font Info:    Font shape `TU/Cabin(0)/m/n' will be
 (Font)              scaled to size 5.27756pt on input line 433.
-File: /home/jack/Documents/britpol/documentation/paper_files/figure-latex/n-plo
-t-1.pdf Graphic file (type pdf)
-<use /home/jack/Documents/britpol/documentation/paper_files/figure-latex/n-plot
--1.pdf>
+File: paper_files/figure-latex/n-plot-1.pdf Graphic file (type pdf)
+<use paper_files/figure-latex/n-plot-1.pdf>
 [16] [17] [18] [19]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 488.
 [20]
@@ -1855,12 +1845,12 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 488.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 488.
  ) 
 Here is how much of TeX's memory you used:
- 28850 strings out of 494988
- 522935 string characters out of 6178638
- 764606 words of memory out of 5000000
+ 28849 strings out of 494988
+ 522120 string characters out of 6178638
+ 764600 words of memory out of 5000000
  32329 multiletter control sequences out of 15000+600000
  537293 words of font info for 121 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 62i,15n,117p,10443b,607s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,15n,117p,10400b,607s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on paper.pdf (21 pages).

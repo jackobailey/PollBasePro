@@ -386,7 +386,7 @@ ggplot() +
   theme_bailey()
 ```
 
-The PollBase data come from a range of sources. This includes books published after each general election, polling almanacs, data shared amongst academics and pollsters, contemporary media reports, and figures from polling company websites. The data since the 1983 general election are complete, baring any individual errors. Likewise, data are complete for every general election campaign before 1979. The coverage between elections is more comprehensive for some pollsters than others^[We encourage any readers who might know of polls missing from the PollBase dataset to contact its author via his website (https://www.markpack.org.uk)]. Gallup and NOP data, in particular, are well-covered as the two companies have collated and published their results. The PollBase data start on `r format(min(pollbase$start), "%d %B %Y")`. Yet, consistent polling began only after the 1955 general election. Thus, we take it as our starting point.
+The PollBase data come from a wide range of sources. This includes books published after each general election, polling almanacs, data shared amongst academics and pollsters, contemporary media reports, and figures from polling company websites. The data since the 1983 general election are complete, baring possible but rare individual errors. Prior to 1983, the data is likewise complete for each general election campaign period. For periods between general elections prior to 1983, coverage is more comprehensive for some pollsters than others^[We encourage any readers who might know of polls missing from the PollBase dataset to contact its author via his website (https://www.markpack.org.uk)]. Gallup and NOP data, in particular, are well-covered as the two companies have collated and published their results. The PollBase data start in `r format(min(pollbase$start), "%B %Y")`. However, we take as our starting point the 1955 Parliament given the gaps in the earlier data.
 
 We use the Wikipedia data to cover the period from 2010 onwards. This is a pragmatic choice. Volunteers update the data in real time and include sample sizes that are missing from PollBase. This is important as our model assumes that we know the sampling error present in each estimate. For the PollBase data, we impute likely sample sizes to allow us to estimate these errors^[Again, see the appendix for more information on this process.]. But as the Wikipedia data include sample sizes, imputation is not necessary. While some might doubt Wikipedia's reliability, we do not think that it is an issue. Polling figures are verifiable and likely of interest only to a very small group of people. Wikipedia's coverage of public opinion polling since 2010 is also of a very high quality, and almost all figures on the website including links to external data sources that corroborate them.
 
@@ -722,6 +722,7 @@ kable(
   label = "head-tab",
   booktabs = TRUE,
   escape = FALSE,
+  linesep = "",
   caption = paste0("The first 5 rows of the PollBasePro dataset")
   ) %>% 
   kable_styling(position = "center")

@@ -1,6 +1,6 @@
 #' Is a Constituency in the "Red Wall"?
 #'
-#' This function takes a vector of constituency names and returns a variable that indicates if each element is in the "Red Wall" or not. These constituencies are coded according to the classification created by James Kanagasooriam that underpinned much of the Conservative's 2019 campaign.
+#' This function takes a vector of constituency names and returns a variable that indicates if each element is in the "Red Wall" or not. These constituencies are coded according to the classification created by James Kanagasooriam.
 #'
 #' @param x A vector of constituency data.
 #' @return A boolean vector.

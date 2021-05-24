@@ -119,7 +119,8 @@ death_mod <-
         "documentation",
         "_assets",
         paste0("death_mod_", packageVersion("britpol"))
-      )
+      ),
+    file_refit = "on_change"
   )
 
 

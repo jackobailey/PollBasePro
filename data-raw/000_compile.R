@@ -53,11 +53,6 @@ render(
 )
 
 
-# Generate random cover image
-
-source(here("documentation", "_assets", "cover.R"))
-
-
 # Render user guide and codebook
 
 render(

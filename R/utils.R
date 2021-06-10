@@ -880,6 +880,7 @@ get_new_polls <- function(){
     dplyr::mutate(
       n =
         n %>%
+        stringr::str_remove("[^0-9]") %>%
         stringr::str_remove(",") %>%
         as.numeric(),
       con =
@@ -904,9 +905,16 @@ get_new_polls <- function(){
 
   dta <-
     dta %>%
+    dplyr::mutate(
+      date =
+        dplyr::case_when(
+          stringr::str_detect(date, "---") == F ~ paste0(date, "---", date),
+          TRUE ~ date
+        )
+    ) %>%
     tidyr::separate(
       col = date,
-      sep = "---",
+      sep = "---| --- ",
       into = c("start", "end")
     )
 

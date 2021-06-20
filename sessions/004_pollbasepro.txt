@@ -1,4 +1,4 @@
-Analysis completed: 2021-06-13 11:17:56
+Analysis completed: 2021-06-20 12:10:15
 
 R version 4.1.0 (2021-05-18)
 Platform: x86_64-pc-linux-gnu (64-bit)
@@ -9,29 +9,52 @@ BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
 LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
 
 locale:
- [1] LC_CTYPE=en_GB.UTF-8       LC_NUMERIC=C               LC_TIME=en_GB.UTF-8       
- [4] LC_COLLATE=en_GB.UTF-8     LC_MONETARY=en_GB.UTF-8    LC_MESSAGES=en_GB.UTF-8   
- [7] LC_PAPER=en_GB.UTF-8       LC_NAME=C                  LC_ADDRESS=C              
-[10] LC_TELEPHONE=C             LC_MEASUREMENT=en_GB.UTF-8 LC_IDENTIFICATION=C       
+ [1] LC_CTYPE=en_GB.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_GB.UTF-8        LC_COLLATE=en_GB.UTF-8    
+ [5] LC_MONETARY=en_GB.UTF-8    LC_MESSAGES=en_GB.UTF-8   
+ [7] LC_PAPER=en_GB.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_GB.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
+[1] stats     graphics  grDevices utils     datasets 
+[6] methods   base     
 
 loaded via a namespace (and not attached):
- [1] tidyselect_1.1.1     xfun_0.23            remotes_2.4.0        purrr_0.3.4         
- [5] haven_2.4.1          labelled_2.8.0       colorspace_2.0-1     vctrs_0.3.8         
- [9] generics_0.1.0       usethis_2.0.1        utf8_1.2.1           XML_3.99-0.6        
-[13] rlang_0.4.11         pkgbuild_1.2.0       pillar_1.6.1         glue_1.4.2          
-[17] withr_2.4.2          DBI_1.1.1            distributional_0.2.2 lifecycle_1.0.0     
-[21] stringr_1.4.0        posterior_0.1.6      munsell_0.5.0        gtable_0.3.0        
-[25] forcats_0.5.1        knitr_1.33           callr_3.7.0          htmltab_0.8.1       
-[29] ps_1.6.0             curl_4.3.1           fansi_0.5.0          cmdstanr_0.4.0.9000 
-[33] Rcpp_1.0.6           backports_1.2.1      scales_1.1.1         checkmate_2.0.0     
-[37] desc_1.3.0           jsonlite_1.7.2       abind_1.4-5          fs_1.5.0            
-[41] farver_2.1.0         tensorA_0.36.2       britpol_0.1.0        hms_1.1.0           
-[45] ggplot2_3.3.3        stringi_1.6.2        processx_3.5.2       dplyr_1.0.6         
-[49] rprojroot_2.0.2      grid_4.1.0           here_1.0.1           cli_2.5.0           
-[53] tools_4.1.0          magrittr_2.0.1       tibble_3.1.2         crayon_1.4.1        
-[57] tidyr_1.1.3          pkgconfig_2.0.3      ellipsis_0.3.2       data.table_1.14.0   
-[61] prettyunits_1.1.1    lubridate_1.7.10     assertthat_0.2.1     httr_1.4.2          
-[65] rstudioapi_0.13      R6_2.5.0             compiler_4.1.0      
+ [1] Rcpp_1.0.6           lubridate_1.7.10    
+ [3] here_1.0.1           tidyr_1.1.3         
+ [5] prettyunits_1.1.1    ps_1.6.0            
+ [7] assertthat_0.2.1     rprojroot_2.0.2     
+ [9] utf8_1.2.1           R6_2.5.0            
+[11] backports_1.2.1      labelled_2.8.0      
+[13] httr_1.4.2           ggplot2_3.3.3       
+[15] pillar_1.6.1         rlang_0.4.11        
+[17] curl_4.3.1           rstudioapi_0.13     
+[19] data.table_1.14.0    callr_3.7.0         
+[21] checkmate_2.0.0      desc_1.3.0          
+[23] devtools_2.4.2       stringr_1.4.0       
+[25] munsell_0.5.0        compiler_4.1.0      
+[27] xfun_0.23            pkgconfig_2.0.3     
+[29] pkgbuild_1.2.0       tidyselect_1.1.1    
+[31] tensorA_0.36.2       tibble_3.1.2        
+[33] XML_3.99-0.6         fansi_0.5.0         
+[35] crayon_1.4.1         dplyr_1.0.6         
+[37] withr_2.4.2          grid_4.1.0          
+[39] distributional_0.2.2 jsonlite_1.7.2      
+[41] gtable_0.3.0         lifecycle_1.0.0     
+[43] DBI_1.1.1            magrittr_2.0.1      
+[45] posterior_0.1.6      scales_1.1.1        
+[47] cli_2.5.0            stringi_1.6.2       
+[49] cachem_1.0.5         farver_2.1.0        
+[51] fs_1.5.0             remotes_2.4.0       
+[53] testthat_3.0.2       htmltab_0.8.1       
+[55] ellipsis_0.3.2       generics_0.1.0      
+[57] vctrs_0.3.8          forcats_0.5.1       
+[59] tools_4.1.0          britpol_0.1.0       
+[61] glue_1.4.2           purrr_0.3.4         
+[63] hms_1.1.0            processx_3.5.2      
+[65] abind_1.4-5          pkgload_1.2.1       
+[67] fastmap_1.1.0        colorspace_2.0-1    
+[69] sessioninfo_1.1.1    memoise_2.0.0       
+[71] haven_2.4.1          cmdstanr_0.4.0.9000 
+[73] knitr_1.33           usethis_2.0.1       

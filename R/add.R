@@ -47,6 +47,11 @@ add_pm <- function(data = NULL, date = "date", name = "prime_minister"){
   }
 
 
+  # Amend final PM to some absurd future data
+
+  prime_ministers$end[nrow(prime_ministers)] <- "3000-01-01"
+
+
   # If everything's ok, return the relevant PM for each date
 
   data <-

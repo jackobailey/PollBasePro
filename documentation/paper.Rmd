@@ -735,16 +735,17 @@ Figure \@ref(fig:death-plot) shows that the effect is more "rally 'round the fla
 
 ```{r death-plot, fig.cap = "At the start of the COVID-19 pandemic, more deaths were related to greater support for the incumbent Conservative Party. As time has passed, this relationship has reversed.", fig.width = 6, fig.height = 2.5, fig.align = "centre", echo = F}
 
-# Get conditional effects
-
 cond_fx <- 
   conditional_effects(
     death_mod,
     "deaths",
     conditions =
       tibble(
-        time = seq(2, 14, by = 6),
-        cond__ = c("Mar. 2020", "Sep. 2020", "Mar. 2021")
+        time = round(seq(3, 18, length.out = 3), 0),
+        cond__ = 
+          as_date("2019-12-12") %m+%
+          months(time) %>% 
+          format("%b. %Y")
       )
   )$deaths
 
@@ -788,6 +789,7 @@ cond_fx %>%
     x = "Change in Deaths Attributable to COVID-19, Past 4 Weeks"
   ) +
   theme_bailey()
+
 ```
 
 It is clear then that PollBasePro has allowed us to reveal an important---if surprising---answer to the question that we posed above: despite Britain having one of the world's highest levels of COVID-related deaths per capita [@ritchie2021], these untimely deaths appear to have *benefited* the fortunes of the governing Conservative Party. Yet this relationship has changed over time and, a year into the pandemic, has reversed direction. We might, thus, expect any further deaths attributable to COVID-19 to erode the Conservative's ample base of support. Yet given the pace of Britain's vaccination programme [@ukgovernment2021a], it is possible that the Conservatives have reaped the electoral rewards of the crisis without risk of punishment.

@@ -63,7 +63,7 @@ are as follows:
 
 -   **Data:** Bailey, J., M. Pack, and L. Mansillo (2021) PollBasePro:
     Daily Estimates of Aggregate Voting Intention in Great Britain from
-    1955 to 2021 v.0.1.0 \[computer file\], June 2021. Retrieved from
+    1955 to 2021 v.0.1.0 \[computer file\], July 2021. Retrieved from
     <https://doi.org/10.7910/DVN/3POIQW>.
 
 -   **Paper:** Bailey, J., M. Pack, and L. Mansillo (2021) PollBasePro:
